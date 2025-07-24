@@ -20,6 +20,6 @@ class PlayerWithEvents(xbmc.Player):
 
     def onPlayBackError(self):
         PluginLog.info("onPlayBackError")
-        super(PlayerWithEvents, self).onPlayBackError()
+        #super(PlayerWithEvents, self).onPlayBackError()
         self.playnext()
 

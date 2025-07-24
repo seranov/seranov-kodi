@@ -23,18 +23,30 @@ class VideoScanner(threading.Thread):
         self.base_path = xbmcvfs.translatePath(base_path)
         self.running = True
         self.lock = threading.Lock()
+        self.visited = set()
+
+    def scan_folder(self, folder):
+        if not self.running or xbmc.Monitor().abortRequested():
+            return
+        real_path = os.path.realpath(folder)
+        if real_path in self.visited:
+            return
+        self.visited.add(real_path)
+        items = os.listdir(real_path)
+        random.shuffle(items)
+        for item in items:
+            path = os.path.join(folder, item)
+            if os.path.isdir(path):
+                self.scan_folder(path)
+            else:
+                if item.upper().endswith(VIDEO_EXTS):
+                    self.play_list.add_item(path)
 
     def run(self):
         PluginLog.info("scanner started")
         try:
-            for root, _, files in os.walk(self.base_path, followlinks=True):
-                if not self.running or xbmc.Monitor().abortRequested():
-                    return
-
-                for file in random.sample(files, len(files)):
-                    if file.upper().endswith(VIDEO_EXTS):
-                        path = os.path.join(root, file)
-                        self.play_list.add_item(path)
+            self.visited.clear()
+            self.scan_folder(self.base_path)
         except Exception as e:
             PluginLog.error(f"scanner error: {str(e)}")
             time.sleep(10)

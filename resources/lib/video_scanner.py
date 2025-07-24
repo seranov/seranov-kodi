@@ -10,7 +10,7 @@ from resources.lib.plugin_log import PluginLog
 
 # Supported video extensions
 VIDEO_EXTS = (
-    '.AVI', '.MPEG', '.MPG', '.WMV', '.ASF', '.FLV', '.MKV', '.QT', '.MP4', '.NUT', '.OGG', '.OGM',
+    '.AVI', '.MPEG', '.MPG', '.WMV', '.ASF', '.FLV', '.MKV', '.QT', '.MP4', '.NUT', '.OGG', '.OGM', '.MOV',
     '.RAM', '.RM', '.RV', '.RMVB', '.3GP', '.VIVO', '.NUV', '.NSV', '.FLI', '.FLC', '.DVR-MS', '.WTV', '.TRP', '.F4V'
 )
 

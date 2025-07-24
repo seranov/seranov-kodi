@@ -10,12 +10,12 @@ class PluginLog:
 
     @staticmethod
     def debug(message):
-        PluginLog.log(f"{PluginLog.PREFIX}{message}", xbmc.LOGDEBUG)
+        PluginLog.log(message, xbmc.LOGDEBUG)
 
     @staticmethod
     def info(message):
-        PluginLog.log(f"{PluginLog.PREFIX}{message}")
+        PluginLog.log(message)
 
     @staticmethod
     def error(message):
-        PluginLog.log(f"{PluginLog.PREFIX}{message}", xbmc.LOGERROR)
+        PluginLog.log(message, xbmc.LOGERROR)

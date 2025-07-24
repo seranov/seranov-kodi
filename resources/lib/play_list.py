@@ -1,3 +1,4 @@
+import os
 import random
 import time
 
@@ -10,17 +11,30 @@ class PlayListExtended:
     def __init__(self):
         self.itemsAll = []
         self.itemsPlayed = []
-        self.itemsUnPlayed = []
+        self.playlist = []
         self.lastPlayedIndex = -1
         self.lastUpdateTime = 0
         self.clear()
 
-    def create_playlist_item(self, video_path):
-        item = xbmcgui.ListItem(path=video_path)
-        item.getVideoInfoTag().setTitle(video_path.split('/')[-1])
+    @staticmethod
+    def create_playlist_item(url):
+        title = ' / '.join(reversed(url.split('/')))
+        item = xbmcgui.ListItem(label=title, path=url)
+
+        folder_path = os.path.dirname(url)
+        folder_art_path = os.path.join(folder_path, "folder.jpg")
+        if os.path.exists(folder_art_path):
+            item.setArt({'icon': folder_art_path, 'poster': folder_art_path, 'thumb': folder_art_path})
+
+        item.setInfo('video', {'title': title})
         item.setProperty('IsPlayable', 'true')
         item.setIsFolder(False)
+
         return item
+
+    def get_item_count(self):
+        PluginLog.debug(f"returning item count {len(self.itemsAll)}")
+        return len(self.itemsAll)
 
     def get_last_update_time(self):
         return self.lastUpdateTime
@@ -29,36 +43,30 @@ class PlayListExtended:
         return self.lastPlayedIndex
 
     def update_last_played_index(self, index):
-        if 0 <= index < len(self.itemsAll):
-            if self.lastPlayedIndex < index:
-                self.lastPlayedIndex = index
-                PluginLog.info(f"updated last played index: {self.lastPlayedIndex}")
-                self.itemsPlayed = self.itemsAll[:self.lastPlayedIndex + 1]
-
-    def get_un_played_count(self):
-        return len(self.itemsAll) - len(self.itemsPlayed)
+        if index > self.lastPlayedIndex:
+            self.lastPlayedIndex = index
+            self.itemsPlayed = self.playlist[:self.lastPlayedIndex + 1]
+            PluginLog.info(f"updated last played index: {self.lastPlayedIndex}")
 
     def add_item(self, item):
-        self.itemsAll.append(self.create_playlist_item(item))
+        self.itemsAll.append(PlayListExtended.create_playlist_item(item))
         self.lastUpdateTime = time.time()
-        PluginLog.info(f"appended item: {item}")
+        PluginLog.info(f"appended item: {item}; total count {len(self.itemsAll)}")
 
     def get_play_list(self):
-        playlist = []
-        un_played_items = self.itemsAll[len(self.itemsPlayed):]
-        randomized_items = random.sample(un_played_items, len(un_played_items))
-        for item in randomized_items:
-            PluginLog.debug(f"before add item={item}")
-            playlist.append(item)
+        playlist_new = self.itemsPlayed[:]
+        playlist_new.extend(random.sample(self.itemsAll, len(self.itemsAll)))
+        playlist = playlist_new
+        PluginLog.debug(f"generated playlist of size {len(playlist)} from played {len(self.itemsPlayed)} and all {len(self.itemsAll)}")
         return playlist
 
     def clear(self):
         PluginLog.info("clearing playlist")
         self.itemsAll.clear()
         self.itemsPlayed.clear()
-        self.itemsUnPlayed.clear()
+        self.playlist.clear()
         self.lastPlayedIndex = -1
         self.lastUpdateTime = 0
 
     def __str__(self):
-        return f"PlayListExtended(itemsAll={self.itemsAll}; itemsPlayed={self.itemsPlayed})"
+        return f"PlayListExtended(itemsAll={self.itemsAll}; itemsPlayed={self.itemsPlayed}; playlist={self.playlist})"

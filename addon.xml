@@ -12,6 +12,15 @@
         <provides>executable</provides>
     </extension>
 
+    <extension point="kodi.context.item">
+        <menu id="kodi.core.main">
+            <item library="main.py" args="play-random-recursive">
+                <label>$ADDON[plugin.video.random.recursive 32000]</label>
+                <visible>true</visible>
+            </item>
+        </menu>
+    </extension>
+
     <extension point="xbmc.addon.metadata">
         <summary>Play videos recursively in random order</summary>
         <description>Scans a directory and plays all videos randomly from all subfolders.</description>

@@ -2,62 +2,44 @@ import os
 import threading
 import time
 import random
-from queue import Queue
 import xbmcvfs
 import xbmc
 
+from resources.lib.play_list import PlayListExtended
+from resources.lib.plugin_log import PluginLog
+
 # Supported video extensions
 VIDEO_EXTS = (
-    '.mp4', '.avi', '.mkv', '.mov', '.flv', '.wmv', '.mpg', '.mpeg',
-    '.m4v', '.3gp', '.ts', '.m2ts', '.divx', '.xvid'
+    '.AVI', '.MPEG', '.MPG', '.WMV', '.ASF', '.FLV', '.MKV', '.QT', '.MP4', '.NUT', '.OGG', '.OGM',
+    '.RAM', '.RM', '.RV', '.RMVB', '.3GP', '.VIVO', '.NUV', '.NSV', '.FLI', '.FLC', '.DVR-MS', '.WTV', '.TRP', '.F4V'
 )
 
+
 class VideoScanner(threading.Thread):
-    def __init__(self, base_path):
+    def __init__(self, play_list: PlayListExtended, base_path):
         super().__init__()
+        self.play_list = play_list
         self.daemon = True
         self.base_path = xbmcvfs.translatePath(base_path)
-        self.found_videos = set()
-        self.new_videos = Queue()
         self.running = True
         self.lock = threading.Lock()
 
     def run(self):
-        while self.running and not xbmc.Monitor().abortRequested():
-            try:
-                current_videos = set()
-                for root, _, files in os.walk(self.base_path):
-                    if not self.running or xbmc.Monitor().abortRequested():
-                        return
+        PluginLog.info("scanner started")
+        try:
+            for root, _, files in os.walk(self.base_path, followlinks=True):
+                if not self.running or xbmc.Monitor().abortRequested():
+                    return
 
-                    for file in files:
-                        if file.lower().endswith(VIDEO_EXTS):
-                            path = os.path.join(root, file)
-                            current_videos.add(path)
-
-                            if path not in self.found_videos:
-                                self.new_videos.put(path)
-
-                with self.lock:
-                    self.found_videos = current_videos
-
-                for _ in range(30):  # SCAN_INTERVAL
-                    if not self.running or xbmc.Monitor().abortRequested():
-                        return
-                    time.sleep(1)
-
-            except Exception as e:
-                xbmc.log(f"Scanner error: {str(e)}", xbmc.LOGERROR)
-                time.sleep(10)
+                for file in random.sample(files, len(files)):
+                    if file.upper().endswith(VIDEO_EXTS):
+                        path = os.path.join(root, file)
+                        self.play_list.add_item(path)
+        except Exception as e:
+            PluginLog.error(f"scanner error: {str(e)}")
+            time.sleep(10)
+        PluginLog.info("scanner stopped")
 
     def stop(self):
+        PluginLog.info("scanner stopping")
         self.running = False
-
-    def get_random_videos(self, count):
-        with self.lock:
-            if not self.found_videos:
-                return []
-
-            available = list(self.found_videos)
-            count = min(count, len(available))
-            return random.sample(available, count)

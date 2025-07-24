@@ -1,0 +1,9 @@
+# Kodi Media Center language file
+# Addon Name: Popup Screenshots
+# Addon id: context.screenshots
+msgid ""
+msgstr ""
+
+msgctxt "#32000"
+msgid "Play random recursive"
+msgstr ""

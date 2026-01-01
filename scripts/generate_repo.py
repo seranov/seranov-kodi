@@ -56,9 +56,9 @@ def create_zip(addon_dir, addon_id, version, output_dir):
     # Create zip file
     with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for root, dirs, files in os.walk(addon_dir):
-            # Skip hidden files and directories
+            # Skip hidden files and directories, and __pycache__
             files = [f for f in files if not f.startswith('.')]
-            dirs[:] = [d for d in dirs if not d.startswith('.')]
+            dirs[:] = [d for d in dirs if not d.startswith('.') and d != '__pycache__']
             
             for file in files:
                 file_path = Path(root) / file

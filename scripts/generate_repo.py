@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""
+Script to generate Kodi repository files (addons.xml and addons.xml.md5)
+and package addons into zip files.
+"""
+
+import os
+import shutil
+import hashlib
+import zipfile
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+
+def get_addon_dirs():
+    """Get all addon directories (starting with 'plugin.', 'service.', or 'repository.')"""
+    base_path = Path(__file__).parent.parent
+    addon_dirs = []
+    
+    for item in base_path.iterdir():
+        if item.is_dir() and (
+            item.name.startswith('plugin.') or 
+            item.name.startswith('service.') or 
+            item.name.startswith('repository.')
+        ):
+            addon_xml = item / 'addon.xml'
+            if addon_xml.exists():
+                addon_dirs.append(item)
+    
+    return addon_dirs
+
+
+def get_addon_info(addon_dir):
+    """Extract addon id and version from addon.xml"""
+    addon_xml = addon_dir / 'addon.xml'
+    tree = ET.parse(addon_xml)
+    root = tree.getroot()
+    
+    addon_id = root.get('id')
+    version = root.get('version')
+    
+    return addon_id, version, tree
+
+
+def create_zip(addon_dir, addon_id, version, output_dir):
+    """Create a zip file for the addon"""
+    zip_filename = f"{addon_id}-{version}.zip"
+    zip_path = output_dir / zip_filename
+    
+    print(f"Creating {zip_filename}...")
+    
+    # Remove old zip if exists
+    if zip_path.exists():
+        zip_path.unlink()
+    
+    # Create zip file
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(addon_dir):
+            # Skip hidden files and directories
+            files = [f for f in files if not f.startswith('.')]
+            dirs[:] = [d for d in dirs if not d.startswith('.')]
+            
+            for file in files:
+                file_path = Path(root) / file
+                arcname = Path(addon_id) / file_path.relative_to(addon_dir)
+                zipf.write(file_path, arcname)
+    
+    print(f"Created {zip_filename}")
+    return zip_filename
+
+
+def generate_addons_xml(addon_dirs, output_dir):
+    """Generate addons.xml file"""
+    print("Generating addons.xml...")
+    
+    root = ET.Element('addons')
+    
+    for addon_dir in addon_dirs:
+        addon_id, version, tree = get_addon_info(addon_dir)
+        addon_element = tree.getroot()
+        root.append(addon_element)
+    
+    # Create tree and write to file
+    tree = ET.ElementTree(root)
+    ET.indent(tree, space='    ')
+    
+    addons_xml_path = output_dir / 'addons.xml'
+    tree.write(addons_xml_path, encoding='utf-8', xml_declaration=True)
+    
+    print(f"Generated addons.xml")
+    return addons_xml_path
+
+
+def generate_md5(file_path):
+    """Generate MD5 hash for a file"""
+    print(f"Generating MD5 for {file_path.name}...")
+    
+    md5_hash = hashlib.md5()
+    with open(file_path, 'rb') as f:
+        md5_hash.update(f.read())
+    
+    md5_file = file_path.parent / f"{file_path.name}.md5"
+    with open(md5_file, 'w') as f:
+        f.write(md5_hash.hexdigest())
+    
+    print(f"Generated {md5_file.name}")
+
+
+def main():
+    """Main function"""
+    base_path = Path(__file__).parent.parent
+    repo_dir = base_path / 'repo'
+    
+    # Create repo directory if it doesn't exist
+    repo_dir.mkdir(exist_ok=True)
+    
+    # Get all addon directories
+    addon_dirs = get_addon_dirs()
+    
+    if not addon_dirs:
+        print("No addon directories found!")
+        return
+    
+    print(f"Found {len(addon_dirs)} addon(s)")
+    
+    # Create zip files for each addon
+    for addon_dir in addon_dirs:
+        addon_id, version, _ = get_addon_info(addon_dir)
+        create_zip(addon_dir, addon_id, version, repo_dir)
+    
+    # Generate addons.xml
+    addons_xml_path = generate_addons_xml(addon_dirs, repo_dir)
+    
+    # Generate MD5 for addons.xml
+    generate_md5(addons_xml_path)
+    
+    print("\nRepository generation complete!")
+    print(f"Repository files are in: {repo_dir}")
+
+
+if __name__ == '__main__':
+    main()

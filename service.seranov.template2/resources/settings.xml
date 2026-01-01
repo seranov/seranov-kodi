@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32001">
+        <setting id="enable_playback_monitoring" type="bool" label="32010" default="true"/>
+        <setting id="enable_notifications" type="bool" label="32011" default="true"/>
+        <setting id="debug_mode" type="bool" label="32012" default="false"/>
+    </category>
+</settings>

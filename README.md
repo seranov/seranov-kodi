@@ -8,10 +8,14 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 ├── repository.seranov/          # Repository addon
 ├── service.seranov.template1/   # Service plugin template 1
 ├── service.seranov.template2/   # Service plugin template 2
-├── plugin.video.random.recursive/ # Random video player plugin (existing)
+├── addon.xml                    # Random Recursive Video Player plugin (root level)
+├── main.py                      # Main plugin file
+├── resources/                   # Plugin resources
 ├── repo/                        # Generated repository files (addons.xml, zips)
 └── scripts/                     # Build scripts
 ```
+
+**Note**: The existing Random Recursive Video Player plugin (`plugin.video.random.recursive`) files are located at the repository root level. New plugins should be created in their own directories (see templates).
 
 ## Available Add-ons
 
@@ -36,10 +40,6 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
   - Handles Kodi notifications
   - Reacts to settings changes
   - Configurable event handling
-
-### Random Recursive Video Player
-- **ID**: `plugin.video.random.recursive`
-- **Purpose**: Play videos from a directory in random order
 
 ## Installation
 

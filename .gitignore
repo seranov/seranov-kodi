@@ -163,6 +163,3 @@ cython_debug/
 /.idea/
 /.idea/vcs.xml
 
-# Kodi repository generated files
-/repo/*
-!/repo/.gitkeep

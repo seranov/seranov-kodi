@@ -107,7 +107,7 @@ Want to create your own service plugin? See [CONTRIBUTING.md](CONTRIBUTING.md) f
 
 2. **Update metadata:**
    - Edit `addon.xml` with your plugin details
-   - Update strings in `resources/language/resource.language.en_gb/strings.po`
+   - Update strings in `resources/language/resource.language.en_gb/strings.xml`
 
 3. **Implement your logic:**
    - Edit `service.py` to add your custom functionality

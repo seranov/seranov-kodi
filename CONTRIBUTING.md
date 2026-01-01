@@ -80,7 +80,7 @@ Add or modify settings for your plugin. Example:
 
 ### Step 6: Update Language Strings
 
-Edit `service.seranov.yourplugin/resources/language/resource.language.en_gb/strings.po`:
+Edit `service.seranov.yourplugin/resources/language/resource.language.en_gb/strings.xml`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>

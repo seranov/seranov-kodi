@@ -80,7 +80,7 @@ This will:
    - `service.py` or `main.py` - Main script
    - `icon.png` - Add-on icon (256x256 recommended)
    - `resources/settings.xml` - Settings configuration
-   - `resources/language/resource.language.en_gb/strings.po` - Localization strings
+   - `resources/language/resource.language.en_gb/strings.xml` - Localization strings
 3. Run the build script to regenerate the repository
 
 ### Service Plugin Template Structure
@@ -97,7 +97,7 @@ service.addon.name/
     ├── settings.xml             # Add-on settings
     ├── language/
     │   └── resource.language.en_gb/
-    │       └── strings.po       # English strings
+    │       └── strings.xml       # English strings
     └── lib/                     # Optional library modules
 ```
 

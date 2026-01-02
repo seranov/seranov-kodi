@@ -42,4 +42,6 @@
     <string id="32400">No movies found</string>
     <string id="32401">Loading...</string>
     <string id="32402">Error loading data</string>
+    <string id="32403">Filters reset</string>
+    <string id="32404">Error: {0}</string>
 </strings>

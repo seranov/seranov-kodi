@@ -20,7 +20,7 @@ def show_screenshots():
             
             xbmcgui.Dialog().notification(
                 addon_name,
-                'Screenshots feature for: ' + path,
+                addon.getLocalizedString(32013).format(path),
                 xbmcgui.NOTIFICATION_INFO,
                 5000
             )
@@ -33,9 +33,10 @@ def show_screenshots():
             
     except Exception as e:
         xbmc.log('[context.screenshots] Error: ' + str(e), xbmc.LOGERROR)
+        addon = xbmcaddon.Addon()
         xbmcgui.Dialog().notification(
-            'Error',
-            'Failed to show screenshots',
+            addon.getLocalizedString(32014),
+            addon.getLocalizedString(32015),
             xbmcgui.NOTIFICATION_ERROR,
             5000
         )

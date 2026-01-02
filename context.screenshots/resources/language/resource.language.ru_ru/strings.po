@@ -1,0 +1,52 @@
+# Kodi Media Center language file
+# Addon Name: Bidon Popup Screenshots
+# Addon id: context.screenshots
+# Addon Provider: seranov
+
+msgctxt "#32000"
+msgid "Popup Screenshots"
+msgstr "Всплывающие скриншоты"
+
+msgctxt "#32001"
+msgid "Show screenshots"
+msgstr "Показать скриншоты"
+
+msgctxt "#32002"
+msgid "Slideshow duration (seconds)"
+msgstr "Длительность слайдшоу (секунды)"
+
+msgctxt "#32003"
+msgid "Show file_id.diz content"
+msgstr "Показать содержимое file_id.diz"
+
+msgctxt "#32004"
+msgid "Image extensions"
+msgstr "Расширения изображений"
+
+msgctxt "#32005"
+msgid "Enable debug logging"
+msgstr "Включить отладочное логирование"
+
+msgctxt "#32010"
+msgid "Version: {0}"
+msgstr "Версия: {0}"
+
+msgctxt "#32011"
+msgid "This addon shows screenshots in a slideshow format."
+msgstr "Это дополнение показывает скриншоты в формате слайдшоу."
+
+msgctxt "#32012"
+msgid "Use the context menu on video items to activate."
+msgstr "Используйте контекстное меню на видео элементах для активации."
+
+msgctxt "#32013"
+msgid "Screenshots feature for: {0}"
+msgstr "Функция скриншотов для: {0}"
+
+msgctxt "#32014"
+msgid "Error"
+msgstr "Ошибка"
+
+msgctxt "#32015"
+msgid "Failed to show screenshots"
+msgstr "Не удалось показать скриншоты"

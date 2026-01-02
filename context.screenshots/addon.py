@@ -25,9 +25,9 @@ def main():
     # Show a simple dialog with addon information
     xbmcgui.Dialog().ok(
         addon_name,
-        f'Version: {addon_version}\n\n'
-        'This addon shows screenshots in a slideshow format.\n\n'
-        'Use the context menu on video items to activate.'
+        addon.getLocalizedString(32010).format(addon_version) + '\n\n'
+        + addon.getLocalizedString(32011) + '\n\n'
+        + addon.getLocalizedString(32012)
     )
     
     if addon_handle:

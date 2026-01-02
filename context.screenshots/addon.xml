@@ -21,7 +21,9 @@
     
     <extension point="xbmc.addon.metadata">
         <summary lang="en_GB">Popup Screenshots</summary>
+        <summary lang="ru_RU">Всплывающие скриншоты</summary>
         <description lang="en_GB">Show slideshow of local images and optionally file_id.diz file text content</description>
+        <description lang="ru_RU">Показывает слайдшоу локальных изображений и опционально текстовое содержимое файла file_id.diz</description>
         <disclaimer lang="en_GB"></disclaimer>
         <language></language>
         <platform>all</platform>

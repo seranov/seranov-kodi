@@ -9,7 +9,7 @@ from typing import Dict, List, Set, Optional, Tuple
 import xbmc
 import xbmcvfs
 
-from plugin_log import PluginLog
+from .plugin_log import PluginLog
 
 
 class FolderNode:

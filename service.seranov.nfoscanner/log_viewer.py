@@ -1,14 +1,19 @@
 """Log Viewer Script - Shows the scanner log in a text viewer"""
 import sys
+import os
 import xbmc
 import xbmcaddon
 import xbmcgui
 
-# Import log manager
-from resources.lib.plugin_log import PluginLog
-
 # Get addon information
 addon = xbmcaddon.Addon()
+
+# Add addon path to sys.path to ensure imports work
+addon_path = xbmcaddon.Addon().getAddonInfo('path')
+sys.path.insert(0, addon_path)
+
+# Import log manager
+from resources.lib.plugin_log import PluginLog
 
 
 def show_log():

@@ -147,7 +147,6 @@ class PluginLog:
         try:
             if xbmcvfs.exists(self.log_file):
                 xbmcvfs.delete(self.log_file)
-                self.info('Log file cleared')
                 xbmc.log(f'[{self.addon_id}] Log file cleared', xbmc.LOGINFO)
         except Exception as e:
             xbmc.log(f'[{self.addon_id}] Error clearing log file: {e}', xbmc.LOGERROR)

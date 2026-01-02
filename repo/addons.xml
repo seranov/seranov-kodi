@@ -10,8 +10,11 @@
         </extension>
         <extension point="xbmc.addon.metadata">
             <summary lang="en_GB">Unified video browser showing all videos, movies and series</summary>
+            <summary lang="ru_RU">Единый браузер видео, показывающий все видео, фильмы и сериалы</summary>
             <description lang="en_GB">Browse all video content in a unified list without separation by content type. Shows video files, movies (folders with one or more video files) and series in a single interface with filtering by years, genres, tags and keywords.</description>
+            <description lang="ru_RU">Просматривайте весь видеоконтент в едином списке без разделения по типам. Показывает видеофайлы, фильмы (папки с одним или несколькими видеофайлами) и сериалы в едином интерфейсе с фильтрацией по годам, жанрам, тегам и ключевым словам.</description>
             <disclaimer lang="en_GB">Requires Kodi video sources to be configured</disclaimer>
+            <disclaimer lang="ru_RU">Требуется настройка источников видео в Kodi</disclaimer>
             <language />
             <platform>all</platform>
             <license>MIT</license>
@@ -42,7 +45,9 @@
         </extension>
         <extension point="xbmc.addon.metadata">
             <summary lang="en_GB">Popup Screenshots</summary>
+            <summary lang="ru_RU">Всплывающие скриншоты</summary>
             <description lang="en_GB">Show slideshow of local images and optionally file_id.diz file text content</description>
+            <description lang="ru_RU">Показывает слайдшоу локальных изображений и опционально текстовое содержимое файла file_id.diz</description>
             <disclaimer lang="en_GB" />
             <language />
             <platform>all</platform>
@@ -66,7 +71,9 @@
         </extension>
         <extension point="xbmc.addon.metadata">
             <summary lang="en_GB">Seranov's Kodi Add-ons Repository</summary>
+            <summary lang="ru_RU">Репозиторий дополнений Kodi от Seranov</summary>
             <description lang="en_GB">Repository for Seranov's Kodi add-ons including service plugins</description>
+            <description lang="ru_RU">Репозиторий дополнений Kodi от Seranov, включая служебные плагины</description>
             <disclaimer lang="en_GB" />
             <language />
             <platform>all</platform>
@@ -100,7 +107,9 @@
         </extension>
         <extension point="xbmc.addon.metadata">
             <summary lang="en_GB">Play videos recursively in random order</summary>
+            <summary lang="ru_RU">Воспроизведение видео рекурсивно в случайном порядке</summary>
             <description lang="en_GB">Scans a directory and plays all videos randomly from all subfolders.</description>
+            <description lang="ru_RU">Сканирует директорию и воспроизводит все видео в случайном порядке из всех подпапок.</description>
             <disclaimer lang="en_GB" />
             <language />
             <platform>all</platform>

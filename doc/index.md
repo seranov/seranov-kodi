@@ -83,8 +83,7 @@ English documentation is located in the repository root:
 kodi-play-random/
 ├── plugin.video.random.recursive/  # Плагин случайного воспроизведения
 ├── context.screenshots/            # Контекстное меню для скриншотов
-├── service.seranov.template1/      # Шаблон службы 1 (периодическая)
-├── service.seranov.template2/      # Шаблон службы 2 (управляемая событиями)
+├── service.seranov.nfoscanner/     # Служба сканирования NFO
 ├── repository.seranov/             # Репозиторий аддонов
 ├── repo/                           # Сгенерированные zip-файлы
 ├── scripts/                        # Скрипты сборки

@@ -11,8 +11,11 @@
     
     <extension point="xbmc.addon.metadata">
         <summary lang="en_GB">Unified video browser showing all videos, movies and series</summary>
+        <summary lang="ru_RU">Единый браузер видео, показывающий все видео, фильмы и сериалы</summary>
         <description lang="en_GB">Browse all video content in a unified list without separation by content type. Shows video files, movies (folders with one or more video files) and series in a single interface with filtering by years, genres, tags and keywords.</description>
+        <description lang="ru_RU">Просматривайте весь видеоконтент в едином списке без разделения по типам. Показывает видеофайлы, фильмы (папки с одним или несколькими видеофайлами) и сериалы в едином интерфейсе с фильтрацией по годам, жанрам, тегам и ключевым словам.</description>
         <disclaimer lang="en_GB">Requires Kodi video sources to be configured</disclaimer>
+        <disclaimer lang="ru_RU">Требуется настройка источников видео в Kodi</disclaimer>
         <language></language>
         <platform>all</platform>
         <license>MIT</license>

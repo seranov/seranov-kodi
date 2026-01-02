@@ -9,7 +9,9 @@
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary lang="en_GB">Seranov's Kodi Add-ons Repository</summary>
+        <summary lang="ru_RU">Репозиторий дополнений Kodi от Seranov</summary>
         <description lang="en_GB">Repository for Seranov's Kodi add-ons including service plugins</description>
+        <description lang="ru_RU">Репозиторий дополнений Kodi от Seranov, включая служебные плагины</description>
         <disclaimer lang="en_GB"></disclaimer>
         <language></language>
         <platform>all</platform>

@@ -23,7 +23,9 @@
     
     <extension point="xbmc.addon.metadata">
         <summary lang="en_GB">Play videos recursively in random order</summary>
+        <summary lang="ru_RU">Воспроизведение видео рекурсивно в случайном порядке</summary>
         <description lang="en_GB">Scans a directory and plays all videos randomly from all subfolders.</description>
+        <description lang="ru_RU">Сканирует директорию и воспроизводит все видео в случайном порядке из всех подпапок.</description>
         <disclaimer lang="en_GB"></disclaimer>
         <language></language>
         <platform>all</platform>

@@ -37,4 +37,15 @@
     <string id="32105">Кеш очищен</string>
     <string id="32106">Сканирование завершено</string>
     <string id="32107">Ошибка при сканировании</string>
+    
+    <!-- Log Management -->
+    <string id="32024">Журнал</string>
+    <string id="32025">Управление журналом</string>
+    <string id="32026">Просмотр журнала</string>
+    <string id="32027">Просмотреть файл журнала сканера</string>
+    <string id="32028">Очистить журнал</string>
+    <string id="32029">Очистить файл журнала сканера</string>
+    <string id="32110">Журнал сканера</string>
+    <string id="32111">Вы уверены, что хотите очистить журнал?</string>
+    <string id="32112">Журнал успешно очищен</string>
 </strings>

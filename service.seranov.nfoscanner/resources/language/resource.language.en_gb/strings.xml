@@ -37,4 +37,15 @@
     <string id="32105">Cache cleared</string>
     <string id="32106">Scan completed</string>
     <string id="32107">Error during scan</string>
+    
+    <!-- Log Management -->
+    <string id="32024">Log</string>
+    <string id="32025">Log Management</string>
+    <string id="32026">View Log</string>
+    <string id="32027">View scanner log file</string>
+    <string id="32028">Clear Log</string>
+    <string id="32029">Clear the scanner log file</string>
+    <string id="32110">Scanner Log</string>
+    <string id="32111">Are you sure you want to clear the log?</string>
+    <string id="32112">Log cleared successfully</string>
 </strings>

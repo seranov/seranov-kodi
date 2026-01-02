@@ -3,7 +3,6 @@ import sys
 import json
 import xbmc
 import xbmcaddon
-import xbmcgui
 
 # Import scanner
 from resources.lib.nfo_scanner import NFOScanner
@@ -120,21 +119,9 @@ class NFOScannerService:
         
         if not self.scanner.running:
             self.scanner.start()
-            xbmcgui.Dialog().notification(
-                addon.getLocalizedString(32100),  # NFO Scanner
-                addon.getLocalizedString(32101),  # Scanning started
-                xbmcgui.NOTIFICATION_INFO,
-                3000
-            )
         else:
             # If already running, trigger immediate scan
             self.scanner.scan_all_sources()
-            xbmcgui.Dialog().notification(
-                addon.getLocalizedString(32100),  # NFO Scanner
-                addon.getLocalizedString(32101),  # Scanning started
-                xbmcgui.NOTIFICATION_INFO,
-                3000
-            )
     
     def stop_scan(self):
         """Stop the scanner"""
@@ -142,12 +129,6 @@ class NFOScannerService:
         
         if self.scanner:
             self.scanner.stop()
-            xbmcgui.Dialog().notification(
-                addon.getLocalizedString(32100),  # NFO Scanner
-                addon.getLocalizedString(32102),  # Scanning stopped
-                xbmcgui.NOTIFICATION_INFO,
-                3000
-            )
     
     def clear_cache(self):
         """Clear the scanner cache"""
@@ -155,36 +136,18 @@ class NFOScannerService:
         
         if self.scanner:
             self.scanner.clear_cache()
-            xbmcgui.Dialog().notification(
-                addon.getLocalizedString(32100),  # NFO Scanner
-                addon.getLocalizedString(32105),  # Cache cleared
-                xbmcgui.NOTIFICATION_INFO,
-                3000
-            )
     
     def on_playback_started(self):
         """Called when playback starts"""
         if self.scanner and self.scanner.pause_on_playback:
             log('Playback started, pausing scanner')
             self.scanner.pause()
-            xbmcgui.Dialog().notification(
-                addon.getLocalizedString(32100),  # NFO Scanner
-                addon.getLocalizedString(32103),  # Scanning paused (playback active)
-                xbmcgui.NOTIFICATION_INFO,
-                2000
-            )
     
     def on_playback_stopped(self):
         """Called when playback stops"""
         if self.scanner and self.scanner.pause_on_playback:
             log('Playback stopped, resuming scanner')
             self.scanner.resume()
-            xbmcgui.Dialog().notification(
-                addon.getLocalizedString(32100),  # NFO Scanner
-                addon.getLocalizedString(32104),  # Scanning resumed
-                xbmcgui.NOTIFICATION_INFO,
-                2000
-            )
     
     def on_folder_navigation(self, folder_path: str):
         """Called when user navigates to a folder"""

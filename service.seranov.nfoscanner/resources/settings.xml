@@ -63,4 +63,20 @@
             </setting>
         </group>
     </category>
+    <category id="log" label="32024">
+        <group id="4" label="32025">
+            <setting id="view_log" type="action" label="32026" help="32027">
+                <level>0</level>
+                <control type="button" format="action">
+                    <data>RunScript(service.seranov.nfoscanner/log_viewer.py,action=view_log)</data>
+                </control>
+            </setting>
+            <setting id="clear_log" type="action" label="32028" help="32029">
+                <level>0</level>
+                <control type="button" format="action">
+                    <data>RunScript(service.seranov.nfoscanner/log_viewer.py,action=clear_log)</data>
+                </control>
+            </setting>
+        </group>
+    </category>
 </settings>

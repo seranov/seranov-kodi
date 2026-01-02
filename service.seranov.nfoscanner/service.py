@@ -1,5 +1,6 @@
 """NFO Scanner Service - Main service entry point"""
 import sys
+import json
 import xbmc
 import xbmcaddon
 import xbmcgui
@@ -46,12 +47,11 @@ class ServiceMonitor(xbmc.Monitor):
         elif method == 'Other.FolderChanged':
             # Track folder navigation for priority scanning
             try:
-                import json
                 folder_data = json.loads(data)
                 folder_path = folder_data.get('path', '')
                 if folder_path:
                     self.service.on_folder_navigation(folder_path)
-            except:
+            except Exception:
                 pass
 
 

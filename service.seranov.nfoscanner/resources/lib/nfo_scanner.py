@@ -4,6 +4,7 @@ import time
 import threading
 import json
 import xml.etree.ElementTree as ET
+from datetime import datetime
 from typing import Dict, List, Set, Optional, Tuple
 import xbmc
 import xbmcvfs
@@ -145,7 +146,7 @@ class NFOScanner:
             if xbmcvfs.exists(nfo_path):
                 stat = xbmcvfs.Stat(nfo_path)
                 return stat.st_mtime()
-        except:
+        except Exception:
             pass
         return 0
     
@@ -175,7 +176,6 @@ class NFOScanner:
                 date_str = movie.get('dateadded', '')
                 if date_str:
                     # Convert ISO format to timestamp
-                    from datetime import datetime
                     dt = datetime.fromisoformat(date_str.replace('Z', '+00:00'))
                     return dt.timestamp()
         except Exception as e:
@@ -189,15 +189,17 @@ class NFOScanner:
             self.log(f'Re-importing movie from: {path}', xbmc.LOGINFO)
             
             # Remove existing movie from library
-            request = json.dumps({
-                "jsonrpc": "2.0",
-                "method": "VideoLibrary.RemoveMovie",
-                "params": {
-                    "movieid": self.get_movie_id_by_path(path)
-                },
-                "id": 1
-            })
-            xbmc.executeJSONRPC(request)
+            movie_id = self.get_movie_id_by_path(path)
+            if movie_id is not None:
+                request = json.dumps({
+                    "jsonrpc": "2.0",
+                    "method": "VideoLibrary.RemoveMovie",
+                    "params": {
+                        "movieid": movie_id
+                    },
+                    "id": 1
+                })
+                xbmc.executeJSONRPC(request)
             
             # Trigger scan of specific directory
             request = json.dumps({

@@ -9,6 +9,8 @@ from typing import Dict, List, Set, Optional, Tuple
 import xbmc
 import xbmcvfs
 
+from .plugin_log import PluginLog
+
 
 class FolderNode:
     """Represents a folder in the scanning tree"""
@@ -45,6 +47,9 @@ class NFOScanner:
         self.scan_thread = None
         self.lock = threading.Lock()
         
+        # Initialize plugin logger
+        self.plugin_log = PluginLog(addon)
+        
         # Folder tracking
         self.folder_tree = {}  # root path -> FolderNode
         self.priority_queue = []  # List of folders to scan with priority
@@ -60,9 +65,15 @@ class NFOScanner:
     
     def log(self, msg: str, level=xbmc.LOGINFO):
         """Log message"""
-        if level == xbmc.LOGDEBUG and not self.debug_logging:
-            return
-        xbmc.log(f'[NFOScanner] {msg}', level)
+        # Map xbmc log levels to plugin log levels
+        if level == xbmc.LOGDEBUG:
+            self.plugin_log.debug(msg)
+        elif level == xbmc.LOGWARNING:
+            self.plugin_log.warning(msg)
+        elif level == xbmc.LOGERROR:
+            self.plugin_log.error(msg)
+        else:
+            self.plugin_log.info(msg)
     
     def load_settings(self):
         """Load settings from addon configuration"""
@@ -72,6 +83,10 @@ class NFOScanner:
             self.pause_on_playback = self.addon.getSetting('pause_on_playback') == 'true'
             self.debug_logging = self.addon.getSetting('debug_logging') == 'true'
             self.scan_network_sources = self.addon.getSetting('scan_network_sources') == 'true'
+            
+            # Update plugin log debug setting
+            self.plugin_log.set_debug_enabled(self.debug_logging)
+            
             self.log(f'Settings loaded: interval={self.scan_interval}min, threads={self.thread_count}')
         except Exception as e:
             self.log(f'Error loading settings: {e}', xbmc.LOGERROR)

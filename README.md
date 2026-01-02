@@ -7,8 +7,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 ```
 ├── plugin.video.random.recursive/  # Random Recursive Video Player plugin
 ├── context.screenshots/            # Popup Screenshots context menu addon
-├── service.seranov.template1/      # Service plugin template 1
-├── service.seranov.template2/      # Service plugin template 2
+├── service.seranov.nfoscanner/     # NFO Scanner Service
 ├── repository.seranov/             # Repository addon
 ├── repo/                           # Generated repository files (addons.xml, zips)
 └── scripts/                        # Build scripts
@@ -38,23 +37,18 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
   - Support for file_id.diz text files
   - Lightweight and easy to use
 
-### Service Template 1
-- **ID**: `service.seranov.template1`
-- **Purpose**: A basic service template with configurable intervals
+### NFO Scanner Service
+- **ID**: `service.seranov.nfoscanner`
+- **Purpose**: Background service that scans video folders for movie.nfo and category.nfo files
 - **Features**:
-  - Runs in the background
-  - Configurable check interval
-  - Debug mode support
-  - Notification support
-
-### Service Template 2
-- **ID**: `service.seranov.template2`
-- **Purpose**: An advanced service template with event monitoring
-- **Features**:
-  - Monitors playback events
-  - Handles Kodi notifications
-  - Reacts to settings changes
-  - Configurable event handling
+  - Automatic scanning of video sources for metadata changes
+  - Re-imports movies when movie.nfo is newer than Kodi database
+  - Processes category.nfo files for genre management
+  - Pauses during video playback to avoid interference
+  - Configurable scan intervals and thread count
+  - Manual scan controls
+  - Priority scanning based on user folder navigation
+  - Supports both local and network sources
 
 ## Installation
 
@@ -133,6 +127,10 @@ The build script automatically detects all directories starting with `plugin.`, 
 
 Each service plugin should have:
 
+### Service Plugin Template Structure
+
+Each service plugin should have:
+
 ```
 service.addon.name/
 ├── addon.xml                    # Add-on metadata
@@ -146,19 +144,6 @@ service.addon.name/
     │       └── strings.xml       # English strings
     └── lib/                     # Optional library modules
 ```
-
-### Service Template Guidelines
-
-**Template 1** is suitable for:
-- Periodic tasks (checking for updates, monitoring conditions)
-- Simple background services
-- Services that run on a schedule
-
-**Template 2** is suitable for:
-- Event-driven services
-- Monitoring playback or system events
-- Services that need to react to Kodi notifications
-- More complex interaction with Kodi
 
 ## Repository URL
 

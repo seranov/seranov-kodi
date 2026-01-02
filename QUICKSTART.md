@@ -26,47 +26,39 @@ This guide will help you quickly get started with using the Seranov's Kodi repos
 
 If you want to install a service plugin without the repository:
 
-1. Download the service plugin zip file (e.g., `service.seranov.template1-1.0.0.zip`)
+1. Download the service plugin zip file (e.g., `service.seranov.nfoscanner-1.0.0.zip`)
 2. In Kodi, go to **Settings** → **Add-ons** → **Install from zip file**
 3. Navigate to the downloaded zip file and install
 
 ## Using Service Plugins
 
-### Service Template 1
+### NFO Scanner Service
 
-A basic background service that runs periodically.
-
-**Configuration:**
-1. Go to **Settings** → **Add-ons** → **My Add-ons** → **Services**
-2. Select **Service Template 1**
-3. Click **Configure**
-4. Adjust settings:
-   - **Check interval**: How often the service runs (in seconds)
-   - **Enable notifications**: Show notifications
-   - **Debug mode**: Enable detailed logging
-
-**What it does:**
-- Runs in the background
-- Executes tasks at the specified interval
-- Can be customized to perform any periodic task
-
-### Service Template 2
-
-An advanced service that monitors Kodi events.
+A background service that automatically scans video folders for metadata changes.
 
 **Configuration:**
 1. Go to **Settings** → **Add-ons** → **My Add-ons** → **Services**
-2. Select **Service Template 2**
+2. Select **NFO Scanner Service**
 3. Click **Configure**
 4. Adjust settings:
-   - **Enable playback monitoring**: Monitor when media plays/stops
-   - **Enable notifications**: Show notifications
-   - **Debug mode**: Enable detailed logging
+   - **Scan Interval**: How often to scan (in minutes, default: 60)
+   - **Thread Count**: Number of scanning threads (1-4, default: 1)
+   - **Pause on Playback**: Pause scanning during video playback
+   - **Enable Service**: Enable or disable the scanner
+   - **Scan Network Sources**: Include network sources in scanning
 
 **What it does:**
-- Monitors playback events (play, stop)
-- Reacts to Kodi notifications
-- Can be extended to handle various Kodi events
+- Scans video folders for movie.nfo files
+- Checks if movie.nfo is newer than the Kodi database entry
+- Re-imports metadata when changes are detected
+- Processes category.nfo files for genre management
+- Pauses during video playback to avoid performance issues
+- Prioritizes folders based on user navigation
+
+**Manual Controls:**
+- Use the **Start Manual Scan** button to trigger an immediate scan
+- Use the **Stop Scan** button to stop the current scan
+- Use the **Clear Cache** button to reset the scanned folders list
 
 ### Enabling/Disabling Services
 
@@ -90,8 +82,8 @@ To check if a service is working correctly:
 
 3. Look for messages from your service:
    ```
-   [service.seranov.template1] Service Template 1 v1.0.0 started
-   [service.seranov.template1] Service is running...
+   [NFOScanner] NFO Scanner Service v1.0.0 started
+   [NFOScanner] Scanning started
    ```
 
 ## Developing Your Own Service Plugin
@@ -100,9 +92,9 @@ Want to create your own service plugin? See [CONTRIBUTING.md](CONTRIBUTING.md) f
 
 ### Quick Development Setup
 
-1. **Copy a template:**
+1. **Use the NFO Scanner as reference:**
    ```bash
-   cp -r service.seranov.template1 service.seranov.myplugin
+   # Study the service.seranov.nfoscanner structure
    ```
 
 2. **Update metadata:**

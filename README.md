@@ -5,23 +5,38 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 ## Repository Structure
 
 ```
-├── repository.seranov/          # Repository addon
-├── service.seranov.template1/   # Service plugin template 1
-├── service.seranov.template2/   # Service plugin template 2
-├── addon.xml                    # Random Recursive Video Player plugin (root level)
-├── main.py                      # Main plugin file
-├── resources/                   # Plugin resources
-├── repo/                        # Generated repository files (addons.xml, zips)
-└── scripts/                     # Build scripts
+├── plugin.video.random.recursive/  # Random Recursive Video Player plugin
+├── context.screenshots/            # Popup Screenshots context menu addon
+├── service.seranov.template1/      # Service plugin template 1
+├── service.seranov.template2/      # Service plugin template 2
+├── repository.seranov/             # Repository addon
+├── repo/                           # Generated repository files (addons.xml, zips)
+└── scripts/                        # Build scripts
 ```
-
-**Note**: The existing Random Recursive Video Player plugin (`plugin.video.random.recursive`) files are located at the repository root level. New plugins should be created in their own directories (see templates).
 
 ## Available Add-ons
 
 ### Repository Add-on
 - **ID**: `repository.seranov`
 - **Purpose**: Install this to get automatic updates for all add-ons in this repository
+
+### Random Recursive Video Player
+- **ID**: `plugin.video.random.recursive`
+- **Purpose**: Play videos recursively in random order from a directory
+- **Features**:
+  - Scans directories recursively for video files
+  - Plays videos in random order
+  - Context menu integration
+  - Automatic playlist management
+
+### Popup Screenshots
+- **ID**: `context.screenshots`
+- **Purpose**: Display local screenshots and images in a slideshow
+- **Features**:
+  - Context menu integration for media items
+  - Slideshow of local images
+  - Support for file_id.diz text files
+  - Lightweight and easy to use
 
 ### Service Template 1
 - **ID**: `service.seranov.template1`
@@ -74,14 +89,16 @@ This will:
 
 ### Adding New Add-ons
 
-1. Create a new directory with the add-on ID as the name (e.g., `service.seranov.newaddon`)
+1. Create a new directory with the add-on ID as the name (e.g., `plugin.video.newaddon`, `service.seranov.newaddon`, `context.newaddon`)
 2. Add the required files:
    - `addon.xml` - Add-on metadata
-   - `service.py` or `main.py` - Main script
+   - `service.py`, `main.py`, or `addon.py` - Main script
    - `icon.png` - Add-on icon (256x256 recommended)
-   - `resources/settings.xml` - Settings configuration
-   - `resources/language/resource.language.en_gb/strings.xml` - Localization strings
+   - `resources/settings.xml` - Settings configuration (optional)
+   - `resources/language/resource.language.en_gb/strings.po` - Localization strings
 3. Run the build script to regenerate the repository
+
+The build script automatically detects all directories starting with `plugin.`, `service.`, `context.`, or `repository.`
 
 ### Service Plugin Template Structure
 

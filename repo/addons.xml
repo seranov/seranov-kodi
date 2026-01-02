@@ -1,5 +1,38 @@
 <?xml version='1.0' encoding='utf-8'?>
 <addons>
+    <addon id="context.screenshots" name="Bidon Popup Screenshots" version="1.0.5" provider-name="seranov">
+        <requires>
+            <import addon="xbmc.python" version="3.0.0" />
+            <import addon="script.module.kodi-six" version="0.1.3.1" />
+            <import addon="script.module.routing" version="0.2.3+matrix.1" />
+        </requires>
+        <extension point="kodi.context.item">
+            <menu id="kodi.core.main">
+                <item library="contextitem_images.py">
+                    <label>$ADDON[context.screenshots 32000]</label>
+                    <visible>true</visible>
+                </item>
+            </menu>
+        </extension>
+        <extension point="xbmc.python.script" library="addon.py">
+            <provides>executable</provides>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary lang="en_GB">Popup Screenshots</summary>
+            <description lang="en_GB">Show slideshow of local images and optionally file_id.diz file text content</description>
+            <disclaimer lang="en_GB" />
+            <language />
+            <platform>all</platform>
+            <license>GNU General Public License, v2</license>
+            <forum />
+            <website>https://github.com/seranov/kodi-play-random</website>
+            <email>seranov@yandex.ru</email>
+            <assets>
+                <icon>icon.png</icon>
+                <fanart>fanart.jpg</fanart>
+            </assets>
+        </extension>
+    </addon>
     <addon id="repository.seranov" name="Seranov's Kodi Repository" version="1.0.0" provider-name="seranov">
         <extension point="xbmc.addon.repository" name="Seranov's Kodi Repository">
             <dir>
@@ -9,13 +42,51 @@
             </dir>
         </extension>
         <extension point="xbmc.addon.metadata">
-            <summary>Seranov's Kodi Add-ons Repository</summary>
-            <description>Repository for Seranov's Kodi add-ons including service plugins</description>
-            <disclaimer />
+            <summary lang="en_GB">Seranov's Kodi Add-ons Repository</summary>
+            <description lang="en_GB">Repository for Seranov's Kodi add-ons including service plugins</description>
+            <disclaimer lang="en_GB" />
+            <language />
             <platform>all</platform>
+            <license>MIT</license>
+            <forum />
+            <website>https://github.com/seranov/kodi-play-random</website>
+            <email>seranov@yandex.ru</email>
             <assets>
                 <icon>icon.png</icon>
                 <fanart>fanart.jpg</fanart>
+            </assets>
+        </extension>
+    </addon>
+    <addon id="plugin.video.random.recursive" name="Bidon Random Recursive Player" version="1.0.0" provider-name="seranov">
+        <requires>
+            <import addon="xbmc.python" version="3.0.0" />
+        </requires>
+        <extension point="xbmc.python.pluginsource" library="main.py">
+            <provides>video</provides>
+        </extension>
+        <extension point="xbmc.python.script" library="main.py">
+            <provides>executable</provides>
+        </extension>
+        <extension point="kodi.context.item">
+            <menu id="kodi.core.main">
+                <item library="main.py" args="play-random-recursive">
+                    <label>$ADDON[plugin.video.random.recursive 32000]</label>
+                    <visible>true</visible>
+                </item>
+            </menu>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary lang="en_GB">Play videos recursively in random order</summary>
+            <description lang="en_GB">Scans a directory and plays all videos randomly from all subfolders.</description>
+            <disclaimer lang="en_GB" />
+            <language />
+            <platform>all</platform>
+            <license>MIT</license>
+            <forum />
+            <website>https://github.com/seranov/kodi-play-random</website>
+            <email>seranov@yandex.ru</email>
+            <assets>
+                <icon>icon.png</icon>
             </assets>
         </extension>
     </addon>

@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 def get_addon_dirs():
-    """Get all addon directories (starting with 'plugin.', 'service.', or 'repository.')"""
+    """Get all addon directories (starting with 'plugin.', 'service.', 'context.', or 'repository.')"""
     base_path = Path(__file__).parent.parent
     addon_dirs = []
     
@@ -21,6 +21,7 @@ def get_addon_dirs():
         if item.is_dir() and (
             item.name.startswith('plugin.') or 
             item.name.startswith('service.') or 
+            item.name.startswith('context.') or 
             item.name.startswith('repository.')
         ):
             addon_xml = item / 'addon.xml'

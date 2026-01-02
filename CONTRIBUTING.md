@@ -4,23 +4,25 @@ Thank you for your interest in contributing! This guide will help you create new
 
 ## Creating a New Service Plugin
 
-### Step 1: Choose a Template
+### Step 1: Use the NFO Scanner as a Reference
 
-We provide two service plugin templates:
+The `service.seranov.nfoscanner` addon provides a good example of a complete service plugin with:
 
-- **Template 1** (`service.seranov.template1`): Basic periodic service
-- **Template 2** (`service.seranov.template2`): Event-driven service with monitoring
+- Background scanning with configurable intervals
+- Event monitoring (playback, settings changes)
+- JSON-RPC API integration with Kodi
+- Threading support
+- Settings management
+- Localization support
 
-Choose the template that best fits your needs.
+You can use it as a reference for creating your own service plugins.
 
-### Step 2: Copy and Rename the Template
+### Step 2: Create Your Service Structure
 
 ```bash
-# Copy the template
-cp -r service.seranov.template1 service.seranov.yourplugin
-
-# Or for the event-driven template
-cp -r service.seranov.template2 service.seranov.yourplugin
+# Create the service directory
+mkdir -p service.seranov.yourplugin/resources/lib
+mkdir -p service.seranov.yourplugin/resources/language/resource.language.en_gb
 ```
 
 ### Step 3: Update addon.xml

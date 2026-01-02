@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<strings>
+    <!-- Settings Categories -->
+    <string id="32000">General</string>
+    <string id="32001">Scanner Settings</string>
+    <string id="32002">Scan Interval (minutes)</string>
+    <string id="32003">Time to wait between scan cycles (default: 60 minutes)</string>
+    <string id="32004">Thread Count</string>
+    <string id="32005">Number of threads for scanning (1-4, default: 1)</string>
+    <string id="32006">Pause on Playback</string>
+    <string id="32007">Pause scanning when video is playing</string>
+    <string id="32008">Enable Service</string>
+    <string id="32009">Enable or disable the NFO scanner service</string>
+    
+    <string id="32010">Advanced</string>
+    <string id="32011">Advanced Settings</string>
+    <string id="32012">Debug Logging</string>
+    <string id="32013">Enable detailed debug logging</string>
+    <string id="32014">Scan Network Sources</string>
+    <string id="32015">Include network sources in scanning</string>
+    
+    <string id="32016">Control</string>
+    <string id="32017">Manual Control</string>
+    <string id="32018">Start Manual Scan</string>
+    <string id="32019">Start scanning immediately</string>
+    <string id="32020">Stop Scan</string>
+    <string id="32021">Stop current scanning operation</string>
+    <string id="32022">Clear Cache</string>
+    <string id="32023">Clear the scanned folders cache</string>
+    
+    <!-- Notifications -->
+    <string id="32100">NFO Scanner</string>
+    <string id="32101">Scanning started</string>
+    <string id="32102">Scanning stopped</string>
+    <string id="32103">Scanning paused (playback active)</string>
+    <string id="32104">Scanning resumed</string>
+    <string id="32105">Cache cleared</string>
+    <string id="32106">Scan completed</string>
+    <string id="32107">Error during scan</string>
+</strings>

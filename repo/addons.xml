@@ -90,14 +90,16 @@
             </assets>
         </extension>
     </addon>
-    <addon id="service.seranov.template2" name="Service Template 2" version="1.0.0" provider-name="seranov">
+    <addon id="service.seranov.nfoscanner" name="NFO Scanner Service" version="1.0.0" provider-name="seranov">
         <requires>
             <import addon="xbmc.python" version="3.0.0" />
         </requires>
         <extension point="xbmc.service" library="service.py" />
         <extension point="xbmc.addon.metadata">
-            <summary lang="en_GB">Service Template 2</summary>
-            <description lang="en_GB">A template for Kodi service addon with event monitoring capabilities</description>
+            <summary lang="en_GB">NFO Scanner Service</summary>
+            <summary lang="ru_RU">Служба сканирования NFO</summary>
+            <description lang="en_GB">A background service that scans video folders for movie.nfo and category.nfo files, checking modification dates and re-importing metadata when needed. Supports priority scanning based on user navigation.</description>
+            <description lang="ru_RU">Фоновая служба, которая сканирует видеопапки на наличие файлов movie.nfo и category.nfo, проверяет даты изменения и переимпортирует метаданные при необходимости. Поддерживает приоритетное сканирование на основе навигации пользователя.</description>
             <disclaimer lang="en_GB" />
             <language />
             <platform>all</platform>
@@ -107,28 +109,6 @@
             <email>seranov@yandex.ru</email>
             <assets>
                 <icon>icon.png</icon>
-                <fanart>fanart.jpg</fanart>
-            </assets>
-        </extension>
-    </addon>
-    <addon id="service.seranov.template1" name="Service Template 1" version="1.0.0" provider-name="seranov">
-        <requires>
-            <import addon="xbmc.python" version="3.0.0" />
-        </requires>
-        <extension point="xbmc.service" library="service.py" />
-        <extension point="xbmc.addon.metadata">
-            <summary lang="en_GB">Service Template 1</summary>
-            <description lang="en_GB">A template for Kodi service addon that runs in the background</description>
-            <disclaimer lang="en_GB" />
-            <language />
-            <platform>all</platform>
-            <license>MIT</license>
-            <forum />
-            <website>https://github.com/seranov/kodi-play-random</website>
-            <email>seranov@yandex.ru</email>
-            <assets>
-                <icon>icon.png</icon>
-                <fanart>fanart.jpg</fanart>
             </assets>
         </extension>
     </addon>

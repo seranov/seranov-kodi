@@ -133,13 +133,16 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 **Установка:**
 - Репозиторий → Контекстные элементы → Bidon Popup Screenshots
 
-### ⚙️ Service Templates
-**Шаблоны служб для разработчиков**
-- service.seranov.template1 - Периодическая служба
-- service.seranov.template2 - Служба с мониторингом событий
+### ⚙️ NFO Scanner Service
+**Служба автоматического сканирования метаданных**
+- service.seranov.nfoscanner - Служба сканирования NFO файлов
+- Автоматическое обнаружение изменений в movie.nfo
+- Поддержка category.nfo для управления жанрами
+- Настраиваемые интервалы сканирования
+- Приоритетное сканирование на основе навигации пользователя
 
 **Установка:**
-- Репозиторий → Службы → выберите нужный шаблон
+- Репозиторий → Службы → NFO Scanner Service
 
 ## Обновление аддонов
 

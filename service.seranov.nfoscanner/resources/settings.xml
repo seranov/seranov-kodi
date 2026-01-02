@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings version="2">
+    <category id="general" label="32000">
+        <group id="1" label="32001">
+            <setting id="scan_interval" type="integer" label="32002" default="60" help="32003">
+                <level>0</level>
+                <default>60</default>
+                <constraints>
+                    <minimum>1</minimum>
+                    <step>1</step>
+                </constraints>
+            </setting>
+            <setting id="thread_count" type="integer" label="32004" default="1" help="32005">
+                <level>0</level>
+                <default>1</default>
+                <constraints>
+                    <minimum>1</minimum>
+                    <maximum>4</maximum>
+                    <step>1</step>
+                </constraints>
+            </setting>
+            <setting id="pause_on_playback" type="boolean" label="32006" default="true" help="32007">
+                <level>0</level>
+                <default>true</default>
+            </setting>
+            <setting id="enable_service" type="boolean" label="32008" default="true" help="32009">
+                <level>0</level>
+                <default>true</default>
+            </setting>
+        </group>
+    </category>
+    <category id="advanced" label="32010">
+        <group id="2" label="32011">
+            <setting id="debug_logging" type="boolean" label="32012" default="false" help="32013">
+                <level>1</level>
+                <default>false</default>
+            </setting>
+            <setting id="scan_network_sources" type="boolean" label="32014" default="true" help="32015">
+                <level>0</level>
+                <default>true</default>
+            </setting>
+        </group>
+    </category>
+    <category id="control" label="32016">
+        <group id="3" label="32017">
+            <setting id="manual_scan" type="action" label="32018" help="32019">
+                <level>0</level>
+                <control type="button" format="action">
+                    <data>RunScript(service.seranov.nfoscanner,action=scan)</data>
+                </control>
+            </setting>
+            <setting id="stop_scan" type="action" label="32020" help="32021">
+                <level>0</level>
+                <control type="button" format="action">
+                    <data>RunScript(service.seranov.nfoscanner,action=stop)</data>
+                </control>
+            </setting>
+            <setting id="clear_cache" type="action" label="32022" help="32023">
+                <level>0</level>
+                <control type="button" format="action">
+                    <data>RunScript(service.seranov.nfoscanner,action=clear)</data>
+                </control>
+            </setting>
+        </group>
+    </category>
+</settings>

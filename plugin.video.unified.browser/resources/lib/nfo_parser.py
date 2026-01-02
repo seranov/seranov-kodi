@@ -32,6 +32,8 @@ class NFOParser:
             file_obj.close()
             
             # Parse XML
+            # Note: Using ET.fromstring for compatibility with Kodi's bundled libraries.
+            # Input is from local trusted NFO files, not external sources.
             root = ET.fromstring(content)
             
             metadata = {}
@@ -101,6 +103,8 @@ class NFOParser:
             file_obj.close()
             
             # Parse XML
+            # Note: Using ET.fromstring for compatibility with Kodi's bundled libraries.
+            # Input is from local trusted NFO files, not external sources.
             root = ET.fromstring(content)
             
             genres = []

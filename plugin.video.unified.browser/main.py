@@ -176,7 +176,7 @@ class UnifiedBrowserPlugin:
                     list_item.setArt({'thumb': composite_img, 'poster': composite_img})
             
             # Determine action based on file count
-            if movie.get_video_file_count() == 1:
+            if movie.get_video_file_count() == 1 and movie.video_files:
                 # Single file - play directly
                 video_file = os.path.join(movie.path, movie.video_files[0])
                 url = video_file

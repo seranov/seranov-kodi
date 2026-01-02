@@ -48,7 +48,9 @@ class KodiDatabase:
     def connect(self):
         """Open database connection"""
         try:
-            self.connection = sqlite3.connect(self.db_path)
+            # Open in read-only mode to prevent accidental writes
+            db_uri = f'file:{self.db_path}?mode=ro'
+            self.connection = sqlite3.connect(db_uri, uri=True)
             self.connection.row_factory = sqlite3.Row
         except Exception as e:
             xbmc.log(f'[UnifiedBrowser] Error connecting to database: {e}', xbmc.LOGERROR)

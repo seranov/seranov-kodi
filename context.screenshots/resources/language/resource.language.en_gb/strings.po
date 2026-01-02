@@ -1,0 +1,28 @@
+# Kodi Media Center language file
+# Addon Name: Bidon Popup Screenshots
+# Addon id: context.screenshots
+# Addon Provider: seranov
+
+msgctxt "#32000"
+msgid "Popup Screenshots"
+msgstr ""
+
+msgctxt "#32001"
+msgid "Show screenshots"
+msgstr ""
+
+msgctxt "#32002"
+msgid "Slideshow duration (seconds)"
+msgstr ""
+
+msgctxt "#32003"
+msgid "Show file_id.diz content"
+msgstr ""
+
+msgctxt "#32004"
+msgid "Image extensions"
+msgstr ""
+
+msgctxt "#32005"
+msgid "Enable debug logging"
+msgstr ""

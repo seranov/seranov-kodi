@@ -8,10 +8,15 @@
         </dir>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary>Seranov's Kodi Add-ons Repository</summary>
-        <description>Repository for Seranov's Kodi add-ons including service plugins</description>
-        <disclaimer></disclaimer>
+        <summary lang="en_GB">Seranov's Kodi Add-ons Repository</summary>
+        <description lang="en_GB">Repository for Seranov's Kodi add-ons including service plugins</description>
+        <disclaimer lang="en_GB"></disclaimer>
+        <language></language>
         <platform>all</platform>
+        <license>MIT</license>
+        <forum></forum>
+        <website>https://github.com/seranov/kodi-play-random</website>
+        <email>seranov@yandex.ru</email>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>

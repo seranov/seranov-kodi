@@ -1,6 +1,6 @@
 # Kodi Media Center language file
-# Addon Name: Popup Screenshots
-# Addon id: context.screenshots
+# Addon Name: Random Recursive Video Player
+# Addon id: plugin.video.random.recursive
 msgid ""
 msgstr ""
 

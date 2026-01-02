@@ -6,6 +6,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 ```
 ├── plugin.video.random.recursive/  # Random Recursive Video Player plugin
+├── plugin.video.unified.browser/   # Unified Video Browser plugin
 ├── context.screenshots/            # Popup Screenshots context menu addon
 ├── service.seranov.nfoscanner/     # NFO Scanner Service
 ├── repository.seranov/             # Repository addon
@@ -36,6 +37,20 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
   - Slideshow of local images
   - Support for file_id.diz text files
   - Lightweight and easy to use
+
+### Unified Video Browser
+- **ID**: `plugin.video.unified.browser`
+- **Purpose**: Browse all video content in a unified list without separation by content type
+- **Features**:
+  - Shows videos, movies and series in a single interface
+  - Three-view system: Filters, Movie List, and Details
+  - Advanced filtering by year range, genres, tags, and keywords
+  - Composite images with overlay icons (blue player for single files, yellow folder for multiple)
+  - Persistent state (remembers position, filters, and view)
+  - Smart movie detection (folders with video files)
+  - Default XXX genre/tag exclusion
+  - Image caching for performance
+  - Direct playback for single files, file list for multiple files
 
 ### NFO Scanner Service
 - **ID**: `service.seranov.nfoscanner`

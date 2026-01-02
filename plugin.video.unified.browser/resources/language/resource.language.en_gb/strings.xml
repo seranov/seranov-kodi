@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+    <!-- Settings -->
+    <string id="32001">General</string>
+    <string id="32002">Advanced</string>
+    <string id="32010">Cache path</string>
+    <string id="32011">Default thumbnail size</string>
+    <string id="32012">Default view</string>
+    
+    <!-- Views -->
+    <string id="32020">Filters</string>
+    <string id="32021">Movie List</string>
+    <string id="32022">Details</string>
+    
+    <!-- Settings Advanced -->
+    <string id="32030">Debug logging</string>
+    
+    <!-- UI Labels -->
+    <string id="32100">Filters</string>
+    <string id="32101">Year Range</string>
+    <string id="32102">From:</string>
+    <string id="32103">To:</string>
+    <string id="32104">Genres</string>
+    <string id="32105">Tags</string>
+    <string id="32106">Keyword Filter</string>
+    <string id="32107">Include words:</string>
+    <string id="32108">Exclude words:</string>
+    <string id="32109">Apply Filters</string>
+    <string id="32110">Reset Filters</string>
+    
+    <!-- Movie List View -->
+    <string id="32200">Movies found:</string>
+    <string id="32201">Duration:</string>
+    <string id="32202">Year:</string>
+    <string id="32203">No description available</string>
+    
+    <!-- Details View -->
+    <string id="32300">Increase thumbnail size</string>
+    <string id="32301">Decrease thumbnail size</string>
+    
+    <!-- Messages -->
+    <string id="32400">No movies found</string>
+    <string id="32401">Loading...</string>
+    <string id="32402">Error loading data</string>
+</strings>

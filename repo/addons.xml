@@ -1,5 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
 <addons>
+    <addon id="plugin.video.unified.browser" name="Unified Video Browser" version="1.0.0" provider-name="seranov">
+        <requires>
+            <import addon="xbmc.python" version="3.0.0" />
+            <import addon="script.module.pil" version="1.1.7" />
+        </requires>
+        <extension point="xbmc.python.pluginsource" library="main.py">
+            <provides>video</provides>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary lang="en_GB">Unified video browser showing all videos, movies and series</summary>
+            <description lang="en_GB">Browse all video content in a unified list without separation by content type. Shows video files, movies (folders with one or more video files) and series in a single interface with filtering by years, genres, tags and keywords.</description>
+            <disclaimer lang="en_GB">Requires Kodi video sources to be configured</disclaimer>
+            <language />
+            <platform>all</platform>
+            <license>MIT</license>
+            <forum />
+            <website>https://github.com/seranov/kodi-play-random</website>
+            <email>seranov@yandex.ru</email>
+            <assets>
+                <icon>icon.png</icon>
+            </assets>
+        </extension>
+    </addon>
     <addon id="context.screenshots" name="Bidon Popup Screenshots" version="1.0.5" provider-name="seranov">
         <requires>
             <import addon="xbmc.python" version="3.0.0" />

@@ -3,7 +3,7 @@
 
 param(
     [string]$KodiProgramPath = "C:\Program Files (x86)\Kodi",
-    [string]$KodiDataPath = "C:\Users\Bidon\AppData\Roaming\Kodi",
+    [string]$KodiDataPath = "$env:APPDATA\Kodi",
     [string[]]$AddonsToDeploy = @()  # Empty array means deploy all
 )
 

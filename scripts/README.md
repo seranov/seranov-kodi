@@ -37,13 +37,13 @@ PowerShell-скрипт для копирования аддонов в лока
 # Полная настройка
 .\scripts\deploy-local.ps1 `
     -KodiProgramPath "C:\Program Files\Kodi" `
-    -KodiDataPath "C:\Users\YourName\AppData\Roaming\Kodi" `
+    -KodiDataPath "$env:APPDATA\Kodi" `
     -AddonsToDeploy @('plugin.video.random.recursive')
 ```
 
 **Параметры / Parameters:**
 - `KodiProgramPath` - Путь к программным файлам Kodi (по умолчанию: `C:\Program Files (x86)\Kodi`)
-- `KodiDataPath` - Путь к данным Kodi (по умолчанию: `C:\Users\Bidon\AppData\Roaming\Kodi`)
+- `KodiDataPath` - Путь к данным Kodi (по умолчанию: `%APPDATA%\Kodi` или `C:\Users\%USERNAME%\AppData\Roaming\Kodi`)
 - `AddonsToDeploy` - Массив имен аддонов для развертывания (пустой = все аддоны)
 
 **Что делает / What it does:**

@@ -26,3 +26,27 @@ msgstr ""
 msgctxt "#32005"
 msgid "Enable debug logging"
 msgstr ""
+
+msgctxt "#32010"
+msgid "Version: {0}"
+msgstr ""
+
+msgctxt "#32011"
+msgid "This addon shows screenshots in a slideshow format."
+msgstr ""
+
+msgctxt "#32012"
+msgid "Use the context menu on video items to activate."
+msgstr ""
+
+msgctxt "#32013"
+msgid "Screenshots feature for: {0}"
+msgstr ""
+
+msgctxt "#32014"
+msgid "Error"
+msgstr ""
+
+msgctxt "#32015"
+msgid "Failed to show screenshots"
+msgstr ""

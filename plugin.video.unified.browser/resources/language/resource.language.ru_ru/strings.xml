@@ -42,4 +42,6 @@
     <string id="32400">Фильмы не найдены</string>
     <string id="32401">Загрузка...</string>
     <string id="32402">Ошибка загрузки данных</string>
+    <string id="32403">Фильтры сброшены</string>
+    <string id="32404">Ошибка: {0}</string>
 </strings>

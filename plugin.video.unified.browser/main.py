@@ -285,7 +285,11 @@ class UnifiedBrowserPlugin:
         # Reload movies
         self.load_movies()
         
-        xbmcgui.Dialog().notification('Unified Browser', 'Filters reset', xbmcgui.NOTIFICATION_INFO)
+        xbmcgui.Dialog().notification(
+            self.addon.getAddonInfo('name'),
+            self.addon.getLocalizedString(32403),
+            xbmcgui.NOTIFICATION_INFO
+        )
     
     def run(self, params: dict):
         """Main entry point"""
@@ -326,4 +330,8 @@ if __name__ == '__main__':
         log(f'Plugin error: {e}', xbmc.LOGERROR)
         import traceback
         log(traceback.format_exc(), xbmc.LOGERROR)
-        xbmcgui.Dialog().notification('Unified Browser', f'Error: {e}', xbmcgui.NOTIFICATION_ERROR)
+        xbmcgui.Dialog().notification(
+            addon.getAddonInfo('name'),
+            addon.getLocalizedString(32404).format(str(e)),
+            xbmcgui.NOTIFICATION_ERROR
+        )

@@ -47,6 +47,19 @@ Detailed guide for developers:
 - Testing and debugging
 - Localization
 
+### [INSTALLATION.ru.md](INSTALLATION.ru.md)
+Подробное руководство по установке репозитория из GitHub:
+- Прямая установка ZIP-файла
+- Добавление источника репозитория
+- Установка и обновление аддонов
+- Устранение неполадок
+
+Detailed guide for installing repository from GitHub:
+- Direct ZIP file installation
+- Adding repository source
+- Installing and updating addons
+- Troubleshooting
+
 ## Английская документация / English Documentation
 
 Документация на английском языке находится в корне репозитория:

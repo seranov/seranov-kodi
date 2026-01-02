@@ -74,6 +74,16 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 ## Development
 
+### Available Scripts
+
+The `scripts/` directory contains tools for development and publishing:
+
+1. **`generate_repo.py`** - Python script to build the repository
+2. **`deploy-local.ps1`** - PowerShell script for local deployment to Kodi (Windows)
+3. **`build-release.ps1`** - PowerShell script for building releases and publishing to GitHub
+
+For detailed documentation, see [scripts/README.md](scripts/README.md)
+
 ### Building the Repository
 
 To generate the repository files (addons.xml, MD5 checksums, and zip files):
@@ -82,10 +92,29 @@ To generate the repository files (addons.xml, MD5 checksums, and zip files):
 python3 scripts/generate_repo.py
 ```
 
+Or use the PowerShell script for a complete release build:
+
+```powershell
+.\scripts\build-release.ps1
+```
+
 This will:
 1. Create zip files for all add-ons in the `repo` directory
 2. Generate `addons.xml` with metadata for all add-ons
 3. Generate `addons.xml.md5` checksum file
+4. Provide instructions for publishing to GitHub
+
+### Local Deployment for Testing
+
+For quick deployment to your local Kodi installation (Windows):
+
+```powershell
+# Deploy all addons
+.\scripts\deploy-local.ps1
+
+# Deploy specific addon
+.\scripts\deploy-local.ps1 -AddonsToDeploy @('plugin.video.random.recursive')
+```
 
 ### Adding New Add-ons
 

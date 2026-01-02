@@ -72,7 +72,26 @@
 2. В Kodi перейдите в **Дополнения** → **Установить из файла zip**
 3. Укажите путь к скачанному zip-файлу и установите его
 
+### Способ 3: Установка из GitHub
+
+Подробное руководство см. в [INSTALLATION.ru.md](INSTALLATION.ru.md)
+
+Прямая ссылка на ZIP репозитория:
+```
+https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0.0.zip
+```
+
 ## Разработка
+
+### Доступные скрипты
+
+Для разработки и публикации доступны следующие скрипты в папке `scripts/`:
+
+1. **`generate_repo.py`** - Python скрипт для сборки репозитория
+2. **`deploy-local.ps1`** - PowerShell скрипт для локального развертывания в Kodi
+3. **`build-release.ps1`** - PowerShell скрипт для сборки релиза и публикации
+
+Подробная документация: [scripts/README.md](../scripts/README.md)
 
 ### Сборка репозитория
 
@@ -82,10 +101,29 @@
 python3 scripts/generate_repo.py
 ```
 
+Или используйте PowerShell скрипт для полной сборки релиза:
+
+```powershell
+.\scripts\build-release.ps1
+```
+
 Это выполнит:
 1. Создание zip-файлов для всех аддонов в директории `repo`
 2. Генерацию `addons.xml` с метаданными всех аддонов
 3. Генерацию файла контрольных сумм `addons.xml.md5`
+4. Инструкции по публикации на GitHub
+
+### Локальное развертывание для тестирования
+
+Для быстрого развертывания аддонов в локальную установку Kodi (Windows):
+
+```powershell
+# Развернуть все аддоны
+.\scripts\deploy-local.ps1
+
+# Развернуть конкретный аддон
+.\scripts\deploy-local.ps1 -AddonsToDeploy @('plugin.video.random.recursive')
+```
 
 ### Добавление новых аддонов
 

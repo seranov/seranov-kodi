@@ -6,26 +6,36 @@
 
 The easiest way to install all add-ons from this repository is to add the repository URL in Kodi.
 
-## Option 1: Install via GitHub Pages URL (Easiest)
+## Option 1: Install via Direct URL (Easiest)
 
-⚠️ **Requirement:** GitHub Pages must be activated for the repository.
+This method allows you to install the repository directly from the internet without downloading a file to your computer.
 
-### Direct Installation via File Manager
+### Direct ZIP Installation from URL
 
-1. Open Kodi
-2. Go to **Settings** (gear icon) → **File manager**
-3. Click **Add source**
-4. Click on **<None>** and enter the URL:
-   ```
-   https://seranov.github.io/seranov-kodi/
-   ```
-5. Enter a name for the source (e.g., `Seranov Repo`)
-6. Click **OK**
-7. Return to the home screen
-8. Go to **Settings** → **Add-ons** → **Install from zip file**
-9. Select `Seranov Repo`
-10. Select `repository.seranov/repository.seranov-1.0.0.zip`
-11. Wait for the "Add-on installed" notification
+⚠️ **Important:** First enable installation from unknown sources (see below).
+
+1. **Enable "Unknown sources" in Kodi:**
+   - Open Kodi
+   - Go to **Settings** (gear icon)
+   - Select **System** → **Add-ons**
+   - Enable **Unknown sources**
+   - Click **Yes** to confirm the warning
+
+2. **Install repository from URL:**
+   - Return to the home screen
+   - Go to **Settings** → **Add-ons** → **Install from zip file**
+   - Select **<None>** or enter the path directly
+   - Enter the URL:
+     ```
+     https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+     ```
+   - Click **OK**
+   - Wait for the "Add-on installed" notification
+
+**Alternative URL (if GitHub Pages is activated):**
+```
+https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
+```
 
 After installing the repository, all add-ons will receive automatic updates!
 

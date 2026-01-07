@@ -36,7 +36,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.9'  # Minimum version for Path.is_relative_to()
 
       # Шаг 3: Создание структуры директорий / Step 3: Create directory structure
       - name: Create output directories

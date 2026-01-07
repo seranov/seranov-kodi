@@ -3,6 +3,9 @@
 Script to generate Kodi repository files (addons.xml and addons.xml.md5)
 and package addons into zip files.
 
+Requirements:
+    Python 3.9+ (uses Path.is_relative_to())
+
 Usage:
     python3 generate_repo.py [output_dir]
 
@@ -17,6 +20,13 @@ import hashlib
 import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+
+# Check Python version
+if sys.version_info < (3, 9):
+    print("Error: This script requires Python 3.9 or higher")
+    print(f"Current version: {sys.version}")
+    sys.exit(1)
 
 
 def get_addon_dirs():
@@ -78,7 +88,7 @@ def create_zip(addon_dir, addon_id, version, output_dir):
 
 
 def indent_xml(elem, level=0):
-    """Add pretty-printing indentation to XML (for Python < 3.9 compatibility)"""
+    """Add pretty-printing indentation to XML"""
     indent = "\n" + "    " * level
     if len(elem):
         if not elem.text or not elem.text.strip():

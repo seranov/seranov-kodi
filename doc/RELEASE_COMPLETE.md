@@ -153,11 +153,9 @@ After release is published, users can install from:
 https://github.com/seranov/kodi-play-random/releases/latest/download/repository.seranov-1.0.0.zip
 ```
 
-**Repository URL for Kodi:**
-```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
-```
-> **Note:** This URL works in Kodi. In a browser it may show 400 error - this is normal.
+> **Note:** GitHub Raw repository URLs do not work for Kodi due to lack of directory listing support. Users should use direct ZIP installation method.
+> 
+> **Примечание:** GitHub Raw URL репозитория не работает для Kodi из-за отсутствия поддержки листинга директорий. Пользователи должны использовать метод прямой установки ZIP-файла.
 
 ---
 

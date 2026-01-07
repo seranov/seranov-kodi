@@ -34,36 +34,30 @@ The easiest way to install all add-ons from this repository is to install the re
    - Select the add-on you want to install
    - Click **Install**
 
-## Option 2: Add Repository Source (For Auto-Updates)
+## Option 2: Install Individual Add-on Without Repository
 
-1. **Add file source:**
-   - Go to **Settings** → **File manager**
-   - Click **Add source**
-   - Click **<None>**
-   - Enter the URL: `https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/`
-     > **Note:** This URL is intended for use in Kodi. When opened directly in a browser, you may see a 400 error - this is normal. Kodi uses this URL to access the `addons.xml` file and addon ZIP archives.
-   - Enter a name: `Seranov Repository`
-   - Click **OK**
+If you only want one specific add-on:
 
-2. **Install repository from source:**
-   - Go to **Add-ons** → **Install from zip file**
-   - Select **Seranov Repository** source
-   - Select `repository.seranov-1.0.0.zip`
-   - Wait for installation confirmation
+1. Download the specific add-on zip from [Releases](https://github.com/seranov/kodi-play-random/releases/latest):
+   - `plugin.video.random.recursive-1.0.0.zip` - Random Player
+   - `context.screenshots-1.0.5.zip` - Popup Screenshots
+   - `service.seranov.nfoscanner-1.0.0.zip` - NFO Scanner Service
+   - `plugin.video.unified.browser-1.0.0.zip` - Unified Browser
 
-3. **Install add-ons:**
-   - Go to **Add-ons** → **Install from repository**
-   - Select **Seranov's Kodi Repository**
-   - Browse and install desired add-ons
+2. Follow steps 2-3 from **Option 1** to install the zip file
 
-## Option 3: Install Individual Add-on
+**⚠️ Important:** Without installing the repository, you won't receive automatic updates.
 
-If you only want one specific add-on without the repository:
+## Automatic Updates (Future)
 
-1. Download the specific add-on zip from [Releases](https://github.com/seranov/kodi-play-random/releases/latest)
-2. Follow steps 2-3 from Option 1 to install the zip file
+> **Note:** GitHub Raw does not support directory listing for Kodi repositories. Automatic updates require GitHub Pages or other web hosting.
 
-**Note:** Without installing the repository, you won't receive automatic updates.
+Currently, the repository **does not support auto-updates** through Kodi. To get updates:
+
+1. Watch [releases on GitHub](https://github.com/seranov/kodi-play-random/releases)
+2. Download and install new versions manually via ZIP files
+
+**Planned:** Setting up GitHub Pages for full repository functionality with auto-updates.
 
 ---
 
@@ -92,6 +86,28 @@ If you only want one specific add-on without the repository:
 ---
 
 ## Troubleshooting
+
+### Error 400 when trying to add GitHub Raw source
+
+**Error:**
+```
+CCurlFile::Open - <https://raw.githubusercontent.com/.../repo/> Failed with code 400
+XFILE::CHTTPDirectory::GetDirectory - Unable to get http directory
+```
+
+**Cause:**  
+GitHub Raw (`raw.githubusercontent.com`) does not support directory listing. Kodi cannot use this URL as a repository source.
+
+**Solution:**  
+Use **Option 1** (direct ZIP installation of repository) instead of trying to add the source. This is the recommended method.
+
+**What does NOT work:**
+- ❌ Adding `https://raw.githubusercontent.com/.../repo/` as a source in File Manager
+- ❌ Trying to install from this source via "Install from zip file"
+
+**What works:**
+- ✅ Download `repository.seranov-1.0.0.zip` locally and install
+- ✅ Installing individual add-ons directly from ZIP files
 
 ### "Install from zip file" option is greyed out
 

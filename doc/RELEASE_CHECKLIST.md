@@ -83,7 +83,7 @@
 1. **Complete Kodi Repository** - All 5 add-ons packaged and ready
 2. **Bilingual Support** - Full English and Russian localization
 3. **Comprehensive Documentation** - Installation guides and release notes
-4. **Auto-Update Ready** - Repository URL configured for automatic updates
+4. **Manual Updates** - Repository requires manual ZIP installation (GitHub Raw limitations)
 
 ### 🎯 Target Audience
 - Kodi users seeking video management tools
@@ -95,7 +95,7 @@
 - **Platform:** Kodi 19 Matrix or later
 - **Python:** 3.x compatible
 - **License:** MIT (except context.screenshots - GPL v2)
-- **Repository URL:** https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/ *(Note: Shows 400 in browser - normal)*
+- **Installation:** Direct ZIP download (GitHub Raw does not support directory listing for Kodi repositories)
 
 ---
 
@@ -104,7 +104,6 @@
 - **Repository:** https://github.com/seranov/kodi-play-random
 - **Releases:** https://github.com/seranov/kodi-play-random/releases
 - **Issues:** https://github.com/seranov/kodi-play-random/issues
-- **Raw Repo URL:** https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/ *(Works in Kodi only)*
 
 ---
 

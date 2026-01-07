@@ -166,27 +166,7 @@ PowerShell-скрипт для сборки релиза и подготовки
    - Выберите **Seranov's Kodi Repository**
    - Выберите категорию и аддон для установки
 
-### Способ 2: Добавление источника репозитория / Method 2: Add Repository Source
-
-Этот способ позволяет Kodi автоматически обновлять аддоны.
-
-1. **Добавьте источник файлов:**
-   - **Настройки** → **Диспетчер файлов** → **Добавить источник**
-   - Введите URL: `https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/`
-     > **Примечание:** Этот URL работает в Kodi. В браузере может показывать 400 - это нормально.
-   - Имя: `Seranov Repository`
-   - Нажмите **OK**
-
-2. **Установите репозиторий:**
-   - **Настройки** → **Дополнения** → **Установить из файла zip**
-   - Выберите: **Seranov Repository**
-   - Выберите файл: `repository.seranov-1.0.0.zip`
-
-3. **Установите аддоны:**
-   - **Настройки** → **Дополнения** → **Установить из репозитория**
-   - Выберите **Seranov's Kodi Repository**
-
-### Способ 3: Для разработчиков (прямое копирование) / Method 3: For Developers (Direct Copy)
+### Способ 2: Для разработчиков (прямое копирование) / Method 2: For Developers (Direct Copy)
 
 ```powershell
 # Используйте скрипт deploy-local.ps1
@@ -195,23 +175,78 @@ PowerShell-скрипт для сборки релиза и подготовки
 
 ## URL репозитория / Repository URLs
 
-После публикации на GitHub, пользователи могут использовать эти URL:
+После публикации на GitHub, пользователи могут скачать:
 
 **Прямая ссылка на ZIP репозитория:**
 ```
 https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0.0.zip
 ```
 
-**URL источника репозитория (для автообновлений):**
+**Файл metadata репозитория:**
 ```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
+https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/addons.xml
 ```
-> **Примечание:** В браузере этот URL может показать ошибку 400 - это нормально для GitHub raw директорий. Kodi использует его для доступа к addons.xml и ZIP-файлам.
+
+> **⚠️ Важно:** GitHub Raw (`raw.githubusercontent.com`) не поддерживает листинг директорий. Kodi не может использовать `https://raw.githubusercontent.com/.../repo/` как источник репозитория. Для автоматических обновлений требуется GitHub Pages или другой веб-хостинг с поддержкой директорий.
+
+## Автоматизация / Automation
+
+### GitHub Actions (опционально)
+
+Вы можете настроить GitHub Actions для автоматической сборки:
+
+```yaml
+# .github/workflows/build.yml
+name: Build Repository
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: python scripts/generate_repo.py
+      - uses: actions/upload-artifact@v2
+        with:
+          name: repository
+          path: repo/
+```
+
+## Устранение неполадок / Troubleshooting
+
+### Ошибка: Python не найден
+**Решение:** Установите Python 3.x с https://www.python.org/
+
+### Ошибка: PowerShell не может запустить скрипт
+**Решение:** Разрешите выполнение скриптов:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+### Ошибка: Kodi не видит аддоны
+**Решение:** 
+1. Убедитесь, что пути правильные
+2. Перезапустите Kodi
+3. Проверьте лог Kodi на наличие ошибок
+
+### Ошибка: Не удаётся найти addon.xml
+**Решение:** Убедитесь, что вы запускаете скрипты из корня репозитория
+
+## Дополнительные ресурсы / Additional Resources
+
+- [Документация Kodi по разработке аддонов](https://kodi.wiki/view/Add-on_development)
+- [Формат addon.xml](https://kodi.wiki/view/Addon.xml)
+- [Создание репозитория Kodi](https://kodi.wiki/view/HOW-TO:Create_Kodi_add-on_repository)
+```
 
 **Файл metadata репозитория:**
 ```
 https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/addons.xml
 ```
+
+> **⚠️ Важно:** GitHub Raw (`raw.githubusercontent.com`) не поддерживает листинг директорий. Kodi не может использовать `https://raw.githubusercontent.com/.../repo/` как источник репозитория. Для автоматических обновлений требуется GitHub Pages или другой веб-хостинг с поддержкой директорий.
 
 ## Автоматизация / Automation
 

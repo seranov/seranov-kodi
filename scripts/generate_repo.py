@@ -70,6 +70,26 @@ def create_zip(addon_dir, addon_id, version, output_dir):
     return zip_filename
 
 
+def indent_xml(elem, level=0):
+    """Add pretty-printing indentation to XML (for Python < 3.9 compatibility)"""
+    indent = "\n" + "    " * level
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = indent + "    "
+        if not elem.tail or not elem.tail.strip():
+            elem.tail = indent
+        for child in elem:
+            indent_xml(child, level + 1)
+        # Update tail for last child
+        if len(elem) > 0:
+            last_child = elem[-1]
+            if not last_child.tail or not last_child.tail.strip():
+                last_child.tail = indent
+    else:
+        if level and (not elem.tail or not elem.tail.strip()):
+            elem.tail = indent
+
+
 def generate_addons_xml(addon_dirs, output_dir):
     """Generate addons.xml file"""
     print("Generating addons.xml...")
@@ -83,8 +103,8 @@ def generate_addons_xml(addon_dirs, output_dir):
     
     # Create tree and write to file
     tree = ET.ElementTree(root)
-    ET.indent(tree, space='    ')
-    
+    indent_xml(root)
+
     addons_xml_path = output_dir / 'addons.xml'
     tree.write(addons_xml_path, encoding='utf-8', xml_declaration=True)
     

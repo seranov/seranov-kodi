@@ -85,11 +85,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)
 
-**Repository URL for Kodi:**
-```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
-```
-> **Note:** This URL works in Kodi. In a browser it may show 400 error - this is normal for GitHub raw directories.
+> **Note:** GitHub Raw URLs do not work as Kodi repository sources due to lack of directory listing support. Use the direct ZIP installation method above.
 
 ## Development
 

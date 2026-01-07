@@ -16,11 +16,7 @@ This is the initial release of Seranov's Kodi Add-ons Repository, containing 5 a
 4. Go to **Install from repository** → **Seranov's Kodi Repository**
 5. Install any add-ons you want
 
-**Direct repository URL:**
-```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
-```
-> **Note:** This URL works in Kodi. In a browser it may show 400 error - this is normal for GitHub raw directories.
+> **Note:** GitHub Raw does not support directory listing. Use direct ZIP installation method above for best results.
 
 ### Русский
 
@@ -30,11 +26,7 @@ https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
 4. Откройте **Установить из репозитория** → **Seranov's Kodi Repository**
 5. Установите нужные дополнения
 
-**Прямой URL репозитория:**
-```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
-```
-> **Примечание:** Этот URL работает в Kodi. В браузере может показываться ошибка 400 - это нормально для GitHub raw директорий.
+> **Примечание:** GitHub Raw не поддерживает листинг директорий. Используйте метод прямой установки ZIP-файла выше для лучших результатов.
 
 ## Included Add-ons / Включенные дополнения
 

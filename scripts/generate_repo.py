@@ -140,7 +140,14 @@ def main():
     
     # Parse command line arguments
     if len(sys.argv) > 1:
-        repo_dir = base_path / sys.argv[1]
+        output_arg = sys.argv[1]
+        # Validate path - must be relative or within base_path
+        # Prevent directory traversal attacks
+        if '..' in output_arg or output_arg.startswith('/'):
+            print(f"Error: Invalid output directory '{output_arg}'")
+            print("Output directory must be a relative path without '..'")
+            sys.exit(1)
+        repo_dir = base_path / output_arg
     else:
         repo_dir = base_path / 'repo'
     

@@ -78,13 +78,7 @@ jobs:
             
             # Извлечение версии из addon.xml / Extract version from addon.xml
             local version
-            version=$(python3 -c "
-import xml.etree.ElementTree as ET
-import sys
-tree = ET.parse(sys.argv[1])
-root = tree.getroot()
-print(root.get('version'))
-" "$addon_dir/addon.xml")
+            version=$(python3 -c 'import xml.etree.ElementTree as ET; import sys; tree = ET.parse(sys.argv[1]); root = tree.getroot(); print(root.get("version"))' "$addon_dir/addon.xml")
             
             echo "Processing $addon_id version $version..."
             

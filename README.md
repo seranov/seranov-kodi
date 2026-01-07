@@ -8,6 +8,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 - 📖 **[Installation Guide](doc/INSTALLATION.md)** - How to install the repository and add-ons
 - 🚀 **[Quick Start Guide](doc/QUICKSTART.md)** - Get started quickly
+- 🔧 **[Build & Publish Guide](doc/BUILD_AND_PUBLISH.md)** - Complete build and deployment instructions
 - 🤝 **[Contributing Guide](doc/CONTRIBUTING.md)** - How to contribute and create new add-ons
 - 📝 **[Release Notes](doc/RELEASE_NOTES.md)** - Latest changes and updates
 
@@ -85,17 +86,38 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)
 
-> **Note:** GitHub Raw URLs do not work as Kodi repository sources due to lack of directory listing support. Use the direct ZIP installation method above.
+### Automatic Updates
+
+✅ **Now Available!** The repository is published via GitHub Pages at:
+```
+https://seranov.github.io/kodi-play-random/
+```
+
+After installing the repository once, Kodi will automatically check for updates and notify you when new versions are available. No manual downloads needed!
 
 ## Development
 
+### Automated Build & Deploy
+
+The repository uses **GitHub Actions** for automated builds and deployment:
+
+- ✅ Push to `main` branch triggers automatic build
+- ✅ Generates ZIP archives for all add-ons
+- ✅ Creates `addons.xml` and checksums
+- ✅ Deploys to GitHub Pages automatically
+- ✅ Users get automatic updates in Kodi
+
+**Workflow:** `.github/workflows/publish-release.yml`
+
+For complete build and deployment documentation, see [BUILD_AND_PUBLISH.md](doc/BUILD_AND_PUBLISH.md)
+
 ### Available Scripts
 
-The `scripts/` directory contains tools for development and publishing:
+The `scripts/` directory contains tools for local development and testing:
 
-1. **`generate_repo.py`** - Python script to build the repository
+1. **`generate_repo.py`** - Python script to build the repository locally
 2. **`deploy-local.ps1`** - PowerShell script for local deployment to Kodi (Windows)
-3. **`build-release.ps1`** - PowerShell script for building releases and publishing to GitHub
+3. **`build-release.ps1`** - PowerShell script for testing release builds locally
 
 For detailed documentation, see [scripts/README.md](scripts/README.md)
 

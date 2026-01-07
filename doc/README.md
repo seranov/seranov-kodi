@@ -48,7 +48,23 @@ This folder contains all project documentation in English and Russian.
 
 ## 📝 Release Documentation / Документация релизов
 
+### English
+
 - **[RELEASE_NOTES.md](RELEASE_NOTES.md)** - Release notes and changelog
+- **[RELEASE_GUIDE.md](RELEASE_GUIDE.md)** - Quick release guide
+- **[BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md)** - Complete build and deployment guide
+  - Local build instructions
+  - GitHub Actions workflow
+  - GitHub Pages deployment
+  - Troubleshooting
+
+### Русский
+
+- **[BUILD_AND_PUBLISH.ru.md](BUILD_AND_PUBLISH.ru.md)** - Полное руководство по сборке и публикации
+  - Локальная сборка
+  - GitHub Actions workflow
+  - Развертывание на GitHub Pages
+  - Устранение неполадок
 - **[RELEASE_GUIDE.md](RELEASE_GUIDE.md)** - How to create a new release
 - **[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)** - Pre-release checklist
 - **[RELEASE_COMPLETE.md](RELEASE_COMPLETE.md)** - Post-release procedures

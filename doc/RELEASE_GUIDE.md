@@ -1,104 +1,154 @@
-# GitHub Release Creation Guide
+# GitHub Release Guide
 
-## Instructions for Creating the v1.0.0 Release
+> **Note:** This repository now uses automated GitHub Pages deployment!  
+> For detailed build and publish instructions, see [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md)
 
-Since automated release creation requires special permissions, please follow these steps to manually create the GitHub release:
+## Quick Release Process
 
-### Step 1: Merge the Pull Request
+### Automated Process (Recommended)
 
-1. Go to https://github.com/seranov/kodi-play-random/pulls
-2. Find the pull request for this branch: `copilot/create-release-for-kodi`
-3. Review and merge the pull request into `main` branch
+The repository automatically builds and deploys to GitHub Pages on every push to `main`:
 
-### Step 2: Create Git Tag
+1. **Update version numbers** in `addon.xml` files
+2. **Update documentation** (RELEASE_NOTES.md, etc.)
+3. **Commit and push** to `main` branch
+4. **GitHub Actions automatically:**
+   - Builds all ZIP archives
+   - Generates addons.xml and checksums
+   - Deploys to GitHub Pages
+   - Makes updates available to Kodi users
 
-After merging, create the git tag from the `main` branch:
+**That's it!** No manual steps needed.
+
+### Repository URL
+
+**Live Repository:** `https://seranov.github.io/kodi-play-random/`
+
+Users can:
+- ✅ Install repository once from ZIP file
+- ✅ Get automatic updates through Kodi
+- ✅ No manual downloads needed for updates
+
+---
+
+## Creating GitHub Release (Optional)
+
+While not required for Kodi functionality, GitHub Releases provide better visibility:
+
+### Step 1: Create Git Tag
 
 ```bash
 git checkout main
 git pull origin main
-git tag -a v1.0.0 -m "Release v1.0.0 - Initial Kodi Repository Release"
-git push origin v1.0.0
+git tag -a v1.0.1 -m "Release v1.0.1 - Description"
+git push origin v1.0.1
 ```
 
-### Step 3: Create GitHub Release
+### Step 2: Create GitHub Release
 
-1. **Go to GitHub Releases page:**
-   - Navigate to: https://github.com/seranov/kodi-play-random/releases/new
+1. **Go to:** https://github.com/seranov/kodi-play-random/releases/new
 
-2. **Fill in Release Details:**
-   - **Tag version:** Select `v1.0.0` (or create it from the dropdown if not already created)
+2. **Fill in details:**
+   - **Tag:** Select `v1.0.1` (or create new)
    - **Target:** `main` branch
-   - **Release title:** `v1.0.0 - Initial Release`
-   - **Description:** Copy the content from `RELEASE_NOTES.md` file
+   - **Title:** `v1.0.1 - Release Name`
+   - **Description:** Copy from `RELEASE_NOTES.md`
 
-3. **Upload Release Assets:**
-   
-   Upload the following files from the `repo/` directory:
-   
-   - ✅ `repository.seranov-1.0.0.zip` (Primary installation file)
-   - ✅ `plugin.video.random.recursive-1.0.0.zip`
-   - ✅ `plugin.video.unified.browser-1.0.0.zip`
-   - ✅ `context.screenshots-1.0.5.zip`
-   - ✅ `service.seranov.nfoscanner-1.0.0.zip`
-   - ✅ `addons.xml`
-   - ✅ `addons.xml.md5`
+3. **Attach files (optional):**
+   - `repository.seranov-1.0.0.zip` (for easy download)
+   - Other add-on ZIPs if needed
 
-4. **Release Options:**
-   - ✅ Check "Set as the latest release"
-   - ✅ Do NOT check "Set as a pre-release" (this is a stable release)
+4. **Publish Release**
 
-5. **Publish Release:**
-   - Click **Publish release**
+### Step 3: Verify
 
-### Step 4: Verify Release
-
-After creating the release, verify:
-
-1. **Release page loads correctly:**
-   - https://github.com/seranov/kodi-play-random/releases/latest
-
-2. **All assets are downloadable:**
-   - Test downloading `repository.seranov-1.0.0.zip`
-   - Verify file size and integrity
-
-3. **Release notes are formatted correctly:**
-   - Check that bilingual content displays properly
-   - Verify all links work
-
-### Step 5: Update README (Optional)
-
-Consider adding a prominent installation section at the top of README.md:
-
-```markdown
-## 🚀 Quick Installation
-
-Download and install the repository to get automatic updates:
-
-1. **Download:** [repository.seranov-1.0.0.zip](https://github.com/seranov/kodi-play-random/releases/latest)
-2. **Install in Kodi:** Add-ons → Install from zip file
-3. **Browse add-ons:** Install from repository → Seranov's Kodi Repository
-
-See [INSTALLATION.md](INSTALLATION.md) for detailed instructions.
-```
+- ✅ Release page loads correctly
+- ✅ Files are downloadable
+- ✅ GitHub Pages is updated (check `https://seranov.github.io/kodi-play-random/addons.xml`)
 
 ---
 
-## Files Prepared for Release
+## Manual Release (Fallback)
 
-All necessary files are ready in the repository:
+If automated deployment fails, see [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md) for manual deployment instructions.
 
-### Documentation
-- ✅ `RELEASE_NOTES.md` - Complete release notes (English & Russian)
-- ✅ `INSTALLATION.md` - Detailed installation guide (English & Russian)
-- ✅ `README.md` - Repository documentation (already exists)
 
-### Repository Files (in `repo/` directory)
-- ✅ `repository.seranov-1.0.0.zip` - Repository add-on
-- ✅ `plugin.video.random.recursive-1.0.0.zip` - Random player add-on
-- ✅ `plugin.video.unified.browser-1.0.0.zip` - Unified browser add-on
-- ✅ `context.screenshots-1.0.5.zip` - Screenshots add-on
-- ✅ `service.seranov.nfoscanner-1.0.0.zip` - NFO scanner service
+---
+
+
+## Documentation
+
+For complete instructions on:
+- Building the repository locally
+- Understanding the CI/CD pipeline
+- Troubleshooting deployment issues
+- Manual deployment procedures
+
+**See:** [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md)
+
+---
+
+## Files and Structure
+
+### Repository Files
+
+All add-ons are automatically packaged and deployed:
+
+- `repository.seranov-1.0.0.zip` - Repository installation file
+- `plugin.video.random.recursive-1.0.0.zip` - Random player
+- `plugin.video.unified.browser-1.0.0.zip` - Unified browser
+- `context.screenshots-1.0.5.zip` - Screenshots context menu
+- `service.seranov.nfoscanner-1.0.0.zip` - NFO scanner service
+- `addons.xml` - Repository metadata
+- `addons.xml.md5` - Checksum
+
+### Key Documentation Files
+
+- ✅ [RELEASE_NOTES.md](RELEASE_NOTES.md) - Release notes (bilingual)
+- ✅ [INSTALLATION.md](INSTALLATION.md) - Installation guide (bilingual)
+- ✅ [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md) - Build & deployment guide
+- ✅ [README.md](../README.md) - Main repository documentation
+
+---
+
+## Installation Instructions for Users
+
+### Method 1: Install Repository (Recommended)
+
+1. Download: `repository.seranov-1.0.0.zip`
+2. In Kodi: **Add-ons** → **Install from zip file**
+3. Select the downloaded file
+4. Install add-ons from: **Install from repository** → **Seranov's Kodi Repository**
+
+### Method 2: Direct Installation
+
+Download and install individual add-on ZIPs directly.
+
+**Note:** Without repository, users won't get automatic updates.
+
+---
+
+## Monitoring and Verification
+
+### Check Deployment Status
+
+1. **GitHub Actions:** https://github.com/seranov/kodi-play-random/actions
+2. **GitHub Pages:** https://seranov.github.io/kodi-play-random/
+3. **addons.xml:** https://seranov.github.io/kodi-play-random/addons.xml
+
+### Test in Kodi
+
+1. Install repository from ZIP
+2. Right-click → **Check for updates**
+3. Verify correct version appears
+
+---
+
+## Support
+
+- **Documentation:** [doc/](../doc/)
+- **Issues:** https://github.com/seranov/kodi-play-random/issues
+- **Email:** seranov@yandex.ru
 - ✅ `addons.xml` - Repository metadata (with Russian translations)
 - ✅ `addons.xml.md5` - Checksum file
 

@@ -109,16 +109,28 @@ GitHub Pages требует наличия:
 
 После push изменений:
 ```bash
-git add .github/workflows/publish-release.yml
-git commit -m "Fix GitHub Pages deployment - add index.html and ensure .nojekyll is created"
+git add -A
+git commit -m "Add GitHub Pages API configuration and enable_jekyll:false explicitly"
 git push origin main
 ```
 
-Workflow автоматически запустится и задеплоит:
-1. ✅ `.nojekyll` - для корректной работы GitHub Pages
-2. ✅ `index.html` - главная страница репозитория
-3. ✅ `index.html` для каждого аддона - навигация
-4. ✅ Все существующие файлы репозитория
+Workflow автоматически запустится и:
+1. ✅ Создаст `.nojekyll` - для корректной работы GitHub Pages
+2. ✅ Создаст `index.html` - главная страница репозитория
+3. ✅ Создаст `index.html` для каждого аддона - навигация
+4. ✅ Включит GitHub Pages через API (если еще не включено)
+5. ✅ Задеплоит все файлы репозитория с явным `enable_jekyll: false`
+
+## Важное замечание о 404 ошибке
+
+Если после деплоя всё ещё появляется 404 ошибка, это может быть связано с:
+
+1. **Время распространения** - GitHub Pages может требовать 1-10 минут для обработки изменений
+2. **Ручная настройка** - Возможно потребуется один раз вручную включить GitHub Pages в Settings → Pages:
+   - Source: Deploy from a branch
+   - Branch: `gh-pages` 
+   - Folder: `/ (root)`
+3. **Кэширование браузера** - Попробуйте открыть в режиме инкогнито или очистить кэш
 
 ## Проверка
 

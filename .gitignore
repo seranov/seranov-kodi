@@ -75,6 +75,10 @@ docs/_build/
 # GitHub Pages generated files
 /docs/
 
+# Test output directories
+test_output/
+/test_output/
+
 # PyBuilder
 .pybuilder/
 target/

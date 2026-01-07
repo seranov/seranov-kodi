@@ -1,0 +1,260 @@
+name: Publish Kodi Repository
+
+# Триггеры / Triggers
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+# Права доступа для GitHub Pages / Permissions for GitHub Pages
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+# Предотвращение одновременных деплоев / Prevent concurrent deployments
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy Repository
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Шаг 1: Checkout репозитория / Step 1: Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Шаг 2: Настройка Python / Step 2: Setup Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      # Шаг 3: Создание структуры директорий / Step 3: Create directory structure
+      - name: Create output directories
+        run: |
+          echo "Creating output directory structure..."
+          mkdir -p docs
+          
+          # Список аддонов для обработки / List of addons to process
+          ADDONS=(
+            "context.screenshots"
+            "plugin.video.random.recursive"
+            "plugin.video.unified.browser"
+            "service.seranov.nfoscanner"
+            "repository.seranov"
+          )
+          
+          # Создание поддиректорий для каждого аддона / Create subdirectories for each addon
+          for addon in "${ADDONS[@]}"; do
+            mkdir -p "docs/$addon"
+            echo "Created directory: docs/$addon"
+          done
+
+      # Шаг 4: Создание ZIP-архивов / Step 4: Create ZIP archives
+      - name: Create addon ZIP archives
+        run: |
+          echo "Creating ZIP archives for addons..."
+          
+          # Функция для создания ZIP архива / Function to create ZIP archive
+          create_addon_zip() {
+            local addon_dir=$1
+            local addon_id=$(basename "$addon_dir")
+            
+            # Проверка наличия addon.xml / Check if addon.xml exists
+            if [ ! -f "$addon_dir/addon.xml" ]; then
+              echo "Warning: $addon_dir/addon.xml not found, skipping..."
+              return
+            fi
+            
+            # Извлечение версии из addon.xml / Extract version from addon.xml
+            local version=$(python3 -c "
+          import xml.etree.ElementTree as ET
+          tree = ET.parse('$addon_dir/addon.xml')
+          root = tree.getroot()
+          print(root.get('version'))
+          ")
+            
+            echo "Processing $addon_id version $version..."
+            
+            # Создание ZIP архива / Create ZIP archive
+            local zip_name="${addon_id}-${version}.zip"
+            local zip_path="docs/$addon_id/$zip_name"
+            
+            # Удаление старого архива если есть / Remove old archive if exists
+            rm -f "$zip_path"
+            
+            # Создание временной директории / Create temporary directory
+            local temp_dir=$(mktemp -d)
+            mkdir -p "$temp_dir/$addon_id"
+            
+            # Копирование файлов аддона (исключая скрытые файлы и __pycache__) 
+            # Copy addon files (excluding hidden files and __pycache__)
+            rsync -a --exclude='.*' --exclude='__pycache__' --exclude='*.pyc' "$addon_dir/" "$temp_dir/$addon_id/"
+            
+            # Создание ZIP архива / Create ZIP archive
+            cd "$temp_dir"
+            zip -r "$zip_name" "$addon_id" -x "*/\.*" "*/__pycache__/*" "*.pyc"
+            mv "$zip_name" "$GITHUB_WORKSPACE/$zip_path"
+            cd "$GITHUB_WORKSPACE"
+            
+            # Очистка временной директории / Clean up temporary directory
+            rm -rf "$temp_dir"
+            
+            echo "Created: $zip_path"
+            
+            # Копирование icon.png если есть / Copy icon.png if exists
+            if [ -f "$addon_dir/icon.png" ]; then
+              cp "$addon_dir/icon.png" "docs/$addon_id/"
+              echo "Copied icon.png for $addon_id"
+            fi
+            
+            # Копирование fanart.jpg если есть / Copy fanart.jpg if exists
+            if [ -f "$addon_dir/fanart.jpg" ]; then
+              cp "$addon_dir/fanart.jpg" "docs/$addon_id/"
+              echo "Copied fanart.jpg for $addon_id"
+            fi
+          }
+          
+          # Обработка всех директорий аддонов / Process all addon directories
+          for addon_dir in plugin.* service.* context.* repository.*; do
+            if [ -d "$addon_dir" ]; then
+              create_addon_zip "$addon_dir"
+            fi
+          done
+          
+          echo "All ZIP archives created successfully!"
+
+      # Шаг 5: Генерация addons.xml / Step 5: Generate addons.xml
+      - name: Generate addons.xml
+        run: |
+          echo "Generating addons.xml..."
+          
+          python3 << 'PYTHON_SCRIPT'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          import sys
+          
+          def indent_xml(elem, level=0):
+              """Add pretty-printing indentation to XML"""
+              indent = "\n" + "    " * level
+              if len(elem):
+                  if not elem.text or not elem.text.strip():
+                      elem.text = indent + "    "
+                  if not elem.tail or not elem.tail.strip():
+                      elem.tail = indent
+                  for child in elem:
+                      indent_xml(child, level + 1)
+                  if len(elem) > 0:
+                      last_child = elem[-1]
+                      if not last_child.tail or not last_child.tail.strip():
+                          last_child.tail = indent
+              else:
+                  if level and (not elem.tail or not elem.tail.strip()):
+                      elem.tail = indent
+          
+          # Создание корневого элемента / Create root element
+          root = ET.Element('addons')
+          
+          # Список аддонов / List of addons
+          addon_dirs = []
+          base_path = Path('.')
+          
+          for item in base_path.iterdir():
+              if item.is_dir() and (
+                  item.name.startswith('plugin.') or 
+                  item.name.startswith('service.') or 
+                  item.name.startswith('context.') or 
+                  item.name.startswith('repository.')
+              ):
+                  addon_xml = item / 'addon.xml'
+                  if addon_xml.exists():
+                      addon_dirs.append(item)
+          
+          print(f"Found {len(addon_dirs)} addons")
+          
+          # Добавление каждого аддона в addons.xml / Add each addon to addons.xml
+          for addon_dir in sorted(addon_dirs):
+              try:
+                  tree = ET.parse(addon_dir / 'addon.xml')
+                  addon_element = tree.getroot()
+                  root.append(addon_element)
+                  print(f"Added {addon_element.get('id')} version {addon_element.get('version')}")
+              except Exception as e:
+                  print(f"Error processing {addon_dir}: {e}", file=sys.stderr)
+                  sys.exit(1)
+          
+          # Форматирование и сохранение / Format and save
+          indent_xml(root)
+          tree = ET.ElementTree(root)
+          
+          output_path = Path('docs/addons.xml')
+          tree.write(output_path, encoding='utf-8', xml_declaration=True)
+          
+          print(f"Generated: {output_path}")
+          PYTHON_SCRIPT
+          
+          echo "addons.xml generated successfully!"
+
+      # Шаг 6: Генерация addons.xml.md5 / Step 6: Generate addons.xml.md5
+      - name: Generate addons.xml.md5
+        run: |
+          echo "Generating addons.xml.md5..."
+          
+          cd docs
+          md5sum addons.xml | awk '{print $1}' > addons.xml.md5
+          
+          echo "MD5 checksum: $(cat addons.xml.md5)"
+          echo "addons.xml.md5 generated successfully!"
+
+      # Шаг 7: Создание .nojekyll файла / Step 7: Create .nojekyll file
+      - name: Create .nojekyll
+        run: |
+          echo "Creating .nojekyll file..."
+          touch docs/.nojekyll
+          echo ".nojekyll file created!"
+
+      # Шаг 8: Вывод структуры директории / Step 8: Display directory structure
+      - name: Display output structure
+        run: |
+          echo "=== Output Directory Structure ==="
+          tree -L 2 docs/ || find docs/ -maxdepth 2 -print
+          echo ""
+          echo "=== File sizes ==="
+          du -h docs/* | sort -h
+
+      # Шаг 9: Deploy на GitHub Pages / Step 9: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+          publish_branch: gh-pages
+          force_orphan: true
+          commit_message: "Deploy Kodi repository ${{ github.sha }}"
+
+      # Шаг 10: Вывод информации об успешном деплое / Step 10: Output deployment info
+      - name: Deployment complete
+        run: |
+          echo "✅ Deployment successful!"
+          echo ""
+          echo "Repository URL: https://seranov.github.io/kodi-play-random/"
+          echo ""
+          echo "To install in Kodi:"
+          echo "1. Download repository.seranov ZIP from the releases"
+          echo "2. In Kodi: Add-ons → Install from zip file"
+          echo "3. Select the downloaded repository.seranov-*.zip file"
+          echo ""
+          echo "Files deployed:"
+          echo "  - addons.xml"
+          echo "  - addons.xml.md5"
+          echo "  - ZIP archives for all addons"
+          echo "  - Icon files"

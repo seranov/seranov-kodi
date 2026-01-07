@@ -36,6 +36,10 @@ This is an alternative method if you have issues with online installation.
 1. **Download the repository zip file:**
    - Go to [Releases](https://github.com/seranov/seranov-kodi/releases/latest)
    - Download `repository.seranov-1.0.0.zip`
+   
+   **Direct links:**
+   - Always available: `https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip`
+   - Via GitHub Pages (after activation): `https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip`
 
 2. **Enable "Unknown sources" in Kodi:**
    - Open Kodi **Settings** (gear icon)

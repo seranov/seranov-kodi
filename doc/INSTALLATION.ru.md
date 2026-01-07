@@ -46,9 +46,14 @@
 
 Скачайте последнюю версию репозитория с GitHub:
 
-**Прямая ссылка:**
+**Прямая ссылка (всегда доступна):**
 ```
-https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov-1.0.0.zip
+https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+```
+
+**Или через GitHub Pages (после активации):**
+```
+https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
 ```
 
 Сохраните файл в доступное место (например, на Рабочий стол или в папку Загрузки).

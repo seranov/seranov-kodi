@@ -2,14 +2,31 @@
 """
 Script to generate Kodi repository files (addons.xml and addons.xml.md5)
 and package addons into zip files.
+
+Requirements:
+    Python 3.9+ (uses Path.is_relative_to())
+
+Usage:
+    python3 generate_repo.py [output_dir]
+
+Arguments:
+    output_dir - Optional output directory (default: repo)
 """
 
 import os
+import sys
 import shutil
 import hashlib
 import zipfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+
+# Check Python version
+if sys.version_info < (3, 9):
+    print("Error: This script requires Python 3.9 or higher")
+    print(f"Current version: {sys.version}")
+    sys.exit(1)
 
 
 def get_addon_dirs():
@@ -71,7 +88,7 @@ def create_zip(addon_dir, addon_id, version, output_dir):
 
 
 def indent_xml(elem, level=0):
-    """Add pretty-printing indentation to XML (for Python < 3.9 compatibility)"""
+    """Add pretty-printing indentation to XML"""
     indent = "\n" + "    " * level
     if len(elem):
         if not elem.text or not elem.text.strip():
@@ -130,7 +147,28 @@ def generate_md5(file_path):
 def main():
     """Main function"""
     base_path = Path(__file__).parent.parent
-    repo_dir = base_path / 'repo'
+    
+    # Parse command line arguments
+    if len(sys.argv) > 1:
+        output_arg = sys.argv[1]
+        # Validate path - must be within base_path
+        # Use proper path resolution to prevent directory traversal
+        try:
+            repo_dir = (base_path / output_arg).resolve()
+            base_path_resolved = base_path.resolve()
+            # Use is_relative_to for robust path validation (Python 3.9+)
+            if not repo_dir.is_relative_to(base_path_resolved):
+                print(f"Error: Output directory '{output_arg}' must be within the repository")
+                print(f"Resolved path: {repo_dir}")
+                print(f"Base path: {base_path_resolved}")
+                sys.exit(1)
+        except (ValueError, OSError) as e:
+            print(f"Error: Invalid output directory '{output_arg}': {e}")
+            sys.exit(1)
+    else:
+        repo_dir = base_path / 'repo'
+    
+    print(f"Output directory: {repo_dir}")
     
     # Create repo directory if it doesn't exist
     repo_dir.mkdir(exist_ok=True)
@@ -144,10 +182,31 @@ def main():
     
     print(f"Found {len(addon_dirs)} addon(s)")
     
+    # Create subdirectories for each addon
+    for addon_dir in addon_dirs:
+        addon_id, _, _ = get_addon_info(addon_dir)
+        addon_output_dir = repo_dir / addon_id
+        addon_output_dir.mkdir(exist_ok=True)
+    
     # Create zip files for each addon
     for addon_dir in addon_dirs:
         addon_id, version, _ = get_addon_info(addon_dir)
-        create_zip(addon_dir, addon_id, version, repo_dir)
+        addon_output_dir = repo_dir / addon_id
+        
+        # Create ZIP in addon subdirectory
+        create_zip(addon_dir, addon_id, version, addon_output_dir)
+        
+        # Copy icon.png if exists
+        icon_path = addon_dir / 'icon.png'
+        if icon_path.exists():
+            shutil.copy(icon_path, addon_output_dir / 'icon.png')
+            print(f"Copied icon.png for {addon_id}")
+        
+        # Copy fanart.jpg if exists
+        fanart_path = addon_dir / 'fanart.jpg'
+        if fanart_path.exists():
+            shutil.copy(fanart_path, addon_output_dir / 'fanart.jpg')
+            print(f"Copied fanart.jpg for {addon_id}")
     
     # Generate addons.xml
     addons_xml_path = generate_addons_xml(addon_dirs, repo_dir)

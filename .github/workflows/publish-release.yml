@@ -307,7 +307,7 @@ jobs:
                   <h2>🔗 Repository URL</h2>
                   <div class="repo-url">
                       <strong>Direct Repository URL:</strong><br>
-                      <code>https://seranov.github.io/kodi-play-random/</code>
+                      <code>https://seranov.github.io/seranov-kodi/</code>
                   </div>
                   
                   <h2>📋 Available Add-ons</h2>
@@ -328,7 +328,7 @@ jobs:
                   
                   <h2>🔧 For Developers</h2>
                   <p>This repository is automatically built and deployed via GitHub Actions.</p>
-                  <p>Source code: <a href="https://github.com/seranov/kodi-play-random">github.com/seranov/kodi-play-random</a></p>
+                  <p>Source code: <a href="https://github.com/seranov/seranov-kodi">github.com/seranov/seranov-kodi</a></p>
               </div>
           </body>
           </html>
@@ -427,7 +427,7 @@ jobs:
         run: |
           echo "✅ Deployment successful!"
           echo ""
-          echo "Repository URL: https://seranov.github.io/kodi-play-random/"
+          echo "Repository URL: https://seranov.github.io/seranov-kodi/"
           echo ""
           echo "To install in Kodi:"
           echo "1. Download repository.seranov ZIP from the releases"

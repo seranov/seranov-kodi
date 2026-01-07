@@ -20,6 +20,7 @@ This is the initial release of Seranov's Kodi Add-ons Repository, containing 5 a
 ```
 https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
 ```
+> **Note:** This URL works in Kodi. In a browser it may show 400 error - this is normal for GitHub raw directories.
 
 ### Русский
 
@@ -33,6 +34,7 @@ https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
 ```
 https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
 ```
+> **Примечание:** Этот URL работает в Kodi. В браузере может показываться ошибка 400 - это нормально для GitHub raw директорий.
 
 ## Included Add-ons / Включенные дополнения
 

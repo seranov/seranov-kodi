@@ -157,6 +157,7 @@ https://github.com/seranov/kodi-play-random/releases/latest/download/repository.
 ```
 https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
 ```
+> **Note:** This URL works in Kodi. In a browser it may show 400 error - this is normal.
 
 ---
 

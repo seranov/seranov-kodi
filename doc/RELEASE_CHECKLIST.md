@@ -95,7 +95,7 @@
 - **Platform:** Kodi 19 Matrix or later
 - **Python:** 3.x compatible
 - **License:** MIT (except context.screenshots - GPL v2)
-- **Repository URL:** https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
+- **Repository URL:** https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/ *(Note: Shows 400 in browser - normal)*
 
 ---
 
@@ -104,7 +104,7 @@
 - **Repository:** https://github.com/seranov/kodi-play-random
 - **Releases:** https://github.com/seranov/kodi-play-random/releases
 - **Issues:** https://github.com/seranov/kodi-play-random/issues
-- **Raw Repo URL:** https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
+- **Raw Repo URL:** https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/ *(Works in Kodi only)*
 
 ---
 

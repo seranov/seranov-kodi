@@ -1,6 +1,15 @@
 # Kodi Add-ons Repository
 
+> **[Русская версия / Russian version](doc/README.ru.md)**
+
 This repository contains multiple Kodi add-ons and serves as a Kodi repository for easy installation.
+
+## Documentation
+
+- 📖 **[Installation Guide](doc/INSTALLATION.md)** - How to install the repository and add-ons
+- 🚀 **[Quick Start Guide](doc/QUICKSTART.md)** - Get started quickly
+- 🤝 **[Contributing Guide](doc/CONTRIBUTING.md)** - How to contribute and create new add-ons
+- 📝 **[Release Notes](doc/RELEASE_NOTES.md)** - Latest changes and updates
 
 ## Repository Structure
 
@@ -67,19 +76,20 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 ## Installation
 
-### Method 1: Install Repository (Recommended)
+📦 **Quick Start:**
 
-1. Download the repository zip file: `repository.seranov-1.0.0.zip` from the `repo` folder
-2. In Kodi, go to **Add-ons** → **Install from zip file**
-3. Browse to the downloaded zip file and install it
-4. Go to **Install from repository** → **Seranov's Kodi Repository**
-5. Install any add-ons you want from the repository
+1. Download `repository.seranov-1.0.0.zip` from [Releases](https://github.com/seranov/kodi-play-random/releases/latest)
+2. In Kodi: **Add-ons** → **Install from zip file**
+3. Select the downloaded file
+4. Done! Now install add-ons from the repository
 
-### Method 2: Install Individual Add-on
+📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)
 
-1. Download the specific add-on zip file from the `repo` folder
-2. In Kodi, go to **Add-ons** → **Install from zip file**
-3. Browse to the downloaded zip file and install it
+**Repository URL for Kodi:**
+```
+https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
+```
+> **Note:** This URL works in Kodi. In a browser it may show 400 error - this is normal for GitHub raw directories.
 
 ## Development
 
@@ -142,10 +152,6 @@ The build script automatically detects all directories starting with `plugin.`, 
 
 Each service plugin should have:
 
-### Service Plugin Template Structure
-
-Each service plugin should have:
-
 ```
 service.addon.name/
 ├── addon.xml                    # Add-on metadata
@@ -160,13 +166,6 @@ service.addon.name/
     └── lib/                     # Optional library modules
 ```
 
-## Repository URL
-
-When the repository is hosted on GitHub, add-ons can be installed by adding this repository URL to Kodi:
-
-```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
-```
 
 ## License
 

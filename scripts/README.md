@@ -106,7 +106,8 @@ PowerShell-скрипт для сборки релиза и подготовки
 
 1. **Обновите версию в addon.xml**
    ```xml
-   <addon id="plugin.video.random.recursive" version="1.0.1" ...>
+   <!-- Обновите атрибут version -->
+   <addon id="plugin.video.random.recursive" version="1.0.1" name="Random Recursive Player" provider-name="seranov">
    ```
 
 2. **Соберите репозиторий**
@@ -172,6 +173,7 @@ PowerShell-скрипт для сборки релиза и подготовки
 1. **Добавьте источник файлов:**
    - **Настройки** → **Диспетчер файлов** → **Добавить источник**
    - Введите URL: `https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/`
+     > **Примечание:** Этот URL работает в Kodi. В браузере может показывать 400 - это нормально.
    - Имя: `Seranov Repository`
    - Нажмите **OK**
 
@@ -204,6 +206,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 ```
 https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
 ```
+> **Примечание:** В браузере этот URL может показать ошибку 400 - это нормально для GitHub raw директорий. Kodi использует его для доступа к addons.xml и ZIP-файлам.
 
 **Файл metadata репозитория:**
 ```

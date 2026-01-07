@@ -63,6 +63,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
    ```
    https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
    ```
+   > **Примечание:** Этот URL предназначен для использования в Kodi. При прямом открытии в браузере вы можете увидеть ошибку 400, это нормально. Kodi использует этот URL для доступа к файлам `addons.xml` и ZIP-архивам аддонов.
 6. Нажмите **OK**
 7. В поле "Введите имя для этого источника медиаданных" введите:
    ```
@@ -98,6 +99,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
    ```
    https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/
    ```
+   > **Примечание:** Этот URL работает внутри Kodi. В браузере может показываться ошибка 400 — это нормально для GitHub raw директорий.
 3. Имя: `Seranov Repo`
 4. **Settings** → **Add-ons** → **Install from zip file**
 5. Выберите `Seranov Repo`

@@ -4,6 +4,8 @@
 
 This guide explains how to build and publish releases of the Kodi repository with automatic deployment to GitHub Pages.
 
+> 💡 **Quick Update Guide:** If you just want to update a plugin version and publish it, see the [Version Update Guide](VERSION_UPDATE.md) for a streamlined step-by-step process.
+
 ## Overview
 
 The repository uses an automated CI/CD pipeline that:
@@ -431,6 +433,7 @@ Always update:
 ## Resources
 
 ### Documentation
+- [Version Update Guide](VERSION_UPDATE.md) - Step-by-step guide for updating plugin versions
 - [Installation Guide](INSTALLATION.md)
 - [Release Notes](RELEASE_NOTES.md)
 - [Contributing Guide](CONTRIBUTING.md)

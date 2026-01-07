@@ -4,9 +4,34 @@
 
 ## Quick Start
 
-The easiest way to install all add-ons from this repository is to install the repository add-on first.
+The easiest way to install all add-ons from this repository is to add the repository URL in Kodi.
 
-## Option 1: Install Repository Add-on (Recommended)
+## Option 1: Install via GitHub Pages URL (Easiest)
+
+⚠️ **Requirement:** GitHub Pages must be activated for the repository.
+
+### Direct Installation via File Manager
+
+1. Open Kodi
+2. Go to **Settings** (gear icon) → **File manager**
+3. Click **Add source**
+4. Click on **<None>** and enter the URL:
+   ```
+   https://seranov.github.io/kodi-play-random/
+   ```
+5. Enter a name for the source (e.g., `Seranov Repo`)
+6. Click **OK**
+7. Return to the home screen
+8. Go to **Settings** → **Add-ons** → **Install from zip file**
+9. Select `Seranov Repo`
+10. Select `repository.seranov/repository.seranov-1.0.0.zip`
+11. Wait for the "Add-on installed" notification
+
+After installing the repository, all add-ons will receive automatic updates!
+
+## Option 2: Install Repository Add-on from Downloaded ZIP
+
+This is an alternative method if you have issues with online installation.
 
 1. **Download the repository zip file:**
    - Go to [Releases](https://github.com/seranov/kodi-play-random/releases/latest)
@@ -34,7 +59,7 @@ The easiest way to install all add-ons from this repository is to install the re
    - Select the add-on you want to install
    - Click **Install**
 
-## Option 2: Install Individual Add-on Without Repository
+## Option 3: Install Individual Add-on Without Repository
 
 If you only want one specific add-on:
 
@@ -44,7 +69,7 @@ If you only want one specific add-on:
    - `service.seranov.nfoscanner-1.0.0.zip` - NFO Scanner Service
    - `plugin.video.unified.browser-1.0.0.zip` - Unified Browser
 
-2. Follow steps 2-3 from **Option 1** to install the zip file
+2. Follow steps 2-3 from **Option 2** to install the zip file
 
 **⚠️ Important:** Without installing the repository, you won't receive automatic updates.
 

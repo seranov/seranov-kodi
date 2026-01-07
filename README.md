@@ -77,14 +77,26 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 ## Installation
 
-📦 **Quick Start:**
+📦 **Quick Start - Option 1 (URL Installation):**
+
+⚠️ **Requires:** GitHub Pages must be activated first (see [KODI_URL_INSTALLATION.md](doc/KODI_URL_INSTALLATION.md))
+
+1. In Kodi: **Settings** → **File manager** → **Add source**
+2. Enter URL: `https://seranov.github.io/kodi-play-random/`
+3. Name it (e.g., `Seranov Repo`)
+4. **Add-ons** → **Install from zip file** → Select your source
+5. Navigate to `repository.seranov/repository.seranov-1.0.0.zip`
+6. Done! Now install add-ons from the repository
+
+📦 **Quick Start - Option 2 (Manual ZIP):**
 
 1. Download `repository.seranov-1.0.0.zip` from [Releases](https://github.com/seranov/kodi-play-random/releases/latest)
 2. In Kodi: **Add-ons** → **Install from zip file**
 3. Select the downloaded file
 4. Done! Now install add-ons from the repository
 
-📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)
+📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)  
+🚀 **URL Setup Guide:** See [KODI_URL_INSTALLATION.md](doc/KODI_URL_INSTALLATION.md)
 
 ### Automatic Updates
 

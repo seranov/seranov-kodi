@@ -9,6 +9,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 - 📖 **[Installation Guide](doc/INSTALLATION.md)** - How to install the repository and add-ons
 - 🚀 **[Quick Start Guide](doc/QUICKSTART.md)** - Get started quickly
 - 🔧 **[Build & Publish Guide](doc/BUILD_AND_PUBLISH.md)** - Complete build and deployment instructions
+- 🔄 **[Version Update Guide](doc/VERSION_UPDATE.md)** - How to update plugin versions and publish updates
 - 🤝 **[Contributing Guide](doc/CONTRIBUTING.md)** - How to contribute and create new add-ons
 - 📝 **[Release Notes](doc/RELEASE_NOTES.md)** - Latest changes and updates
 

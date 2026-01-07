@@ -145,10 +145,12 @@ def main():
         # Use proper path resolution to prevent directory traversal
         try:
             repo_dir = (base_path / output_arg).resolve()
-            # Ensure the resolved path is within base_path
             base_path_resolved = base_path.resolve()
-            if not str(repo_dir).startswith(str(base_path_resolved)):
+            # Use is_relative_to for robust path validation (Python 3.9+)
+            if not repo_dir.is_relative_to(base_path_resolved):
                 print(f"Error: Output directory '{output_arg}' must be within the repository")
+                print(f"Resolved path: {repo_dir}")
+                print(f"Base path: {base_path_resolved}")
                 sys.exit(1)
         except (ValueError, OSError) as e:
             print(f"Error: Invalid output directory '{output_arg}': {e}")

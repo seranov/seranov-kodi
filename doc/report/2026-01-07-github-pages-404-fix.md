@@ -76,8 +76,34 @@ GitHub Pages требует наличия:
 ### `.github/workflows/publish-release.yml`
 - ✅ Добавлено создание `index.html` с полным контентом
 - ✅ Добавлен шаг создания `index.html` для каждого аддона
-- ✅ Перенумерованы шаги 8-11
+- ✅ Перенумерованы шаги 8-12
 - ✅ Исправлена YAML структура
+- ✅ Добавлен **Шаг 10: Configure GitHub Pages** - API вызов для автоматической настройки GitHub Pages
+- ✅ Явно добавлен параметр `enable_jekyll: false` в деплой action
+
+### Шаг 10: Настройка GitHub Pages через API
+
+Добавлен новый шаг, который автоматически настраивает GitHub Pages через REST API:
+
+```yaml
+- name: Configure GitHub Pages
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  run: |
+    echo "Configuring GitHub Pages..."
+    curl -X POST \
+      -H "Authorization: token $GITHUB_TOKEN" \
+      -H "Accept: application/vnd.github+json" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      https://api.github.com/repos/${{ github.repository }}/pages \
+      -d '{"source":{"branch":"gh-pages","path":"/"}}' \
+      || echo "Pages might already be configured or error occurred"
+```
+
+Этот шаг:
+- Включает GitHub Pages для репозитория если он еще не включен
+- Настраивает источник на ветку `gh-pages` и корневую директорию `/`
+- Игнорирует ошибки если Pages уже настроены
 
 ## Результат
 

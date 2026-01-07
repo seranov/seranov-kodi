@@ -90,7 +90,7 @@ print(root.get('version'))
             
             # Создание ZIP архива / Create ZIP archive
             local zip_name="${addon_id}-${version}.zip"
-            local zip_path="docs/$addon_id/$zip_name"
+            local zip_path="docs/${addon_id}/${zip_name}"
             
             # Удаление старого архива если есть / Remove old archive if exists
             rm -f "$zip_path"
@@ -105,10 +105,10 @@ print(root.get('version'))
             rsync -a --exclude='.*' --exclude='__pycache__' --exclude='*.pyc' "$addon_dir/" "$temp_dir/$addon_id/"
             
             # Создание ZIP архива / Create ZIP archive
-            cd "$temp_dir"
+            cd "$temp_dir" || exit 1
             zip -q -r "$zip_name" "$addon_id" -x "*/\.*" "*/__pycache__/*" "*.pyc"
             mv "$zip_name" "$GITHUB_WORKSPACE/$zip_path"
-            cd "$GITHUB_WORKSPACE"
+            cd "$GITHUB_WORKSPACE" || exit 1
             
             # Очистка временной директории / Clean up temporary directory
             rm -rf "$temp_dir"

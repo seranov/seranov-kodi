@@ -141,13 +141,18 @@ def main():
     # Parse command line arguments
     if len(sys.argv) > 1:
         output_arg = sys.argv[1]
-        # Validate path - must be relative or within base_path
-        # Prevent directory traversal attacks
-        if '..' in output_arg or output_arg.startswith('/'):
-            print(f"Error: Invalid output directory '{output_arg}'")
-            print("Output directory must be a relative path without '..'")
+        # Validate path - must be within base_path
+        # Use proper path resolution to prevent directory traversal
+        try:
+            repo_dir = (base_path / output_arg).resolve()
+            # Ensure the resolved path is within base_path
+            base_path_resolved = base_path.resolve()
+            if not str(repo_dir).startswith(str(base_path_resolved)):
+                print(f"Error: Output directory '{output_arg}' must be within the repository")
+                sys.exit(1)
+        except (ValueError, OSError) as e:
+            print(f"Error: Invalid output directory '{output_arg}': {e}")
             sys.exit(1)
-        repo_dir = base_path / output_arg
     else:
         repo_dir = base_path / 'repo'
     

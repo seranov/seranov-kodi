@@ -119,7 +119,7 @@ Background service that scans video folders for movie.nfo and category.nfo files
 For issues, questions, or contributions, please visit:
 Для сообщений об ошибках, вопросов или вклада посетите:
 
-**GitHub:** https://github.com/seranov/kodi-play-random
+**GitHub:** https://github.com/seranov/seranov-kodi
 **Email:** seranov@yandex.ru
 
 ---

@@ -13,7 +13,7 @@
 
 **Изменения:**
 - ✅ Обновлен раздел "Automatic Updates" с информацией о доступности GitHub Pages
-- ✅ Добавлен URL репозитория: `https://seranov.github.io/kodi-play-random/`
+- ✅ Добавлен URL репозитория: `https://seranov.github.io/seranov-kodi/`
 - ✅ Описан механизм автоматических обновлений через Kodi
 - ✅ Добавлены инструкции по ручной проверке обновлений
 - ✅ Удалена устаревшая информация об ошибке GitHub Raw 400
@@ -29,7 +29,7 @@ Currently, the repository **does not support auto-updates**
 ```markdown
 ## Automatic Updates
 ✅ Now Available: The repository is published via GitHub Pages!
-Repository URL: https://seranov.github.io/kodi-play-random/
+Repository URL: https://seranov.github.io/seranov-kodi/
 ```
 
 ### 2. Создание нового руководства BUILD_AND_PUBLISH.md
@@ -161,7 +161,7 @@ doc/
 ## Технические детали
 
 ### GitHub Pages URL
-**Активный URL:** `https://seranov.github.io/kodi-play-random/`
+**Активный URL:** `https://seranov.github.io/seranov-kodi/`
 
 **Что доступно:**
 - `addons.xml` - Метаданные репозитория
@@ -207,10 +207,10 @@ python3 scripts/generate_repo.py
 
 ```bash
 # Проверить addons.xml
-curl https://seranov.github.io/kodi-play-random/addons.xml
+curl https://seranov.github.io/seranov-kodi/addons.xml
 
 # Проверить ZIP файл
-curl -I https://seranov.github.io/kodi-play-random/repository.seranov/repository.seranov-1.0.0.zip
+curl -I https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
 ```
 
 **Ожидаемый результат:** HTTP 200 OK
@@ -224,7 +224,7 @@ curl -I https://seranov.github.io/kodi-play-random/repository.seranov/repository
 
 ### 3. Проверка GitHub Actions
 
-1. Перейти: https://github.com/seranov/kodi-play-random/actions
+1. Перейти: https://github.com/seranov/seranov-kodi/actions
 2. Проверить статус workflow "Publish Kodi Repository"
 3. Убедиться, что deployment успешен
 

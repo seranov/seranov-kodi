@@ -94,7 +94,7 @@ git push origin v1.0.1
 
 После этого репозиторий будет доступен по адресу:
 ```
-https://seranov.github.io/kodi-play-random/
+https://seranov.github.io/seranov-kodi/
 ```
 
 ## Установка репозитория в Kodi
@@ -242,7 +242,7 @@ After the first workflow run:
 
 After that, the repository will be available at:
 ```
-https://seranov.github.io/kodi-play-random/
+https://seranov.github.io/seranov-kodi/
 ```
 
 ## Installing the repository in Kodi

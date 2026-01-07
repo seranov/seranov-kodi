@@ -101,9 +101,9 @@
 
 ## Quick Links
 
-- **Repository:** https://github.com/seranov/kodi-play-random
-- **Releases:** https://github.com/seranov/kodi-play-random/releases
-- **Issues:** https://github.com/seranov/kodi-play-random/issues
+- **Repository:** https://github.com/seranov/seranov-kodi
+- **Releases:** https://github.com/seranov/seranov-kodi/releases
+- **Issues:** https://github.com/seranov/seranov-kodi/issues
 
 ---
 

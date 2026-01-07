@@ -1,7 +1,7 @@
 # ⚠️ ВАЖНО: Ручная настройка GitHub Pages
 
 ## Проблема
-После автоматического деплоя через GitHub Actions сайт по адресу https://seranov.github.io/kodi-play-random/ показывает **404 ошибку**.
+После автоматического деплоя через GitHub Actions сайт по адресу https://seranov.github.io/seranov-kodi/ показывает **404 ошибку**.
 
 ## Причина
 GitHub Pages **не активирован** в настройках репозитория. Workflow успешно создает ветку `gh-pages` и пушит в нее файлы, но GitHub не знает, что нужно публиковать эту ветку как сайт.
@@ -12,7 +12,7 @@ GitHub Pages **не активирован** в настройках репоз�
 
 1. Перейдите в настройки репозитория:
    ```
-   https://github.com/seranov/kodi-play-random/settings/pages
+   https://github.com/seranov/seranov-kodi/settings/pages
    ```
 
 2. В разделе **"Build and deployment"** настройте:
@@ -26,14 +26,14 @@ GitHub Pages **не активирован** в настройках репоз�
 
 GitHub Pages обработает файлы и развернет сайт. Вы увидите сообщение:
 ```
-Your site is live at https://seranov.github.io/kodi-play-random/
+Your site is live at https://seranov.github.io/seranov-kodi/
 ```
 
 ### Шаг 3: Проверьте работу
 
 Откройте в браузере (желательно в режиме инкогнито):
 ```
-https://seranov.github.io/kodi-play-random/
+https://seranov.github.io/seranov-kodi/
 ```
 
 Должна отобразиться главная страница с инструкциями по установке репозитория Kodi.
@@ -44,7 +44,7 @@ https://seranov.github.io/kodi-play-random/
 
 **В Kodi:**
 1. **Settings** → **File manager** → **Add source**
-2. Введите URL: `https://seranov.github.io/kodi-play-random/`
+2. Введите URL: `https://seranov.github.io/seranov-kodi/`
 3. Дайте имя источнику (например, `Seranov Repo`)
 4. Нажмите **OK**
 5. Перейдите в **Settings** → **Add-ons** → **Install from zip file**
@@ -69,7 +69,7 @@ https://seranov.github.io/kodi-play-random/
 ## 🐛 Если всё ещё не работает
 
 1. **Проверьте статус деплоя**:
-   - Перейдите на https://github.com/seranov/kodi-play-random/deployments
+   - Перейдите на https://github.com/seranov/seranov-kodi/deployments
    - Убедитесь что последний деплой успешный
 
 2. **Очистите кэш браузера** или откройте в режиме инкогнито
@@ -86,5 +86,5 @@ https://seranov.github.io/kodi-play-random/
 
 - 📖 Документация GitHub Pages: https://docs.github.com/en/pages
 - 🔧 GitHub Actions для Pages: https://github.com/peaceiris/actions-gh-pages
-- 💬 Если проблема сохраняется - проверьте Actions logs на https://github.com/seranov/kodi-play-random/actions
+- 💬 Если проблема сохраняется - проверьте Actions logs на https://github.com/seranov/seranov-kodi/actions
 

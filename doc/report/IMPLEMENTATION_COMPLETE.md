@@ -101,7 +101,7 @@ From problem statement:
 
 6. ✅ **Kodi может использовать URL как источник репозитория**
    - Structure matches Kodi repository standards
-   - URL will be: https://seranov.github.io/kodi-play-random/
+   - URL will be: https://seranov.github.io/seranov-kodi/
    - Compatible with repository.seranov addon configuration
 
 ---
@@ -183,7 +183,7 @@ python3 scripts/generate_repo.py docs
 - Wait for deployment to complete
 
 ### 4. Verify Deployment
-- Visit: https://seranov.github.io/kodi-play-random/
+- Visit: https://seranov.github.io/seranov-kodi/
 - Check addons.xml is accessible
 - Verify ZIP files are downloadable
 

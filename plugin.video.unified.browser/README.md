@@ -158,4 +158,4 @@ seranov (seranov@yandex.ru)
 
 ## Support
 
-Report issues at: https://github.com/seranov/kodi-play-random
+Report issues at: https://github.com/seranov/seranov-kodi

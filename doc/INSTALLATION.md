@@ -17,7 +17,7 @@ The easiest way to install all add-ons from this repository is to add the reposi
 3. Click **Add source**
 4. Click on **<None>** and enter the URL:
    ```
-   https://seranov.github.io/kodi-play-random/
+   https://seranov.github.io/seranov-kodi/
    ```
 5. Enter a name for the source (e.g., `Seranov Repo`)
 6. Click **OK**
@@ -34,7 +34,7 @@ After installing the repository, all add-ons will receive automatic updates!
 This is an alternative method if you have issues with online installation.
 
 1. **Download the repository zip file:**
-   - Go to [Releases](https://github.com/seranov/kodi-play-random/releases/latest)
+   - Go to [Releases](https://github.com/seranov/seranov-kodi/releases/latest)
    - Download `repository.seranov-1.0.0.zip`
 
 2. **Enable "Unknown sources" in Kodi:**
@@ -63,7 +63,7 @@ This is an alternative method if you have issues with online installation.
 
 If you only want one specific add-on:
 
-1. Download the specific add-on zip from [Releases](https://github.com/seranov/kodi-play-random/releases/latest):
+1. Download the specific add-on zip from [Releases](https://github.com/seranov/seranov-kodi/releases/latest):
    - `plugin.video.random.recursive-1.0.0.zip` - Random Player
    - `context.screenshots-1.0.5.zip` - Popup Screenshots
    - `service.seranov.nfoscanner-1.0.0.zip` - NFO Scanner Service
@@ -79,7 +79,7 @@ If you only want one specific add-on:
 
 After installing the repository add-on (Option 1), Kodi will automatically check for updates to all installed add-ons.
 
-**Repository URL:** `https://seranov.github.io/kodi-play-random/`
+**Repository URL:** `https://seranov.github.io/seranov-kodi/`
 
 ### How Automatic Updates Work
 
@@ -137,7 +137,7 @@ To manually check for updates:
 
 2. **Corrupted download**
    - Make sure the ZIP file was downloaded correctly
-   - Try downloading again from [Releases](https://github.com/seranov/kodi-play-random/releases)
+   - Try downloading again from [Releases](https://github.com/seranov/seranov-kodi/releases)
 
 3. **Unknown sources disabled**
    - Enable "Unknown sources" in settings (see Option 1, Step 2)

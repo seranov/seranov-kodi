@@ -77,7 +77,7 @@ This folder contains all project documentation in English and Russian.
 
 - 🚀 [Quick Start (EN)](QUICKSTART.md) | [Быстрый старт (RU)](QUICKSTART.ru.md)
 - 📦 [Installation (EN)](INSTALLATION.md) | [Установка (RU)](INSTALLATION.ru.md)
-- 💡 **Repository URL:** `https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/`
+- 💡 **Repository URL:** `https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/`
 
 ### For Developers / Для разработчиков
 
@@ -89,8 +89,8 @@ This folder contains all project documentation in English and Russian.
 
 ## 🌐 Repository Information / Информация о репозитории
 
-- **GitHub:** https://github.com/seranov/kodi-play-random
-- **Issues:** https://github.com/seranov/kodi-play-random/issues
+- **GitHub:** https://github.com/seranov/seranov-kodi
+- **Issues:** https://github.com/seranov/seranov-kodi/issues
 - **License:** MIT
 - **Author:** seranov (seranov@yandex.ru)
 

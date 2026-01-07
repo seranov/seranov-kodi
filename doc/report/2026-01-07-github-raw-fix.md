@@ -5,7 +5,7 @@
 
 ## Проблема
 
-При попытке добавить источник `https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/` в Kodi возникала ошибка 400:
+При попытке добавить источник `https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/` в Kodi возникала ошибка 400:
 
 ```
 CCurlFile::Open - <https://raw.githubusercontent.com/.../repo/> Failed with code 400

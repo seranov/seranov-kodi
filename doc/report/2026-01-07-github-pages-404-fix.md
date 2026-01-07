@@ -5,7 +5,7 @@
 
 ## Проблема
 
-После успешного деплоя на GitHub Pages по адресу https://seranov.github.io/kodi-play-random/ отображалась ошибка 404:
+После успешного деплоя на GitHub Pages по адресу https://seranov.github.io/seranov-kodi/ отображалась ошибка 404:
 ```
 404 There isn't a GitHub Pages site here.
 ```
@@ -135,9 +135,9 @@ Workflow автоматически запустится и:
 ## Проверка
 
 После успешного деплоя проверить:
-1. https://seranov.github.io/kodi-play-random/ - должна открываться главная страница
-2. https://seranov.github.io/kodi-play-random/addons.xml - должен отдаваться XML файл
-3. https://seranov.github.io/kodi-play-random/repository.seranov/repository.seranov-1.0.0.zip - должен скачиваться ZIP
+1. https://seranov.github.io/seranov-kodi/ - должна открываться главная страница
+2. https://seranov.github.io/seranov-kodi/addons.xml - должен отдаваться XML файл
+3. https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip - должен скачиваться ZIP
 
 ## Дополнительные улучшения
 

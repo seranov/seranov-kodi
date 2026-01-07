@@ -22,7 +22,7 @@ The repository automatically builds and deploys to GitHub Pages on every push to
 
 ### Repository URL
 
-**Live Repository:** `https://seranov.github.io/kodi-play-random/`
+**Live Repository:** `https://seranov.github.io/seranov-kodi/`
 
 Users can:
 - ✅ Install repository once from ZIP file
@@ -46,7 +46,7 @@ git push origin v1.0.1
 
 ### Step 2: Create GitHub Release
 
-1. **Go to:** https://github.com/seranov/kodi-play-random/releases/new
+1. **Go to:** https://github.com/seranov/seranov-kodi/releases/new
 
 2. **Fill in details:**
    - **Tag:** Select `v1.0.1` (or create new)
@@ -64,7 +64,7 @@ git push origin v1.0.1
 
 - ✅ Release page loads correctly
 - ✅ Files are downloadable
-- ✅ GitHub Pages is updated (check `https://seranov.github.io/kodi-play-random/addons.xml`)
+- ✅ GitHub Pages is updated (check `https://seranov.github.io/seranov-kodi/addons.xml`)
 
 ---
 
@@ -132,9 +132,9 @@ Download and install individual add-on ZIPs directly.
 
 ### Check Deployment Status
 
-1. **GitHub Actions:** https://github.com/seranov/kodi-play-random/actions
-2. **GitHub Pages:** https://seranov.github.io/kodi-play-random/
-3. **addons.xml:** https://seranov.github.io/kodi-play-random/addons.xml
+1. **GitHub Actions:** https://github.com/seranov/seranov-kodi/actions
+2. **GitHub Pages:** https://seranov.github.io/seranov-kodi/
+3. **addons.xml:** https://seranov.github.io/seranov-kodi/addons.xml
 
 ### Test in Kodi
 
@@ -147,7 +147,7 @@ Download and install individual add-on ZIPs directly.
 ## Support
 
 - **Documentation:** [doc/](../doc/)
-- **Issues:** https://github.com/seranov/kodi-play-random/issues
+- **Issues:** https://github.com/seranov/seranov-kodi/issues
 - **Email:** seranov@yandex.ru
 - ✅ `addons.xml` - Repository metadata (with Russian translations)
 - ✅ `addons.xml.md5` - Checksum file
@@ -228,4 +228,4 @@ git push origin v1.0.0
 
 For questions about this release process:
 - **Email:** seranov@yandex.ru
-- **GitHub:** https://github.com/seranov/kodi-play-random/issues
+- **GitHub:** https://github.com/seranov/seranov-kodi/issues

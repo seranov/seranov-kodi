@@ -12,7 +12,7 @@
 - ✅ Автоматически развертывает на GitHub Pages
 - ✅ Обеспечивает автоматические обновления в Kodi
 
-**URL репозитория:** `https://seranov.github.io/kodi-play-random/`
+**URL репозитория:** `https://seranov.github.io/seranov-kodi/`
 
 ---
 
@@ -30,7 +30,7 @@
 
 ```powershell
 # Перейти в корень репозитория
-cd C:\prj\kodi-play-random
+cd C:\prj\seranov-kodi
 
 # Запустить скрипт сборки
 .\scripts\build-release.ps1
@@ -53,7 +53,7 @@ cd C:\prj\kodi-play-random
 
 ```bash
 # Перейти в корень репозитория
-cd ~/kodi-play-random
+cd ~/seranov-kodi
 
 # Запустить Python генератор напрямую
 python3 scripts/generate_repo.py
@@ -95,7 +95,7 @@ repo/
 1. **Триггер:** Push в ветку `main` или тег начинающийся с `v*`
 2. **Сборка:** Создаются все ZIP-архивы и файлы метаданных
 3. **Развертывание:** Публикация в ветку `gh-pages`
-4. **Доступность:** Файлы доступны по адресу `https://seranov.github.io/kodi-play-random/`
+4. **Доступность:** Файлы доступны по адресу `https://seranov.github.io/seranov-kodi/`
 
 ### Файл workflow
 
@@ -112,15 +112,15 @@ repo/
 ### Мониторинг развертываний
 
 1. **Просмотр GitHub Actions:**
-   - Перейдите: https://github.com/seranov/kodi-play-random/actions
+   - Перейдите: https://github.com/seranov/seranov-kodi/actions
    - Проверьте статус workflow: **Publish Kodi Repository**
 
 2. **Проверка ветки gh-pages:**
-   - Перейдите: https://github.com/seranov/kodi-play-random/tree/gh-pages
+   - Перейдите: https://github.com/seranov/seranov-kodi/tree/gh-pages
    - Убедитесь, что файлы присутствуют
 
 3. **Тест URL репозитория:**
-   - Посетите: https://seranov.github.io/kodi-play-random/addons.xml
+   - Посетите: https://seranov.github.io/seranov-kodi/addons.xml
    - Должен отобразиться XML контент
 
 ---
@@ -179,7 +179,7 @@ git push origin v1.0.1
 ### Шаг 5: Дождаться развертывания
 
 1. **GitHub Actions запускается автоматически** после push
-2. **Отслеживайте прогресс** на: https://github.com/seranov/kodi-play-random/actions
+2. **Отслеживайте прогресс** на: https://github.com/seranov/seranov-kodi/actions
 3. **Развертывание занимает ~1-2 минуты**
 4. **Проверьте, что GitHub Pages** обновился
 
@@ -187,10 +187,10 @@ git push origin v1.0.1
 
 ```bash
 # Проверить, что addons.xml обновлен
-curl https://seranov.github.io/kodi-play-random/addons.xml
+curl https://seranov.github.io/seranov-kodi/addons.xml
 
 # Проверить, что ZIP конкретного аддона существует
-curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
+curl -I https://seranov.github.io/seranov-kodi/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
 ```
 
 ### Шаг 7: Протестировать в Kodi
@@ -208,7 +208,7 @@ curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive
 
 ### Шаг 1: Перейти к Releases
 
-Посетите: https://github.com/seranov/kodi-play-random/releases/new
+Посетите: https://github.com/seranov/seranov-kodi/releases/new
 
 ### Шаг 2: Заполнить форму Release
 
@@ -238,7 +238,7 @@ curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive
 1. **Настройки GitHub Pages:**
    - Источник: ветка `gh-pages`
    - Пользовательский домен: Нет
-   - URL: `https://seranov.github.io/kodi-play-random/`
+   - URL: `https://seranov.github.io/seranov-kodi/`
 
 2. **Настройки репозитория:**
    - Права workflow: Чтение и запись
@@ -246,11 +246,11 @@ curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive
 
 ### Проверка конфигурации
 
-1. Перейдите: https://github.com/seranov/kodi-play-random/settings/pages
+1. Перейдите: https://github.com/seranov/seranov-kodi/settings/pages
 2. Проверьте:
    - ✅ Источник: Deploy from branch `gh-pages`
    - ✅ Ветка: `gh-pages` / `root`
-   - ✅ Статус: **Your site is live at https://seranov.github.io/kodi-play-random/**
+   - ✅ Статус: **Your site is live at https://seranov.github.io/seranov-kodi/**
 
 ---
 
@@ -259,7 +259,7 @@ curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive
 ### Развертывание не удалось
 
 **Проверьте логи GitHub Actions:**
-1. Перейдите: https://github.com/seranov/kodi-play-random/actions
+1. Перейдите: https://github.com/seranov/seranov-kodi/actions
 2. Кликните на неудавшийся workflow
 3. Просмотрите сообщения об ошибках
 
@@ -272,7 +272,7 @@ curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive
 
 **Решения:**
 1. **Проверьте, что ветка gh-pages существует:**
-   - https://github.com/seranov/kodi-play-random/tree/gh-pages
+   - https://github.com/seranov/seranov-kodi/tree/gh-pages
 
 2. **Очистите кэш GitHub Pages:**
    - Подождите 5-10 минут для распространения CDN
@@ -289,7 +289,7 @@ curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive
    - Правый клик на репозитории → Проверить обновления
 
 2. **Проверьте addons.xml:**
-   - Посетите: https://seranov.github.io/kodi-play-random/addons.xml
+   - Посетите: https://seranov.github.io/seranov-kodi/addons.xml
    - Убедитесь, что номера версий правильные
 
 3. **Проверьте лог Kodi:**
@@ -452,7 +452,7 @@ Release version 1.0.1 - Исправлено воспроизведение ви
 Если вы столкнулись с проблемами:
 
 1. **Проверьте документацию:** [doc/](../doc/)
-2. **GitHub Issues:** [github.com/seranov/kodi-play-random/issues](https://github.com/seranov/kodi-play-random/issues)
+2. **GitHub Issues:** [github.com/seranov/seranov-kodi/issues](https://github.com/seranov/seranov-kodi/issues)
 3. **Email:** seranov@yandex.ru
 
 ---

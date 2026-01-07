@@ -12,7 +12,7 @@ The repository uses an automated CI/CD pipeline that:
 - ✅ Deploys to GitHub Pages automatically
 - ✅ Enables automatic updates in Kodi
 
-**Repository URL:** `https://seranov.github.io/kodi-play-random/`
+**Repository URL:** `https://seranov.github.io/seranov-kodi/`
 
 ---
 
@@ -30,7 +30,7 @@ The repository uses an automated CI/CD pipeline that:
 
 ```powershell
 # Navigate to repository root
-cd C:\prj\kodi-play-random
+cd C:\prj\seranov-kodi
 
 # Run build script
 .\scripts\build-release.ps1
@@ -53,7 +53,7 @@ cd C:\prj\kodi-play-random
 
 ```bash
 # Navigate to repository root
-cd ~/kodi-play-random
+cd ~/seranov-kodi
 
 # Run Python generator directly
 python3 scripts/generate_repo.py
@@ -95,7 +95,7 @@ The repository uses **GitHub Actions** to automatically build and deploy on ever
 1. **Trigger:** Push to `main` branch or tag starting with `v*`
 2. **Build:** Creates all ZIP archives and metadata files
 3. **Deploy:** Publishes to `gh-pages` branch
-4. **Available:** Files are served via `https://seranov.github.io/kodi-play-random/`
+4. **Available:** Files are served via `https://seranov.github.io/seranov-kodi/`
 
 ### Workflow File
 
@@ -112,15 +112,15 @@ The repository uses **GitHub Actions** to automatically build and deploy on ever
 ### Monitoring Deployments
 
 1. **View GitHub Actions:**
-   - Go to: https://github.com/seranov/kodi-play-random/actions
+   - Go to: https://github.com/seranov/seranov-kodi/actions
    - Check workflow status: **Publish Kodi Repository**
 
 2. **Check gh-pages branch:**
-   - Go to: https://github.com/seranov/kodi-play-random/tree/gh-pages
+   - Go to: https://github.com/seranov/seranov-kodi/tree/gh-pages
    - Verify files are present
 
 3. **Test Repository URL:**
-   - Visit: https://seranov.github.io/kodi-play-random/addons.xml
+   - Visit: https://seranov.github.io/seranov-kodi/addons.xml
    - Should display XML content
 
 ---
@@ -179,7 +179,7 @@ git push origin v1.0.1
 ### Step 5: Wait for Deployment
 
 1. **GitHub Actions runs automatically** after push
-2. **Monitor progress** at: https://github.com/seranov/kodi-play-random/actions
+2. **Monitor progress** at: https://github.com/seranov/seranov-kodi/actions
 3. **Deployment takes ~1-2 minutes**
 4. **Check GitHub Pages** is updated
 
@@ -187,10 +187,10 @@ git push origin v1.0.1
 
 ```bash
 # Check addons.xml is updated
-curl https://seranov.github.io/kodi-play-random/addons.xml
+curl https://seranov.github.io/seranov-kodi/addons.xml
 
 # Check specific add-on ZIP exists
-curl -I https://seranov.github.io/kodi-play-random/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
+curl -I https://seranov.github.io/seranov-kodi/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
 ```
 
 ### Step 7: Test in Kodi
@@ -208,7 +208,7 @@ While GitHub Pages handles automatic updates, you can still create GitHub Releas
 
 ### Step 1: Go to Releases
 
-Visit: https://github.com/seranov/kodi-play-random/releases/new
+Visit: https://github.com/seranov/seranov-kodi/releases/new
 
 ### Step 2: Fill Release Form
 
@@ -238,7 +238,7 @@ The repository is configured with:
 1. **GitHub Pages Settings:**
    - Source: `gh-pages` branch
    - Custom domain: None
-   - URL: `https://seranov.github.io/kodi-play-random/`
+   - URL: `https://seranov.github.io/seranov-kodi/`
 
 2. **Repository Settings:**
    - Workflow permissions: Read and write
@@ -246,11 +246,11 @@ The repository is configured with:
 
 ### Verifying Configuration
 
-1. Go to: https://github.com/seranov/kodi-play-random/settings/pages
+1. Go to: https://github.com/seranov/seranov-kodi/settings/pages
 2. Check:
    - ✅ Source: Deploy from branch `gh-pages`
    - ✅ Branch: `gh-pages` / `root`
-   - ✅ Status: **Your site is live at https://seranov.github.io/kodi-play-random/**
+   - ✅ Status: **Your site is live at https://seranov.github.io/seranov-kodi/**
 
 ---
 
@@ -259,7 +259,7 @@ The repository is configured with:
 ### Deployment Fails
 
 **Check GitHub Actions logs:**
-1. Go to: https://github.com/seranov/kodi-play-random/actions
+1. Go to: https://github.com/seranov/seranov-kodi/actions
 2. Click on failed workflow
 3. Review error messages
 
@@ -272,7 +272,7 @@ The repository is configured with:
 
 **Solutions:**
 1. **Check gh-pages branch exists:**
-   - https://github.com/seranov/kodi-play-random/tree/gh-pages
+   - https://github.com/seranov/seranov-kodi/tree/gh-pages
 
 2. **Clear GitHub Pages cache:**
    - Wait 5-10 minutes for CDN propagation
@@ -289,7 +289,7 @@ The repository is configured with:
    - Right-click on repository → Check for updates
 
 2. **Verify addons.xml:**
-   - Visit: https://seranov.github.io/kodi-play-random/addons.xml
+   - Visit: https://seranov.github.io/seranov-kodi/addons.xml
    - Verify version numbers are correct
 
 3. **Check Kodi log:**
@@ -452,7 +452,7 @@ Always update:
 If you encounter issues:
 
 1. **Check documentation:** [doc/](../doc/)
-2. **GitHub Issues:** [github.com/seranov/kodi-play-random/issues](https://github.com/seranov/kodi-play-random/issues)
+2. **GitHub Issues:** [github.com/seranov/seranov-kodi/issues](https://github.com/seranov/seranov-kodi/issues)
 3. **Email:** seranov@yandex.ru
 
 ---

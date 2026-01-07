@@ -3,14 +3,14 @@
 ## Текущий статус
 
 ❌ **GitHub Pages НЕ активирован**  
-URL: https://seranov.github.io/kodi-play-random/  
+URL: https://seranov.github.io/seranov-kodi/  
 Статус: 404 - Site not found
 
 ## Что нужно сделать
 
 ### 1. Активируйте GitHub Pages (один раз)
 
-Перейдите на: https://github.com/seranov/kodi-play-random/settings/pages
+Перейдите на: https://github.com/seranov/seranov-kodi/settings/pages
 
 Настройте:
 - **Source**: Deploy from a branch
@@ -25,7 +25,7 @@ GitHub обработает файлы и активирует сайт.
 
 ### 3. Проверьте
 
-Откройте https://seranov.github.io/kodi-play-random/
+Откройте https://seranov.github.io/seranov-kodi/
 
 Вы должны увидеть:
 - ✅ Главную страницу репозитория
@@ -39,7 +39,7 @@ GitHub обработает файлы и активирует сайт.
 ```
 1. Kodi → Settings → File manager
 2. Add source
-3. URL: https://seranov.github.io/kodi-play-random/
+3. URL: https://seranov.github.io/seranov-kodi/
 4. Имя: Seranov Repo
 5. OK
 6. Settings → Add-ons → Install from zip file
@@ -51,12 +51,12 @@ GitHub обработает файлы и активирует сайт.
 
 Альтернативный URL для прямого скачивания:
 ```
-https://seranov.github.io/kodi-play-random/repository.seranov/repository.seranov-1.0.0.zip
+https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
 ```
 
 Или используйте raw ссылку из main ветки:
 ```
-https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
 ```
 
 ## Преимущества установки через URL
@@ -108,7 +108,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov/rep
 ## Дополнительная информация
 
 📖 Полная документация: [doc/INSTALLATION.ru.md](../INSTALLATION.ru.md)  
-🐛 Сообщить о проблеме: https://github.com/seranov/kodi-play-random/issues  
+🐛 Сообщить о проблеме: https://github.com/seranov/seranov-kodi/issues  
 📧 Email: seranov@yandex.ru
 
 ---

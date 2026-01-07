@@ -175,7 +175,7 @@ concurrency:
 После активации GitHub Pages, репозиторий будет доступен по адресу:
 
 ```
-https://seranov.github.io/kodi-play-random/
+https://seranov.github.io/seranov-kodi/
 ```
 
 ### 4.3 Использование .nojekyll
@@ -237,9 +237,9 @@ Workflow запускается автоматически при:
 После настройки GitHub Pages можно будет использовать прямой URL, но требуется обновление `repository.seranov/addon.xml`:
 
 ```xml
-<info compressed="false">https://seranov.github.io/kodi-play-random/addons.xml</info>
-<checksum>https://seranov.github.io/kodi-play-random/addons.xml.md5</checksum>
-<datadir zip="true">https://seranov.github.io/kodi-play-random/</datadir>
+<info compressed="false">https://seranov.github.io/seranov-kodi/addons.xml</info>
+<checksum>https://seranov.github.io/seranov-kodi/addons.xml.md5</checksum>
+<datadir zip="true">https://seranov.github.io/seranov-kodi/</datadir>
 ```
 
 ---
@@ -440,8 +440,8 @@ Workflow включает обработку следующих ситуаций
 
 ## 15. Ссылки / References
 
-- **Репозиторий:** https://github.com/seranov/kodi-play-random
-- **GitHub Pages URL:** https://seranov.github.io/kodi-play-random/ (после активации)
+- **Репозиторий:** https://github.com/seranov/seranov-kodi
+- **GitHub Pages URL:** https://seranov.github.io/seranov-kodi/ (после активации)
 - **Workflow файл:** `.github/workflows/publish-release.yml`
 - **Документация Kodi:** https://kodi.wiki/view/Add-on_repositories
 

@@ -83,7 +83,7 @@ All files ready in `repo/` directory:
 **Важно:** Следующие шаги требуют ручного выполнения, так как автоматическое создание релизов требует специальных прав доступа GitHub.
 
 #### Step 1: Merge Pull Request / Шаг 1: Объединить Pull Request
-1. Go to: https://github.com/seranov/kodi-play-random/pulls
+1. Go to: https://github.com/seranov/seranov-kodi/pulls
 2. Review and approve the PR from branch `copilot/create-release-for-kodi`
 3. Merge to `main` branch
 
@@ -97,7 +97,7 @@ git push origin v1.0.0
 ```
 
 #### Step 3: Create GitHub Release / Шаг 3: Создать GitHub Release
-1. Go to: https://github.com/seranov/kodi-play-random/releases/new
+1. Go to: https://github.com/seranov/seranov-kodi/releases/new
 2. Select tag: `v1.0.0`
 3. Release title: `v1.0.0 - Initial Release`
 4. Description: Copy content from `RELEASE_NOTES.md`
@@ -115,7 +115,7 @@ git push origin v1.0.0
 **Detailed instructions are in: `RELEASE_GUIDE.md`**
 
 #### Step 4: Verify Release / Шаг 4: Проверить релиз
-1. Check release page: https://github.com/seranov/kodi-play-random/releases/latest
+1. Check release page: https://github.com/seranov/seranov-kodi/releases/latest
 2. Download and test `repository.seranov-1.0.0.zip`
 3. Verify installation in Kodi
 
@@ -150,7 +150,7 @@ After release is published, users can install from:
 
 **Direct download:**
 ```
-https://github.com/seranov/kodi-play-random/releases/latest/download/repository.seranov-1.0.0.zip
+https://github.com/seranov/seranov-kodi/releases/latest/download/repository.seranov-1.0.0.zip
 ```
 
 > **Note:** GitHub Raw repository URLs do not work for Kodi due to lack of directory listing support. Users should use direct ZIP installation method.
@@ -161,8 +161,8 @@ https://github.com/seranov/kodi-play-random/releases/latest/download/repository.
 
 ## Support & Contact / Поддержка и контакты
 
-- **GitHub Repository:** https://github.com/seranov/kodi-play-random
-- **GitHub Issues:** https://github.com/seranov/kodi-play-random/issues
+- **GitHub Repository:** https://github.com/seranov/seranov-kodi
+- **GitHub Issues:** https://github.com/seranov/seranov-kodi/issues
 - **Email:** seranov@yandex.ru
 
 ---

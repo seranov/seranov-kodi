@@ -7,7 +7,7 @@
 ### Установка репозитория
 
 1. **Скачайте аддон репозитория:**
-   - Перейдите в [releases](https://github.com/seranov/kodi-play-random/releases) или в директорию `repo`
+   - Перейдите в [releases](https://github.com/seranov/seranov-kodi/releases) или в директорию `repo`
    - Скачайте `repository.seranov-1.0.0.zip`
 
 2. **Установите в Kodi:**
@@ -156,7 +156,7 @@
 ## Поддержка
 
 По вопросам, проблемам или для участия в разработке:
-- GitHub Issues: [https://github.com/seranov/kodi-play-random/issues](https://github.com/seranov/kodi-play-random/issues)
+- GitHub Issues: [https://github.com/seranov/seranov-kodi/issues](https://github.com/seranov/seranov-kodi/issues)
 - Email: seranov@yandex.ru
 
 ## Ссылки

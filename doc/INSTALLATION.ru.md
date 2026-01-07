@@ -18,7 +18,7 @@
 3. Нажмите **Add source**
 4. Нажмите на **<None>** и введите URL:
    ```
-   https://seranov.github.io/kodi-play-random/
+   https://seranov.github.io/seranov-kodi/
    ```
 5. Введите имя для источника (например, `Seranov Repo`)
 6. Нажмите **OK**
@@ -48,7 +48,7 @@
 
 **Прямая ссылка:**
 ```
-https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0.0.zip
+https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov-1.0.0.zip
 ```
 
 Сохраните файл в доступное место (например, на Рабочий стол или в папку Загрузки).
@@ -76,7 +76,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 
 Если вам нужен только один конкретный аддон:
 
-1. Скачайте ZIP-файл нужного аддона из [Releases](https://github.com/seranov/kodi-play-random/releases/latest):
+1. Скачайте ZIP-файл нужного аддона из [Releases](https://github.com/seranov/seranov-kodi/releases/latest):
    - `plugin.video.random.recursive-1.0.0.zip` - Случайный плеер
    - `context.screenshots-1.0.5.zip` - Всплывающие скриншоты
    - `service.seranov.nfoscanner-1.0.0.zip` - NFO Scanner Service
@@ -92,7 +92,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 
 После установки репозитория (Способ 1), Kodi будет автоматически проверять обновления всех установленных аддонов.
 
-**URL репозитория:** `https://seranov.github.io/kodi-play-random/`
+**URL репозитория:** `https://seranov.github.io/seranov-kodi/`
 
 ### Как работают автоматические обновления
 
@@ -155,7 +155,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 
 Для обновления аддонов до новой версии:
 
-1. Скачайте новую версию ZIP-файла из [Releases](https://github.com/seranov/kodi-play-random/releases)
+1. Скачайте новую версию ZIP-файла из [Releases](https://github.com/seranov/seranov-kodi/releases)
 2. В Kodi: **Настройки** → **Дополнения** → **Установить из файла zip**
 3. Выберите новый ZIP-файл
 4. Kodi автоматически обновит аддон
@@ -166,7 +166,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 
 Чтобы не пропустить новые версии:
 
-1. **⭐ Поставьте Star на GitHub:** [github.com/seranov/kodi-play-random](https://github.com/seranov/kodi-play-random)
+1. **⭐ Поставьте Star на GitHub:** [github.com/seranov/seranov-kodi](https://github.com/seranov/seranov-kodi)
 2. **📢 Watch → Releases only:** Получайте уведомления о новых релизах
 3. **📧 Email-уведомления:** GitHub отправит вам письмо о новом релизе
 
@@ -193,7 +193,7 @@ https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0
 
 2. **URL недоступен**
    - Убедитесь, что файл ZIP был скачан корректно
-   - Попробуйте скачать заново из [Releases](https://github.com/seranov/kodi-play-random/releases)
+   - Попробуйте скачать заново из [Releases](https://github.com/seranov/seranov-kodi/releases)
 
 3. **Неизвестные источники отключены**
    - Включите "Неизвестные источники" в настройках (см. Способ 1, Шаг 1)
@@ -230,8 +230,8 @@ Kodi обычно устанавливает зависимости автома
 #### 1. Клонирование из Git
 
 ```bash
-git clone https://github.com/seranov/kodi-play-random.git
-cd kodi-play-random
+git clone https://github.com/seranov/seranov-kodi.git
+cd seranov-kodi
 python scripts/generate_repo.py
 ```
 
@@ -241,8 +241,8 @@ python scripts/generate_repo.py
 
 ```powershell
 # Клонируйте репозиторий
-git clone https://github.com/seranov/kodi-play-random.git
-cd kodi-play-random
+git clone https://github.com/seranov/seranov-kodi.git
+cd seranov-kodi
 
 # Разверните локально
 .\scripts\deploy-local.ps1
@@ -254,7 +254,7 @@ cd kodi-play-random
 
 Если у вас возникли проблемы:
 
-1. **GitHub Issues:** [github.com/seranov/kodi-play-random/issues](https://github.com/seranov/kodi-play-random/issues)
+1. **GitHub Issues:** [github.com/seranov/seranov-kodi/issues](https://github.com/seranov/seranov-kodi/issues)
 2. **Email:** seranov@yandex.ru
 
 ## Дополнительные ресурсы

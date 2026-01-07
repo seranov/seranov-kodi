@@ -76,7 +76,7 @@ PowerShell-скрипт для сборки релиза и подготовки
 - `Version` - Версия релиза (автоопределяется из addon.xml, если не указана)
 - `SkipBuild` - Пропустить этап сборки
 - `CreateGitTag` - Создать git tag для версии
-- `GitHubRepo` - Репозиторий GitHub (по умолчанию: `seranov/kodi-play-random`)
+- `GitHubRepo` - Репозиторий GitHub (по умолчанию: `seranov/seranov-kodi`)
 
 **Что делает / What it does:**
 - Запускает `generate_repo.py` для сборки всех аддонов
@@ -140,7 +140,7 @@ PowerShell-скрипт для сборки релиза и подготовки
    ```
 
 4. **Создайте GitHub Release (опционально)**
-   - Перейдите на https://github.com/seranov/kodi-play-random/releases/new
+   - Перейдите на https://github.com/seranov/seranov-kodi/releases/new
    - Выберите тег: `v1.0.1`
    - Название релиза: `Release 1.0.1`
    - Загрузите: `repo/repository.seranov-1.0.0.zip`
@@ -151,7 +151,7 @@ PowerShell-скрипт для сборки релиза и подготовки
 
 1. **Скачайте ZIP репозитория**
    ```
-   https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0.0.zip
+   https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov-1.0.0.zip
    ```
 
 2. **Установите в Kodi:**
@@ -179,12 +179,12 @@ PowerShell-скрипт для сборки релиза и подготовки
 
 **Прямая ссылка на ZIP репозитория:**
 ```
-https://github.com/seranov/kodi-play-random/raw/main/repo/repository.seranov-1.0.0.zip
+https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov-1.0.0.zip
 ```
 
 **Файл metadata репозитория:**
 ```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/addons.xml
+https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/addons.xml
 ```
 
 > **⚠️ Важно:** GitHub Raw (`raw.githubusercontent.com`) не поддерживает листинг директорий. Kodi не может использовать `https://raw.githubusercontent.com/.../repo/` как источник репозитория. Для автоматических обновлений требуется GitHub Pages или другой веб-хостинг с поддержкой директорий.
@@ -243,7 +243,7 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
 **Файл metadata репозитория:**
 ```
-https://raw.githubusercontent.com/seranov/kodi-play-random/main/repo/addons.xml
+https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/addons.xml
 ```
 
 > **⚠️ Важно:** GitHub Raw (`raw.githubusercontent.com`) не поддерживает листинг директорий. Kodi не может использовать `https://raw.githubusercontent.com/.../repo/` как источник репозитория. Для автоматических обновлений требуется GitHub Pages или другой веб-хостинг с поддержкой директорий.

@@ -3,6 +3,19 @@
 # Addon id: context.screenshots
 # Addon Provider: seranov
 
+msgid ""
+msgstr ""
+"Project-Id-Version: context.screenshots 1.0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-08 10:00+0000\n"
+"PO-Revision-Date: 2026-01-08 10:00+0000\n"
+"Last-Translator: seranov\n"
+"Language-Team: English\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 msgctxt "#32000"
 msgid "Popup Screenshots"
 msgstr ""

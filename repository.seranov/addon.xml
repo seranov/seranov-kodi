@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.seranov" name="Seranov's Kodi Repository" version="1.0.0" provider-name="seranov">
+<addon id="repository.seranov" name="Seranov's Kodi Repository" version="1.0.1" provider-name="seranov">
     <extension point="xbmc.addon.repository" name="Seranov's Kodi Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/addons.xml</info>

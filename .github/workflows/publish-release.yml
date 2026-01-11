@@ -42,7 +42,7 @@ jobs:
       - name: Create output directories
         run: |
           echo "Creating output directory structure..."
-          mkdir -p docs
+          mkdir -p docs/doc
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
@@ -213,130 +213,28 @@ jobs:
           echo "MD5 checksum: $(cat addons.xml.md5)"
           echo "addons.xml.md5 generated successfully!"
 
-      # Шаг 7: Создание .nojekyll и index.html / Step 7: Create .nojekyll and index.html
-      - name: Create .nojekyll and index.html
+      # Шаг 7: Создание .nojekyll файла / Step 7: Create .nojekyll file
+      - name: Create .nojekyll file
         run: |
-          echo "Creating .nojekyll file..."
+          echo "Creating .nojekyll file to disable Jekyll..."
           touch docs/.nojekyll
-          echo ".nojekyll file created!"
-          
-          echo "Creating index.html..."
-          cat > docs/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Seranov Kodi Repository</title>
-              <style>
-                  body {
-                      font-family: Arial, sans-serif;
-                      max-width: 800px;
-                      margin: 50px auto;
-                      padding: 20px;
-                      background-color: #f5f5f5;
-                  }
-                  .container {
-                      background-color: white;
-                      padding: 30px;
-                      border-radius: 10px;
-                      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                  }
-                  h1 {
-                      color: #333;
-                      border-bottom: 3px solid #007bff;
-                      padding-bottom: 10px;
-                  }
-                  h2 {
-                      color: #555;
-                      margin-top: 30px;
-                  }
-                  code {
-                      background-color: #f4f4f4;
-                      padding: 2px 6px;
-                      border-radius: 3px;
-                      font-family: monospace;
-                  }
-                  .repo-url {
-                      background-color: #e9ecef;
-                      padding: 15px;
-                      border-radius: 5px;
-                      margin: 20px 0;
-                      word-break: break-all;
-                  }
-                  ol {
-                      line-height: 1.8;
-                  }
-                  .addon-list {
-                      background-color: #f8f9fa;
-                      padding: 15px;
-                      border-radius: 5px;
-                      margin: 20px 0;
-                  }
-                  .addon-list ul {
-                      list-style-type: none;
-                      padding-left: 0;
-                  }
-                  .addon-list li {
-                      padding: 5px 0;
-                  }
-                  a {
-                      color: #007bff;
-                      text-decoration: none;
-                  }
-                  a:hover {
-                      text-decoration: underline;
-                  }
-              </style>
-          </head>
-          <body>
-              <div class="container">
-                  <h1>🎬 Seranov Kodi Repository</h1>
-                  
-                  <p>Welcome to the Seranov Kodi Add-ons Repository!</p>
-                  
-                  <h2>📦 Installation</h2>
-                  <ol>
-                      <li>Download the repository ZIP file: <a href="repository.seranov/repository.seranov-1.0.0.zip">repository.seranov-1.0.0.zip</a></li>
-                      <li>In Kodi, go to <strong>Add-ons → Install from zip file</strong></li>
-                      <li>Select the downloaded <code>repository.seranov-1.0.0.zip</code> file</li>
-                      <li>Wait for the "Add-on enabled" notification</li>
-                      <li>Now you can install add-ons from this repository via <strong>Install from repository → Seranov Repository</strong></li>
-                  </ol>
-                  
-                  <h2>🔗 Repository URL</h2>
-                  <div class="repo-url">
-                      <strong>Direct Repository URL:</strong><br>
-                      <code>https://seranov.github.io/seranov-kodi/</code>
-                  </div>
-                  
-                  <h2>📋 Available Add-ons</h2>
-                  <div class="addon-list">
-                      <ul>
-                          <li>📸 <strong>Context Screenshots</strong> - Take screenshots from context menu</li>
-                          <li>🎲 <strong>Random Recursive Video Player</strong> - Play random videos from your library</li>
-                          <li>🎥 <strong>Unified Browser</strong> - Browse your video collection</li>
-                          <li>🔍 <strong>NFO Scanner Service</strong> - Automatic NFO file scanning service</li>
-                      </ul>
-                  </div>
-                  
-                  <h2>📄 Repository Files</h2>
-                  <ul>
-                      <li><a href="addons.xml">addons.xml</a> - Repository metadata</li>
-                      <li><a href="addons.xml.md5">addons.xml.md5</a> - Checksum file</li>
-                  </ul>
-                  
-                  <h2>🔧 For Developers</h2>
-                  <p>This repository is automatically built and deployed via GitHub Actions.</p>
-                  <p>Source code: <a href="https://github.com/seranov/seranov-kodi">github.com/seranov/seranov-kodi</a></p>
-              </div>
-          </body>
-          </html>
-          EOF
-          
-          echo "index.html created successfully!"
+          echo "✓ .nojekyll file created!"
 
-      # Шаг 8: Генерация index.html для аддонов / Step 8: Generate index.html for addons
+      # Шаг 8: Конвертация документации из MD в HTML / Step 8: Convert documentation from MD to HTML
+      - name: Convert documentation to HTML
+        run: |
+          echo "Converting documentation from Markdown to HTML..."
+          python3 scripts/convert_md_to_html.py doc docs/doc
+          echo "✓ Documentation converted to HTML!"
+
+      # Шаг 9: Генерация readme.html / Step 9: Generate readme.html
+      - name: Generate readme.html
+        run: |
+          echo "Generating readme.html with plugin links..."
+          python3 scripts/generate_readme.py docs
+          echo "✓ readme.html generated!"
+
+      # Шаг 10: Генерация index.html для аддонов / Step 10: Generate index.html for addons
       - name: Generate addon index pages
         run: |
           echo "Generating index.html pages for addon directories..."
@@ -388,7 +286,7 @@ jobs:
           
           echo "All index pages created successfully!"
 
-      # Шаг 9: Вывод структуры директории / Step 9: Display directory structure
+      # Шаг 11: Вывод структуры директории / Step 11: Display directory structure
       - name: Display output structure
         run: |
           echo "=== Output Directory Structure ==="
@@ -397,7 +295,7 @@ jobs:
           echo "=== File sizes ==="
           du -h docs/* | sort -h
 
-      # Шаг 10: Настройка GitHub Pages / Step 10: Configure GitHub Pages
+      # Шаг 12: Настройка GitHub Pages / Step 12: Configure GitHub Pages
       - name: Configure GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -411,7 +309,7 @@ jobs:
             -d '{"source":{"branch":"gh-pages","path":"/"}}' \
             || echo "Pages might already be configured or error occurred"
 
-      # Шаг 11: Deploy на GitHub Pages / Step 11: Deploy to GitHub Pages
+      # Шаг 13: Deploy на GitHub Pages / Step 13: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -422,7 +320,7 @@ jobs:
           enable_jekyll: false
           commit_message: "Deploy Kodi repository ${{ github.sha }}"
 
-      # Шаг 12: Вывод информации об успешном деплое / Step 12: Output deployment info
+      # Шаг 14: Вывод информации об успешном деплое / Step 14: Output deployment info
       - name: Deployment complete
         run: |
           echo "✅ Deployment successful!"

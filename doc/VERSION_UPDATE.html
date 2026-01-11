@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VERSION UPDATE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Kodi Plugin Version Update Guide</h1>
+<blockquote><a href="VERSION_UPDATE.ru.md">Русская версия / Russian version</a></blockquote>
+<p>This guide explains step-by-step how to properly update Kodi plugin versions in the source code, compile them, and publish them so that Kodi automatically detects and installs updates.</p>
+<h2>Table of Contents</h2>
+<p>- <a href="#process-overview">Process Overview</a>
+- <a href="#prerequisites">Prerequisites</a>
+- <a href="#step-1-update-version-in-source-code">Step 1: Update Version in Source Code</a>
+- <a href="#step-2-local-testing">Step 2: Local Testing</a>
+- <a href="#step-3-publish-changes">Step 3: Publish Changes</a>
+- <a href="#step-4-automatic-build-and-deploy">Step 4: Automatic Build and Deploy</a>
+- <a href="#step-5-verify-update-in-kodi">Step 5: Verify Update in Kodi</a>
+- <a href="#how-automatic-updates-work">How Automatic Updates Work</a>
+- <a href="#troubleshooting">Troubleshooting</a>
+- <a href="#examples">Examples</a></p>
+<hr>
+<h2>Process Overview</h2>
+<p>The plugin update process consists of the following stages:</p>
+<p>1. <strong>Code Changes</strong> → Make changes to the plugin code
+2. <strong>Version Update</strong> → Change the version number in <code>addon.xml</code>
+3. <strong>Local Testing</strong> → Verify functionality locally
+4. <strong>Commit and Push</strong> → Send changes to GitHub
+5. <strong>Automatic Build</strong> → GitHub Actions creates ZIP archives
+6. <strong>Automatic Deploy</strong> → Publish to GitHub Pages
+7. <strong>Kodi Update</strong> → Kodi automatically detects the new version</p>
+<pre><code>
+┌─────────────┐     ┌──────────────┐     ┌───────────────┐
+│    Code     │ --> │   Version    │ --> │     Local     │
+│   Changes   │     │    Update    │     │    Testing    │
+└─────────────┘     └──────────────┘     └───────────────┘
+                                                  │
+                                                  ▼
+┌─────────────┐     ┌──────────────┐     ┌───────────────┐
+│    Kodi     │ <-- │    GitHub    │ <-- │  git push     │
+│   Updates   │     │    Pages     │     │    origin     │
+│   Plugin    │     │ (automatic)  │     │     main      │
+└─────────────┘     └──────────────┘     └───────────────┘
+</code></pre>
+<hr>
+<h2>Prerequisites</h2>
+<h3>For Development</h3>
+<p>- <strong>Git</strong> - for working with the repository
+- <strong>Python 3.9+</strong> - for local build testing
+- <strong>Text Editor</strong> - VS Code, PyCharm, Sublime Text, etc.
+- <strong>Kodi</strong> - for plugin testing</p>
+<h3>For Automatic Publishing</h3>
+<p>- <strong>GitHub Pages</strong> - must be enabled in repository settings
+- <strong>GitHub Actions</strong> - must be active (enabled by default)
+- <strong>Access Rights</strong> - write permissions to the repository</p>
+<h3>Understanding Semantic Versioning</h3>
+<p>Plugin versions follow the <code>MAJOR.MINOR.PATCH</code> format:</p>
+<p>- <strong>MAJOR</strong> (1.x.x) - Breaking changes, incompatible with previous versions
+- <strong>MINOR</strong> (x.1.x) - New features, backward compatible
+- <strong>PATCH</strong> (x.x.1) - Bug fixes, minor improvements</p>
+<strong>Examples:</strong>
+- <code>1.0.0</code> → <code>1.0.1</code> - Fixed a bug
+- <code>1.0.1</code> → <code>1.1.0</code> - Added a new feature
+- <code>1.1.0</code> → <code>2.0.0</code> - API changed, incompatible with 1.x
+<hr>
+<h2>Step 1: Update Version in Source Code</h2>
+<h3>1.1. Find the addon.xml File</h3>
+<p>Each plugin has an <code>addon.xml</code> file in the plugin's root directory:</p>
+<pre><code>
+plugin.video.random.recursive/
+├── addon.xml              ← Version is here
+├── main.py
+├── icon.png
+└── resources/
+</code></pre>
+<h3>1.2. Open the addon.xml File</h3>
+<strong>Example content:</strong>
+<pre><code>xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.random.recursive" 
+       name="Bidon Random Recursive Player" 
+       version="1.0.0" 
+       provider-name="seranov">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    ...
+</addon>
+</code></pre>
+<h3>1.3. Change the Version Number</h3>
+<p>Find the <code>version</code> attribute in the <code><addon></code> tag and change it to the new version number:</p>
+<strong>Before:</strong>
+<pre><code>xml
+<addon id="plugin.video.random.recursive" 
+       name="Bidon Random Recursive Player" 
+       version="1.0.0" 
+       provider-name="seranov">
+</code></pre>
+<strong>After:</strong>
+<pre><code>xml
+<addon id="plugin.video.random.recursive" 
+       name="Bidon Random Recursive Player" 
+       version="1.0.1" 
+       provider-name="seranov">
+</code></pre>
+<h3>1.4. Update Changelog (optional but recommended)</h3>
+<p>If your plugin has a <code>changelog.txt</code> file, add a description of the changes:</p>
+<pre><code>
+v1.0.1 (2026-01-07)
+- Fixed video playback bug
+- Improved handling of Cyrillic paths
+- Optimized performance with large libraries
+<p>v1.0.0 (2026-01-01)
+- Initial release
+</code></pre></p>
+<h3>1.5. Save Changes</h3>
+<p>Save the <code>addon.xml</code> file and all modified plugin code files.</p>
+<hr>
+<h2>Step 2: Local Testing</h2>
+<h3>2.1. Verify addon.xml Correctness</h3>
+<p>Make sure the XML file is syntactically correct:</p>
+<pre><code>bash
+<h1>Linux/Mac</h1>
+xmllint --noout plugin.video.random.recursive/addon.xml
+<h1>Windows (PowerShell)</h1>
+<h1>Open the file in a browser - if it opens without errors, the XML is valid</h1>
+</code></pre>
+<h3>2.2. Build Repository Locally (optional)</h3>
+<p>You can test the build process locally before publishing:</p>
+<strong>Windows (PowerShell):</strong>
+<pre><code>powershell
+cd C:\prj\seranov-kodi
+.\scripts\build-release.ps1
+</code></pre>
+<strong>Linux/Mac:</strong>
+<pre><code>bash
+cd ~/seranov-kodi
+python3 scripts/generate_repo.py
+</code></pre>
+<p>This will create:
+- Plugin ZIP archive in <code>repo/plugin.video.random.recursive/</code>
+- Updated <code>repo/addons.xml</code> file
+- Checksum <code>repo/addons.xml.md5</code></p>
+<h3>2.3. Test Plugin in Kodi</h3>
+<strong>Option 1: Install from ZIP Archive</strong>
+<p>1. Copy the generated ZIP from <code>repo/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip</code>
+2. In Kodi: <strong>Add-ons</strong> → <strong>Install from zip file</strong>
+3. Select the copied ZIP file
+4. Verify plugin functionality</p>
+<strong>Option 2: Direct Deployment (Windows only)</strong>
+<pre><code>powershell
+<h1>Automatic copy to Kodi directory</h1>
+.\scripts\deploy-local.ps1 -AddonsToDeploy @('plugin.video.random.recursive')
+</code></pre>
+<h3>2.4. Verify Functionality</h3>
+<p>- Ensure the plugin starts without errors
+- Test all new features
+- Verify that fixed bugs are actually fixed</p>
+<hr>
+<h2>Step 3: Publish Changes</h2>
+<h3>3.1. Check Git Status</h3>
+<pre><code>bash
+cd /home/runner/work/seranov-kodi/seranov-kodi
+git status
+</code></pre>
+<p>You should see modified files:
+<pre><code>
+modified:   plugin.video.random.recursive/addon.xml
+modified:   plugin.video.random.recursive/main.py
+</code></pre></p>
+<h3>3.2. Add Changes to Git</h3>
+<pre><code>bash
+<h1>Add specific files</h1>
+git add plugin.video.random.recursive/addon.xml
+git add plugin.video.random.recursive/main.py
+<h1>Or add the entire plugin directory</h1>
+git add plugin.video.random.recursive/
+<h1>Or add all modified files</h1>
+git add .
+</code></pre>
+<h3>3.3. Create Commit with Descriptive Message</h3>
+<strong>A good commit message should:</strong>
+- Indicate the new version number
+- Briefly describe what changed
+- Be in English (recommended for open projects)
+<strong>Examples of good commit messages:</strong>
+<pre><code>bash
+<h1>Simple fix</h1>
+git commit -m "plugin.video.random.recursive: bump to v1.0.1 - fix video playback"
+<h1>Multiple changes</h1>
+git commit -m "plugin.video.random.recursive: bump to v1.1.0
+<p>- Add support for subtitle auto-loading
+- Fix cyrillic paths handling
+- Improve performance with large libraries
+- Update Russian translations"</p>
+<h1>With change type indicator</h1>
+git commit -m "fix(random.recursive): bump to v1.0.1 - resolve playback issues"
+</code></pre>
+<h3>3.4. Push Changes to GitHub</h3>
+<pre><code>bash
+git push origin main
+</code></pre>
+<p>If you're working in a separate branch:
+<pre><code>bash
+git push origin feature/version-1.0.1
+</code></pre></p>
+<p>Then create a Pull Request in the GitHub web interface.</p>
+<hr>
+<h2>Step 4: Automatic Build and Deploy</h2>
+<p>After changes reach the <code>main</code> branch, an automatic process starts:</p>
+<h3>4.1. GitHub Actions Automatically Triggers</h3>
+<p>The workflow <code>.github/workflows/publish-release.yml</code> activates automatically on:
+- Push to <code>main</code> branch
+- Creating a tag like <code>v*</code> (e.g., <code>v1.0.1</code>)
+- Manual trigger via web interface</p>
+<h3>4.2. What GitHub Actions Does</h3>
+<strong>Automatic build steps:</strong>
+<p>1. <strong>Checkout repository</strong> - downloads code
+2. <strong>Setup Python 3.9</strong> - configures environment
+3. <strong>Create directory structure</strong> - creates <code>docs/</code> and subdirectories
+4. <strong>Create ZIP archives</strong> - packages each plugin into a separate ZIP
+   <pre><code>
+   docs/
+   └── plugin.video.random.recursive/
+       ├── plugin.video.random.recursive-1.0.1.zip
+       └── icon.png
+   </code></pre>
+5. <strong>Generate addons.xml</strong> - creates repository metadata
+6. <strong>Generate addons.xml.md5</strong> - creates checksum
+7. <strong>Create index.html</strong> - creates web pages for convenient viewing
+8. <strong>Deploy to GitHub Pages</strong> - publishes to <code>gh-pages</code> branch</p>
+<h3>4.3. Monitor Progress</h3>
+<strong>Track build status here:</strong>
+<p>1. Go to Actions page: https://github.com/seranov/seranov-kodi/actions
+2. Find the latest workflow run "Publish Kodi Repository"
+3. Open it and check the status of each step</p>
+<strong>Workflow statuses:</strong>
+- 🟡 <strong>Yellow (In Progress)</strong> - Build is running
+- 🟢 <strong>Green (Success)</strong> - Build successful, plugin published
+- 🔴 <strong>Red (Failed)</strong> - Build error, check logs
+<h3>4.4. Verify Deployment</h3>
+<p>After successful build (usually 1-3 minutes), verify files are accessible:</p>
+<pre><code>bash
+<h1>Check addons.xml</h1>
+curl https://seranov.github.io/seranov-kodi/addons.xml
+<h1>Check ZIP archive</h1>
+curl -I https://seranov.github.io/seranov-kodi/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
+</code></pre>
+<p>Or open in browser:
+- https://seranov.github.io/seranov-kodi/
+- https://seranov.github.io/seranov-kodi/addons.xml</p>
+<strong>Important:</strong> GitHub Pages updates may take 5-10 minutes due to CDN caching.
+<hr>
+<h2>Step 5: Verify Update in Kodi</h2>
+<h3>5.1. Automatic Update Check</h3>
+<p>Kodi automatically checks for repository updates:
+- Periodically (default every 24 hours)
+- On Kodi startup
+- On manual check</p>
+<h3>5.2. Manual Update Check</h3>
+<p>To see the update immediately:</p>
+<p>1. Open Kodi
+2. Go to <strong>Add-ons</strong>
+3. Find <strong>Seranov's Kodi Repository</strong>
+4. Right-click → <strong>Check for updates</strong></p>
+<h3>5.3. Install Update</h3>
+<p>If an update is found:</p>
+<p>1. Kodi will show notification: "Updates available"
+2. Go to <strong>Add-ons</strong> → <strong>My add-ons</strong>
+3. Find plugin with available update (marked with icon)
+4. Click → <strong>Update</strong></p>
+<p>Or:
+1. <strong>System</strong> → <strong>Settings</strong> → <strong>Add-ons</strong>
+2. <strong>Updates</strong> → Enable automatic updates
+3. Kodi will update plugins automatically</p>
+<h3>5.4. Verify Installed Version</h3>
+<p>After update, verify version:</p>
+<p>1. <strong>Add-ons</strong> → <strong>My add-ons</strong>
+2. Select plugin
+3. Open <strong>Information</strong>
+4. Check version number - should be <code>1.0.1</code></p>
+<hr>
+<h2>How Automatic Updates Work</h2>
+<h3>Update System Architecture</h3>
+<pre><code>
+┌─────────────────────────────────────────────────────────────┐
+│                        GitHub                                │
+│  ┌────────────────┐        ┌─────────────────┐              │
+│  │  Repository    │ push   │  GitHub Actions │              │
+│  │   (main)       │───────>│   Workflow      │              │
+│  └────────────────┘        └────────┬────────┘              │
+│                                     │                        │
+│                                     │ deploy                 │
+│                                     ▼                        │
+│                            ┌─────────────────┐               │
+│                            │  GitHub Pages   │               │
+│                            │   (gh-pages)    │               │
+│                            └────────┬────────┘               │
+└─────────────────────────────────────┼───────────────────────┘
+                                      │
+                                      │ HTTPS
+                                      ▼
+                    ┌─────────────────────────────────┐
+                    │  https://seranov.github.io/     │
+                    │       seranov-kodi/             │
+                    │                                 │
+                    │  ├── addons.xml                 │
+                    │  ├── addons.xml.md5             │
+                    │  └── plugin.../plugin....zip    │
+                    └────────┬────────────────────────┘
+                             │
+                             │ check every 24 hours
+                             ▼
+                    ┌─────────────────┐
+                    │      Kodi       │
+                    │   (user device) │
+                    └─────────────────┘
+</code></pre>
+<h3>How Kodi Discovers Updates</h3>
+<p>1. <strong>Repository installed</strong> - User has <code>repository.seranov</code> installed
+2. <strong>Repository URL</strong> - In <code>repository.seranov/addon.xml</code> the URL is specified:
+   <pre><code>xml
+   <datadir>https://seranov.github.io/seranov-kodi/</datadir>
+   </code></pre>
+3. <strong>Periodic check</strong> - Kodi periodically:
+   - Downloads <code>addons.xml</code> from the specified URL
+   - Compares versions in <code>addons.xml</code> with installed versions
+   - If version in <code>addons.xml</code> is higher - update available
+4. <strong>Notification</strong> - Kodi shows update notification
+5. <strong>Installation</strong> - With user consent, Kodi:
+   - Downloads plugin ZIP archive from GitHub Pages
+   - Extracts it to its plugins directory
+   - Reloads the plugin</p>
+<h3>Files Responsible for Updates</h3>
+<strong>repository.seranov/addon.xml:</strong>
+<pre><code>xml
+<extension point="xbmc.addon.repository" name="Seranov's Kodi Repository">
+    <info compressed="false">https://seranov.github.io/seranov-kodi/addons.xml</info>
+    <checksum>https://seranov.github.io/seranov-kodi/addons.xml.md5</checksum>
+    <datadir zip="true">https://seranov.github.io/seranov-kodi/</datadir>
+</extension>
+</code></pre>
+<p>- <strong>info</strong> - URL of file with all plugin metadata
+- <strong>checksum</strong> - URL of checksum for integrity verification
+- <strong>datadir</strong> - Base URL for downloading ZIP archives</p>
+<strong>addons.xml:</strong>
+<pre><code>xml
+<addons>
+    <addon id="plugin.video.random.recursive" version="1.0.1" ...>
+        ...
+    </addon>
+    <addon id="context.screenshots" version="1.0.5" ...>
+        ...
+    </addon>
+    ...
+</addons>
+</code></pre>
+<p>This file contains current versions of all plugins. Kodi compares versions from this file with locally installed ones.</p>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>Problem: GitHub Actions Doesn't Start</h3>
+<strong>Check:</strong>
+1. GitHub Actions enabled: Settings → Actions → General → Allow all actions
+2. Workflow file exists: <code>.github/workflows/publish-release.yml</code>
+3. Push was to <code>main</code> branch (not another branch)
+<strong>Solution:</strong>
+<pre><code>bash
+<h1>Manual workflow trigger</h1>
+<h1>Go to: https://github.com/seranov/seranov-kodi/actions</h1>
+<h1>Select "Publish Kodi Repository" → Run workflow</h1>
+</code></pre>
+<h3>Problem: Build Failed with Error</h3>
+<strong>Common causes:</strong>
+- Syntax error in <code>addon.xml</code>
+- Missing required file (icon.png, addon.xml)
+- Invalid version format (should be X.Y.Z)
+<strong>Solution:</strong>
+1. Open GitHub Actions logs
+2. Find the error line (usually in red)
+3. Fix the error
+4. Make a new commit and push
+<strong>Check XML locally:</strong>
+<pre><code>bash
+xmllint --noout plugin.video.random.recursive/addon.xml
+</code></pre>
+<h3>Problem: GitHub Pages Not Updating</h3>
+<strong>Possible causes:</strong>
+1. CDN caching (usually clears in 5-10 minutes)
+2. gh-pages branch doesn't exist or is empty
+3. GitHub Pages not configured
+<strong>Check:</strong>
+<pre><code>bash
+<h1>Check gh-pages branch</h1>
+git ls-remote origin gh-pages
+<h1>Check contents</h1>
+<h1>https://github.com/seranov/seranov-kodi/tree/gh-pages</h1>
+</code></pre>
+<strong>Solution:</strong>
+1. Wait 10 minutes for CDN update
+2. Check Settings → Pages → Source = gh-pages branch
+3. Try in browser incognito mode (bypass local cache)
+<h3>Problem: Kodi Doesn't See Update</h3>
+<strong>Causes:</strong>
+1. GitHub Pages hasn't updated yet (wait 10 minutes)
+2. Kodi hasn't checked for updates yet
+3. Version in Kodi is already higher or equal
+<strong>Solution:</strong>
+1. Verify <code>addons.xml</code> contains new version:
+   <pre><code>bash
+   curl https://seranov.github.io/seranov-kodi/addons.xml | grep plugin.video.random.recursive
+   </code></pre>
+2. Force update check in Kodi:
+   - Right-click on repository → Check for updates
+3. Check installed version:
+   - My add-ons → Plugin → Information
+<h3>Problem: Error Installing Update in Kodi</h3>
+<strong>Causes:</strong>
+1. ZIP file corrupted or unavailable
+2. Insufficient write permissions
+3. Dependency conflict
+<strong>Solution:</strong>
+1. Check ZIP availability:
+   <pre><code>bash
+   curl -I https://seranov.github.io/seranov-kodi/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
+   </code></pre>
+2. Check Kodi log:
+   - Windows: <code>%APPDATA%\Kodi\kodi.log</code>
+   - Linux: <code>~/.kodi/temp/kodi.log</code>
+   - Mac: <code>~/Library/Logs/kodi.log</code>
+3. Try reinstalling plugin:
+   - Remove current version
+   - Install new version from ZIP manually
+<hr>
+<h2>Examples</h2>
+<h3>Example 1: Bug Fix (patch version)</h3>
+<strong>Scenario:</strong> Bug discovered in video playback with Cyrillic paths
+<strong>Steps:</strong>
+<p>1. Fix code in <code>main.py</code>:
+<pre><code>python
+<h1>Before</h1>
+video_path = path</p>
+<h1>After</h1>
+video_path = path.encode('utf-8').decode('utf-8')
+</code></pre>
+<p>2. Update version <code>1.0.0</code> → <code>1.0.1</code> in <code>addon.xml</code>:
+<pre><code>xml
+<addon id="plugin.video.random.recursive" version="1.0.1" ...>
+</code></pre></p>
+<p>3. Commit and push:
+<pre><code>bash
+git add plugin.video.random.recursive/
+git commit -m "plugin.video.random.recursive: bump to v1.0.1 - fix cyrillic paths"
+git push origin main
+</code></pre></p>
+<p>4. Wait ~2 minutes for GitHub Actions to complete
+5. Check in Kodi after 10 minutes</p>
+<h3>Example 2: New Feature (minor version)</h3>
+<strong>Scenario:</strong> Added automatic subtitle loading support
+<strong>Steps:</strong>
+<p>1. Add new code in <code>main.py</code>:
+<pre><code>python
+def load<em>subtitles(video</em>path):
+    # New function
+    subtitle<em>path = video</em>path.rsplit('.', 1)[0] + '.srt'
+    if os.path.exists(subtitle_path):
+        return subtitle_path
+    return None
+</code></pre></p>
+<p>2. Update version <code>1.0.1</code> → <code>1.1.0</code> in <code>addon.xml</code>:
+<pre><code>xml
+<addon id="plugin.video.random.recursive" version="1.1.0" ...>
+</code></pre></p>
+<p>3. Update changelog.txt:
+<pre><code>
+v1.1.0 (2026-01-10)
++ Added automatic subtitle loading
+- Fixed Cyrillic paths bug (from v1.0.1)</p>
+<p>v1.0.1 (2026-01-07)
+- Fixed Cyrillic paths bug</p>
+<p>v1.0.0 (2026-01-01)
+- Initial release
+</code></pre></p>
+<p>4. Commit and push:
+<pre><code>bash
+git add plugin.video.random.recursive/
+git commit -m "plugin.video.random.recursive: bump to v1.1.0</p>
+<p>- Add automatic subtitle loading support
+- Subtitles are auto-loaded if .srt file exists
+- Updated documentation"
+git push origin main
+</code></pre></p>
+<h3>Example 3: Multiple Plugin Update</h3>
+<strong>Scenario:</strong> Update two plugins in one release
+<strong>Steps:</strong>
+<p>1. Update first plugin:
+<pre><code>bash
+<h1>Change plugin.video.random.recursive/addon.xml</h1>
+version="1.1.0"
+</code></pre></p>
+<p>2. Update second plugin:
+<pre><code>bash
+<h1>Change context.screenshots/addon.xml</h1>
+version="1.0.6"
+</code></pre></p>
+<p>3. Commit and push:
+<pre><code>bash
+git add plugin.video.random.recursive/ context.screenshots/
+git commit -m "Release multiple addons</p>
+<p>- plugin.video.random.recursive: v1.1.0 - Add subtitle support
+- context.screenshots: v1.0.6 - Fix image loading issue"
+git push origin main
+</code></pre></p>
+<p>4. GitHub Actions will build both plugins in one run</p>
+<h3>Example 4: Create Git Tag for Release (optional)</h3>
+<strong>Scenario:</strong> Create tag for important release
+<strong>Steps:</strong>
+<p>1. After version update and push to main:
+<pre><code>bash
+git checkout main
+git pull origin main
+</code></pre></p>
+<p>2. Create annotated tag:
+<pre><code>bash
+git tag -a v1.1.0 -m "Release v1.1.0</p>
+<p>Major changes:
+- plugin.video.random.recursive v1.1.0: Subtitle support
+- context.screenshots v1.0.6: Image loading fix
+- Updated documentation"
+</code></pre></p>
+<p>3. Push tag to GitHub:
+<pre><code>bash
+git push origin v1.1.0
+</code></pre></p>
+<p>4. Create GitHub Release (optional):
+   - Go to: https://github.com/seranov/seranov-kodi/releases/new
+   - Select tag: <code>v1.1.0</code>
+   - Fill description
+   - Attach ZIP files (optional)
+   - Click "Publish release"</p>
+<hr>
+<h2>Additional Resources</h2>
+<h3>Internal Documentation</h3>
+- <a href="BUILD<em>AND</em>PUBLISH.md">BUILD<em>AND</em>PUBLISH.md</a> - Detailed build guide
+- <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> - Development guide
+- <a href="RELEASE</em>NOTES.md">RELEASE<em>NOTES.md</a> - Release notes
+- <a href="README.md">README.md</a> - Main page
+<h3>External Links</h3>
+- <a href="https://kodi.wiki/view/Add-on_development">Kodi Add-on Development</a> - Official Kodi documentation
+- <a href="https://semver.org/">Semantic Versioning</a> - Versioning standard
+- <a href="https://docs.github.com/en/actions">GitHub Actions Documentation</a> - GitHub Actions docs
+- <a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a> - GitHub Pages docs
+<h3>Scripts in Repository</h3>
+- <code>scripts/generate_repo.py</code> - Python script for repository generation
+- <code>scripts/build-release.ps1</code> - PowerShell build script (Windows)
+- <code>scripts/deploy-local.ps1</code> - PowerShell local deployment script
+- <code>.github/workflows/publish-release.yml</code> - GitHub Actions workflow
+<hr>
+<h2>Support</h2>
+<p>If you have questions or issues:</p>
+<p>1. <strong>Check documentation:</strong> <a href="../doc/">doc/</a>
+2. <strong>GitHub Issues:</strong> <a href="https://github.com/seranov/seranov-kodi/issues">github.com/seranov/seranov-kodi/issues</a>
+3. <strong>Email:</strong> seranov@yandex.ru</p>
+<hr>
+<strong>Last Updated:</strong> 2026-01-07
+
+    </div>
+</body>
+</html>

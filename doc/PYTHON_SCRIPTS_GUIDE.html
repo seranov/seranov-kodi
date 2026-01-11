@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYTHON SCRIPTS GUIDE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Python Scripts Documentation</h1>
+<h2>Overview</h2>
+<p>Two Python scripts are used in the GitHub Pages deployment pipeline to generate HTML content:</p>
+<p>1. <strong>convert<em>md</em>to_html.py</strong> - Converts Markdown documentation to HTML
+2. <strong>generate_readme.py</strong> - Generates the main readme.html page</p>
+<h2>convert<em>md</em>to_html.py</h2>
+<h3>Purpose</h3>
+Converts Markdown (.md) files from the <code>/doc</code> directory to HTML files in the <code>/docs/doc</code> directory.
+<h3>Usage</h3>
+<pre><code>bash
+python3 scripts/convert<em>md</em>to<em>html.py <input</em>directory> [output_directory]
+</code></pre>
+<h3>Arguments</h3>
+- <code><input_directory></code> - Directory containing .md files (required)
+- <code>[output<em>directory]</code> - Directory to output .html files (optional, defaults to input</em>dir/../html)
+<h3>Example</h3>
+<pre><code>bash
+python3 scripts/convert<em>md</em>to_html.py doc docs/doc
+</code></pre>
+<h3>Features</h3>
+<p>#### Markdown Library Support
+If the <code>markdown</code> library is installed, uses advanced features:
+- GitHub Flavored Markdown (GFM)
+- Table of contents generation
+- Code syntax highlighting
+- Fenced code blocks
+- Extra formatting</p>
+<p>#### Fallback Conversion
+If markdown library is not available, uses basic regex-based conversion for:
+- Headers (H1-H6)
+- Bold (<strong>text</strong>)
+- Italic (<em>text</em> and <em>text</em>)
+- Links (<a href="url">text</a>)
+- Code blocks (<pre><code>code</code></pre>)
+- Inline code (<code>code</code>)
+- Blockquotes (> text)
+- Horizontal rules (---)</p>
+<p>#### HTML Output
+Each .md file generates a complete HTML5 document with:
+- Responsive design
+- GitHub-style CSS styling
+- Back-to-home navigation
+- Proper character encoding (UTF-8)
+- Mobile viewport meta tags</p>
+<h3>Output Structure</h3>
+<pre><code>
+docs/doc/
+├── README.html
+├── QUICKSTART.html
+├── INSTALLATION.html
+├── CONTRIBUTING.html
+└── ... (all .md files)
+</code></pre>
+<h3>CSS Styling</h3>
+<p>Embedded CSS includes:
+- GitHub-style colors (#24292e, #666, etc.)
+- Proper heading hierarchy with borders
+- Code block styling with background colors
+- Table formatting with borders and alternating rows
+- Link colors and hover effects (#0366d6)
+- Blockquote styling with left border</p>
+<h3>Implementation Details</h3>
+<p>#### Class: AddonInfo (in generate_readme.py, but concepts apply)
+Not directly in this file, but the script uses similar concepts.</p>
+<p>#### Functions</p>
+<p>##### <code>create<em>html</em>template(title: str, content: str) -> str</code>
+Creates the HTML5 wrapper template around converted content.</p>
+<p>Parameters:
+- <code>title</code> - Page title (extracted from filename)
+- <code>content</code> - HTML content from markdown</p>
+<p>Returns:
+- Complete HTML document as string</p>
+<p>##### <code>convert<em>markdown</em>to<em>html(markdown</em>content: str) -> str</code>
+Converts markdown content to HTML.</p>
+<p>Parameters:
+- <code>markdown_content</code> - Raw markdown text</p>
+<p>Returns:
+- HTML content (without wrapper)</p>
+<p>Logic:
+1. If markdown library available → use advanced conversion
+2. Else → use basic regex conversion</p>
+<p>##### <code><em>basic</em>markdown<em>to</em>html(content: str) -> str</code>
+Performs basic markdown-to-HTML conversion using regex patterns.</p>
+<p>Supported patterns:
+- <code>### Heading 3</code> → <code><h3>Heading 3</h3></code>
+- <code>## Heading 2</code> → <code><h2>Heading 2</h2></code>
+- <code># Heading 1</code> → <code><h1>Heading 1</h1></code>
+- <code><strong>bold</strong></code> → <code><strong>bold</strong></code>
+- <code><em>italic</em></code> → <code><em>italic</em></code>
+- <code><a href="url">link</a></code> → <code><a href="url">link</a></code>
+- <code>` </code>code<code> </code><code> → </code><code>code</code>`
+- <code> <pre><code>code</code></pre> </code> → <code><pre><code>code</code></pre></code></p>
+<p>##### <code>convert<em>file(input</em>path: Path, output_path: Path) -> bool</code>
+Converts a single .md file to HTML.</p>
+<p>Parameters:
+- <code>input_path</code> - Path to .md file
+- <code>output_path</code> - Path to output .html file</p>
+<p>Returns:
+- <code>True</code> if successful, <code>False</code> on error</p>
+<p>Process:
+1. Read markdown content from file
+2. Extract title from filename
+3. Convert markdown to HTML
+4. Wrap with HTML template
+5. Write to output file
+6. Print status message</p>
+<p>##### <code>main()</code>
+Entry point for the script.</p>
+<p>Process:
+1. Parse command-line arguments
+2. Find all .md files in input directory
+3. Convert each file to HTML
+4. Report results (count of successful conversions)</p>
+<h3>Error Handling</h3>
+<p>- Invalid input directory: Print error and exit with code 1
+- File read/write errors: Print error message and continue with next file
+- Markdown parse errors: Print error message and continue with next file</p>
+<h3>Exit Codes</h3>
+<p>- <code>0</code> - Success (at least some files converted)
+- <code>1</code> - Failure (invalid directory or all files failed)</p>
+<hr>
+<h2>generate_readme.py</h2>
+<h3>Purpose</h3>
+Generates readme.html with links to all addons and their descriptions.
+<h3>Usage</h3>
+<pre><code>bash
+python3 scripts/generate<em>readme.py [docs</em>directory]
+</code></pre>
+<h3>Arguments</h3>
+- <code>[docs_directory]</code> - Directory containing addon directories (optional, defaults to 'docs')
+<h3>Example</h3>
+<pre><code>bash
+python3 scripts/generate_readme.py docs
+</code></pre>
+<h3>Features</h3>
+<p>#### Addon Discovery
+- Scans docs directory for addon directories
+- Detects addon patterns: <code>plugin.<em></code>, <code>service.</em></code>, <code>context.<em></code>, <code>repository.</em></code>
+- Reads addon.xml from source directories (not docs)</p>
+<p>#### Metadata Extraction
+For each addon:
+- ID (from addon element id attribute)
+- Name (from addon element name attribute)
+- Version (from addon element version attribute)
+- Summary (from English <summary lang="en_GB">)
+- Description (from English <description lang="en_GB">)</p>
+<p>#### HTML Generation
+Creates attractive card layout with:
+- Addon name with icon (📦)
+- Version information
+- Summary (bold text)
+- Description (regular text)
+- Download ZIP button
+- View Files link
+- Responsive grid layout</p>
+<p>#### Styling
+Modern design with:
+- Gradient background (purple: #667eea to #764ba2)
+- Card-based layout
+- Hover animations
+- Button styling (primary and secondary)
+- Documentation links section
+- Installation instructions</p>
+<h3>Output</h3>
+<p>Single file: <code>docs/readme.html</code></p>
+<h3>Implementation Details</h3>
+<p>#### Class: AddonInfo
+Data class for addon information.</p>
+<strong>Attributes:</strong>
+- <code>addon_id: str</code> - Addon identifier
+- <code>name: str</code> - Display name
+- <code>version: str</code> - Version number
+- <code>summary: str</code> - One-line summary
+- <code>description: str</code> - Detailed description
+<strong>Methods:</strong>
+<code>get<em>zip</em>name() -> str</code>
+- Returns: <code>{addon_id}-{version}.zip</code>
+- Used for download URL construction
+<code>to_html() -> str</code>
+- Returns: HTML card div for this addon
+- Includes: Name, version, summary, description, buttons
+- Uses CSS classes: addon-card, addon-link, btn, btn-primary, btn-secondary
+<p>#### Functions</p>
+<p>##### <code>parse<em>addon</em>xml(xml_path: Path) -> Optional[AddonInfo]</code>
+Parses addon.xml and extracts metadata.</p>
+<p>Parameters:
+- <code>xml_path</code> - Path to addon.xml file</p>
+<p>Returns:
+- AddonInfo object on success
+- None on error</p>
+<p>Process:
+1. Parse XML file with ElementTree
+2. Extract ID, name, version from root element
+3. Find xbmc.addon.metadata extension
+4. Extract English summary and description
+5. Create and return AddonInfo</p>
+<p>##### <code>scan<em>addons(docs</em>dir: Path) -> List[AddonInfo]</code>
+Finds and parses all addons in docs directory.</p>
+<p>Parameters:
+- <code>docs_dir</code> - Path to docs directory</p>
+<p>Returns:
+- List of AddonInfo objects</p>
+<p>Process:
+1. Iterate through docs directory
+2. Filter for addon directories (match patterns)
+3. Look for addon.xml in source directory (using dir name)
+4. Parse each addon.xml
+5. Collect and return all addons</p>
+<p>##### <code>create<em>html</em>content(addons: List[AddonInfo]) -> str</code>
+Creates complete HTML page content.</p>
+<p>Parameters:
+- <code>addons</code> - List of AddonInfo objects</p>
+<p>Returns:
+- Complete HTML5 document as string</p>
+<p>Process:
+1. Generate addon cards from each addon
+2. Create HTML template with:
+   - Header section (title and repo info)
+   - Content section (instructions and addon grid)
+   - Documentation links
+   - Footer with GitHub links
+3. Return complete HTML</p>
+<p>HTML Sections:
+- <strong>Header</strong>: Logo, repo URL, title
+- <strong>Content</strong>:
+  - Installation instructions (2 methods)
+  - Addon grid with cards
+  - Documentation links
+  - Repository file links
+- <strong>Footer</strong>: Copyright, GitHub links, Kodi link</p>
+<p>##### <code>main()</code>
+Entry point for the script.</p>
+<p>Process:
+1. Parse command-line argument for docs directory
+2. Scan for addons
+3. Warn if no addons found
+4. Generate HTML content
+5. Write readme.html
+6. Print success message</p>
+<h3>Error Handling</h3>
+<p>- Missing or invalid XML: Print warning, skip addon
+- No addons found: Print warning but continue (creates empty readme.html)
+- File write errors: Print error message</p>
+<h3>Exit Codes</h3>
+<p>- <code>0</code> - Success (readme.html generated)</p>
+<h3>CSS Classes Used</h3>
+<strong>Container classes:</strong>
+- <code>.container</code> - Main wrapper (max-width: 1000px)
+- <code>.header</code> - Top section with title
+- <code>.content</code> - Main content area
+- <code>.footer</code> - Bottom section
+<strong>Addon display:</strong>
+- <code>.addons-grid</code> - CSS grid for addon cards
+- <code>.addon-card</code> - Individual addon card
+- <code>.addon-link</code> - Addon name link
+- <code>.addon-links</code> - Button container
+- <code>.btn</code>, <code>.btn-primary</code>, <code>.btn-secondary</code> - Button styling
+<strong>Info sections:</strong>
+- <code>.info-section</code> - Styled information box
+- <code>.doc-links</code> - Documentation links grid
+- <code>.repo-info</code> - Repository URL box
+- <code>.repo-url</code> - Monospace URL display
+<h3>Dependencies</h3>
+<strong>Required:</strong>
+- Python 3.9+ (for Path.is<em>relative</em>to() method used in error handling)
+- xml.etree.ElementTree (standard library)
+- pathlib (standard library)
+<strong>No external dependencies required!</strong>
+<hr>
+<h2>Integration in GitHub Actions</h2>
+<h3>Workflow Execution Order</h3>
+<p>1. <strong>Step 8</strong> - Run <code>convert<em>md</em>to_html.py doc docs/doc</code>
+   - Input: doc directory
+   - Output: docs/doc directory with .html files</p>
+<p>2. <strong>Step 9</strong> - Run <code>generate_readme.py docs</code>
+   - Input: docs directory (with addon subdirectories)
+   - Output: docs/readme.html</p>
+<h3>Environment</h3>
+<p>Scripts run in Ubuntu Linux environment with:
+- Python 3.9+ installed
+- All files available
+- Network access (not needed for these scripts)
+- Write access to docs directory</p>
+<h3>Error Handling in Workflow</h3>
+<p>If either script fails:
+<pre><code>yaml
+echo "Error occurred"
+exit 1
+</code></pre></p>
+<p>This will cause the workflow job to fail and prevent deployment of incomplete site.</p>
+<hr>
+<h2>Testing Locally</h2>
+<h3>Prerequisites</h3>
+<pre><code>bash
+python3 --version  # Should be 3.9 or higher
+</code></pre>
+<h3>Test convert<em>md</em>to_html.py</h3>
+<pre><code>bash
+python3 scripts/convert<em>md</em>to<em>html.py doc test</em>output
+ls test_output/
+cat test_output/README.html  # View generated file
+</code></pre>
+<h3>Test generate_readme.py</h3>
+First create test addon structure:
+<pre><code>bash
+mkdir -p test_docs/plugin.test
+cat > test_docs/plugin.test/addon.xml << 'EOF'
+<?xml version='1.0' encoding='utf-8'?>
+<addon id="plugin.test" name="Test Addon" version="1.0.0">
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Test summary</summary>
+        <description lang="en_GB">Test description</description>
+    </extension>
+</addon>
+EOF
+<p>python3 scripts/generate<em>readme.py test</em>docs
+cat test_docs/readme.html  # View generated file
+</code></pre></p>
+<h3>Cleanup</h3>
+<pre><code>bash
+rm -rf test<em>output test</em>docs
+</code></pre>
+<hr>
+<h2>Debugging Tips</h2>
+<h3>Enable verbose output</h3>
+Both scripts use <code>print()</code> statements that should appear in GitHub Actions logs.
+<h3>Check generated files</h3>
+<pre><code>bash
+<h1>After running workflow, check in gh-pages branch</h1>
+git checkout gh-pages
+ls -la docs/
+cat docs/readme.html | head -50
+</code></pre>
+<h3>Validate HTML</h3>
+<pre><code>bash
+<h1>Online validators:</h1>
+<h1>https://validator.w3.org/</h1>
+<h1>https://jigsaw.w3.org/css-validator/</h1>
+</code></pre>
+<h3>Check addon.xml files</h3>
+<pre><code>bash
+python3 -c "
+import xml.etree.ElementTree as ET
+tree = ET.parse('plugin.video.test/addon.xml')
+root = tree.getroot()
+print(f'ID: {root.get(\"id\")}')
+print(f'Name: {root.get(\"name\")}')
+"
+</code></pre>
+<hr>
+<h2>Performance</h2>
+<p>Both scripts are optimized for fast execution:</p>
+<p>- <strong>convert<em>md</em>to_html.py</strong>: ~100-500ms per file (depending on file size)
+- <strong>generate_readme.py</strong>: ~50-200ms total (very fast)</p>
+<p>Total conversion time for 20 doc files and 5 addons: < 2 seconds</p>
+<hr>
+<h2>Future Enhancements</h2>
+<h3>convert<em>md</em>to_html.py</h3>
+- [ ] Add YAML frontmatter support
+- [ ] Generate table of contents
+- [ ] Add syntax highlighting for code blocks
+- [ ] Support for embedding images
+- [ ] Custom CSS theme support
+<h3>generate_readme.py</h3>
+- [ ] Search/filter functionality
+- [ ] Addon rating system
+- [ ] Screenshot display
+- [ ] Multi-language support
+- [ ] Changelog display
+- [ ] Statistics (download count, etc.)
+<hr>
+<h2>License</h2>
+<p>These scripts are part of the kodi-play-random project and follow the same license.</p>
+
+    </div>
+</body>
+</html>

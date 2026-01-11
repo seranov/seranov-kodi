@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUICKSTART.ru</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Краткое руководство</h1>
+<p>Это руководство поможет вам быстро начать работу с репозиторием Seranov для Kodi и плагинами-службами.</p>
+<h2>Установка</h2>
+<h3>Установка репозитория</h3>
+<p>1. <strong>Скачайте аддон репозитория:</strong>
+   - Перейдите в <a href="https://github.com/seranov/seranov-kodi/releases">releases</a> или в директорию <code>repo</code>
+   - Скачайте <code>repository.seranov-1.0.0.zip</code></p>
+<p>2. <strong>Установите в Kodi:</strong>
+   - Откройте Kodi
+   - Перейдите в <strong>Настройки</strong> (значок шестеренки) → <strong>Дополнения</strong>
+   - Нажмите <strong>Установить из файла zip</strong>
+   - Укажите путь к скачанному файлу <code>repository.seranov-1.0.0.zip</code>
+   - Дождитесь уведомления "Дополнение установлено"</p>
+<p>3. <strong>Просмотр доступных аддонов:</strong>
+   - Перейдите в <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Установить из репозитория</strong>
+   - Выберите <strong>Seranov's Kodi Repository</strong>
+   - Просмотрите категории для поиска доступных аддонов</p>
+<h3>Установка отдельных плагинов-служб</h3>
+<p>Если вы хотите установить плагин-службу без репозитория:</p>
+<p>1. Скачайте zip-файл плагина-службы (например, <code>service.seranov.nfoscanner-1.0.0.zip</code>)
+2. В Kodi перейдите в <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Установить из файла zip</strong>
+3. Укажите путь к скачанному zip-файлу и установите</p>
+<h2>Использование плагинов-служб</h2>
+<h3>Служба сканирования NFO</h3>
+<p>Фоновая служба, которая автоматически сканирует видеопапки на наличие изменений метаданных.</p>
+<strong>Конфигурация:</strong>
+1. Перейдите в <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Мои дополнения</strong> → <strong>Службы</strong>
+2. Выберите <strong>NFO Scanner Service</strong>
+3. Нажмите <strong>Настроить</strong>
+4. Настройте параметры:
+   - <strong>Интервал сканирования</strong>: Как часто сканировать (в минутах, по умолчанию: 60)
+   - <strong>Количество потоков</strong>: Количество потоков сканирования (1-4, по умолчанию: 1)
+   - <strong>Пауза при воспроизведении</strong>: Приостанавливать сканирование во время воспроизведения видео
+   - <strong>Включить службу</strong>: Включить или отключить сканер
+   - <strong>Сканировать сетевые источники</strong>: Включать сетевые источники в сканирование
+<strong>Что она делает:</strong>
+- Сканирует видеопапки на наличие файлов movie.nfo
+- Проверяет, новее ли movie.nfo, чем запись в базе данных Kodi
+- Переимпортирует метаданные при обнаружении изменений
+- Обрабатывает файлы category.nfo для управления жанрами
+- Приостанавливается во время воспроизведения видео, чтобы избежать проблем с производительностью
+- Приоритизирует папки на основе навигации пользователя
+<strong>Управление вручную:</strong>
+- Используйте кнопку <strong>Запустить ручное сканирование</strong> для немедленного запуска сканирования
+- Используйте кнопку <strong>Остановить сканирование</strong> для остановки текущего сканирования
+- Используйте кнопку <strong>Очистить кэш</strong> для сброса списка отсканированных папок
+<h3>Включение/отключение служб</h3>
+<p>Для включения или отключения службы:
+1. Перейдите в <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Мои дополнения</strong> → <strong>Службы</strong>
+2. Выберите службу
+3. Нажмите <strong>Включить</strong> или <strong>Отключить</strong></p>
+<h3>Просмотр логов служб</h3>
+<p>Для проверки правильности работы службы:</p>
+<p>1. Включите <strong>Логирование отладки</strong>:
+   - Перейдите в <strong>Настройки</strong> → <strong>Система</strong> → <strong>Логирование</strong>
+   - Включите <strong>Включить логирование отладки</strong></p>
+<p>2. Просмотрите файл лога:
+   - <strong>Linux/macOS</strong>: <code>~/.kodi/temp/kodi.log</code>
+   - <strong>Windows</strong>: <code>%APPDATA%\Kodi\kodi.log</code>
+   - <strong>Android</strong>: Используйте приложение для просмотра логов или adb</p>
+<p>3. Ищите сообщения от вашей службы:
+   <pre><code>
+   [NFOScanner] NFO Scanner Service v1.0.0 started
+   [NFOScanner] Scanning started
+   </code></pre></p>
+<h2>Разработка собственного плагина-службы</h2>
+<p>Хотите создать свой плагин-службу? См. <a href="CONTRIBUTING.ru.md">CONTRIBUTING.ru.md</a> для полного руководства.</p>
+<h3>Быстрая настройка разработки</h3>
+<p>1. <strong>Скопируйте шаблон:</strong>
+   <pre><code>bash
+   cp -r service.seranov.template1 service.seranov.myplugin
+   </code></pre></p>
+<p>2. <strong>Обновите метаданные:</strong>
+   - Отредактируйте <code>addon.xml</code> с деталями вашего плагина
+   - Обновите строки в <code>resources/language/resource.language.en_gb/strings.xml</code></p>
+<p>3. <strong>Реализуйте вашу логику:</strong>
+   - Отредактируйте <code>service.py</code> для добавления вашей пользовательской функциональности</p>
+<p>4. <strong>Тестируйте локально:</strong>
+   - Скопируйте в директорию аддонов Kodi
+   - Перезапустите Kodi
+   - Включите службу</p>
+<p>5. <strong>Соберите репозиторий:</strong>
+   <pre><code>bash
+   python3 scripts/generate_repo.py
+   </code></pre></p>
+<h2>Устранение неполадок</h2>
+<h3>Служба не запускается</h3>
+<p>1. Проверьте, включена ли служба:
+   - <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Мои дополнения</strong> → <strong>Службы</strong> → Выберите вашу службу → <strong>Включить</strong></p>
+<p>2. Проверьте лог Kodi на наличие ошибок:
+   - Включите логирование отладки
+   - Ищите сообщения об ошибках, связанные с вашей службой</p>
+<p>3. Проверьте зависимости:
+   - Убедитесь, что все необходимые зависимости установлены</p>
+<h3>Служба работает не так, как ожидается</h3>
+<p>1. Включите режим отладки в настройках службы
+2. Проверьте лог Kodi на наличие подробных сообщений
+3. Проверьте правильность ваших настроек
+4. Протестируйте с простым действием для выявления проблемы</p>
+<h3>Изменения не вступают в силу</h3>
+<p>1. Отключите службу
+2. Перезапустите Kodi
+3. Включите службу снова</p>
+<h2>Обновления репозитория</h2>
+<p>Для обновления аддонов из репозитория:</p>
+<p>1. Репозиторий автоматически проверяет обновления
+2. Перейдите в <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Мои дополнения</strong>
+3. Выберите аддон с доступным обновлением
+4. Нажмите <strong>Обновить</strong></p>
+<p>Или обновите все аддоны сразу:
+- <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Обновления</strong> → <strong>Обновить все</strong></p>
+<h2>Поддержка</h2>
+<p>По вопросам, проблемам или для участия в разработке:
+- GitHub Issues: <a href="https://github.com/seranov/seranov-kodi/issues">https://github.com/seranov/seranov-kodi/issues</a>
+- Email: seranov@yandex.ru</p>
+<h2>Ссылки</h2>
+<p>- <a href="README.ru.md">README.ru.md</a> - Полная документация
+- <a href="CONTRIBUTING.ru.md">CONTRIBUTING.ru.md</a> - Руководство по разработке
+- <a href="https://kodi.wiki/view/Add-on_development">Разработка аддонов для Kodi</a>
+</p>
+    </div>
+</body>
+</html>

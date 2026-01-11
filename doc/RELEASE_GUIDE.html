@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELEASE GUIDE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>GitHub Release Guide</h1>
+<blockquote><strong>Note:</strong> This repository now uses automated GitHub Pages deployment!  </blockquote>
+<blockquote>For detailed build and publish instructions, see <a href="BUILD<em>AND</em>PUBLISH.md">BUILD<em>AND</em>PUBLISH.md</a></blockquote>
+<h2>Quick Release Process</h2>
+<h3>Automated Process (Recommended)</h3>
+<p>The repository automatically builds and deploys to GitHub Pages on every push to <code>main</code>:</p>
+<p>1. <strong>Update version numbers</strong> in <code>addon.xml</code> files
+2. <strong>Update documentation</strong> (RELEASE_NOTES.md, etc.)
+3. <strong>Commit and push</strong> to <code>main</code> branch
+4. <strong>GitHub Actions automatically:</strong>
+   - Builds all ZIP archives
+   - Generates addons.xml and checksums
+   - Deploys to GitHub Pages
+   - Makes updates available to Kodi users</p>
+<strong>That's it!</strong> No manual steps needed.
+<h3>Repository URL</h3>
+<strong>Live Repository:</strong> <code>https://seranov.github.io/seranov-kodi/</code>
+<p>Users can:
+- ✅ Install repository once from ZIP file
+- ✅ Get automatic updates through Kodi
+- ✅ No manual downloads needed for updates</p>
+<hr>
+<h2>Creating GitHub Release (Optional)</h2>
+<p>While not required for Kodi functionality, GitHub Releases provide better visibility:</p>
+<h3>Step 1: Create Git Tag</h3>
+<pre><code>bash
+git checkout main
+git pull origin main
+git tag -a v1.0.1 -m "Release v1.0.1 - Description"
+git push origin v1.0.1
+</code></pre>
+<h3>Step 2: Create GitHub Release</h3>
+<p>1. <strong>Go to:</strong> https://github.com/seranov/seranov-kodi/releases/new</p>
+<p>2. <strong>Fill in details:</strong>
+   - <strong>Tag:</strong> Select <code>v1.0.1</code> (or create new)
+   - <strong>Target:</strong> <code>main</code> branch
+   - <strong>Title:</strong> <code>v1.0.1 - Release Name</code>
+   - <strong>Description:</strong> Copy from <code>RELEASE_NOTES.md</code></p>
+<p>3. <strong>Attach files (optional):</strong>
+   - <code>repository.seranov-1.0.0.zip</code> (for easy download)
+   - Other add-on ZIPs if needed</p>
+<p>4. <strong>Publish Release</strong></p>
+<h3>Step 3: Verify</h3>
+<p>- ✅ Release page loads correctly
+- ✅ Files are downloadable
+- ✅ GitHub Pages is updated (check <code>https://seranov.github.io/seranov-kodi/addons.xml</code>)</p>
+<hr>
+<h2>Manual Release (Fallback)</h2>
+<p>If automated deployment fails, see <a href="BUILD<em>AND</em>PUBLISH.md">BUILD<em>AND</em>PUBLISH.md</a> for manual deployment instructions.</p>
+<p>
+<hr></p>
+<p>
+<h2>Documentation</h2></p>
+<p>For complete instructions on:
+- Building the repository locally
+- Understanding the CI/CD pipeline
+- Troubleshooting deployment issues
+- Manual deployment procedures</p>
+<strong>See:</strong> <a href="BUILD<em>AND</em>PUBLISH.md">BUILD<em>AND</em>PUBLISH.md</a>
+<hr>
+<h2>Files and Structure</h2>
+<h3>Repository Files</h3>
+<p>All add-ons are automatically packaged and deployed:</p>
+<p>- <code>repository.seranov-1.0.0.zip</code> - Repository installation file
+- <code>plugin.video.random.recursive-1.0.0.zip</code> - Random player
+- <code>plugin.video.unified.browser-1.0.0.zip</code> - Unified browser
+- <code>context.screenshots-1.0.5.zip</code> - Screenshots context menu
+- <code>service.seranov.nfoscanner-1.0.0.zip</code> - NFO scanner service
+- <code>addons.xml</code> - Repository metadata
+- <code>addons.xml.md5</code> - Checksum</p>
+<h3>Key Documentation Files</h3>
+<p>- ✅ <a href="RELEASE</em>NOTES.md">RELEASE<em>NOTES.md</a> - Release notes (bilingual)
+- ✅ <a href="INSTALLATION.md">INSTALLATION.md</a> - Installation guide (bilingual)
+- ✅ <a href="BUILD<em>AND</em>PUBLISH.md">BUILD<em>AND</em>PUBLISH.md</a> - Build & deployment guide
+- ✅ <a href="../README.md">README.md</a> - Main repository documentation</p>
+<hr>
+<h2>Installation Instructions for Users</h2>
+<h3>Method 1: Install Repository (Recommended)</h3>
+<p>1. Download: <code>repository.seranov-1.0.0.zip</code>
+2. In Kodi: <strong>Add-ons</strong> → <strong>Install from zip file</strong>
+3. Select the downloaded file
+4. Install add-ons from: <strong>Install from repository</strong> → <strong>Seranov's Kodi Repository</strong></p>
+<h3>Method 2: Direct Installation</h3>
+<p>Download and install individual add-on ZIPs directly.</p>
+<strong>Note:</strong> Without repository, users won't get automatic updates.
+<hr>
+<h2>Monitoring and Verification</h2>
+<h3>Check Deployment Status</h3>
+<p>1. <strong>GitHub Actions:</strong> https://github.com/seranov/seranov-kodi/actions
+2. <strong>GitHub Pages:</strong> https://seranov.github.io/seranov-kodi/
+3. <strong>addons.xml:</strong> https://seranov.github.io/seranov-kodi/addons.xml</p>
+<h3>Test in Kodi</h3>
+<p>1. Install repository from ZIP
+2. Right-click → <strong>Check for updates</strong>
+3. Verify correct version appears</p>
+<hr>
+<h2>Support</h2>
+<p>- <strong>Documentation:</strong> <a href="../doc/">doc/</a>
+- <strong>Issues:</strong> https://github.com/seranov/seranov-kodi/issues
+- <strong>Email:</strong> seranov@yandex.ru
+- ✅ <code>addons.xml</code> - Repository metadata (with Russian translations)
+- ✅ <code>addons.xml.md5</code> - Checksum file</p>
+<h3>Git Tag</h3>
+- ✅ <code>v1.0.0</code> - Created locally (needs to be pushed after merge)
+<hr>
+<h2>Post-Release Tasks</h2>
+<p>After the release is created, consider:</p>
+<p>1. <strong>Announce the release:</strong>
+   - Create a post on Kodi forums (if applicable)
+   - Share on social media
+   - Update any external documentation</p>
+<p>2. <strong>Test installation:</strong>
+   - Install the repository in a fresh Kodi instance
+   - Verify all add-ons install correctly
+   - Test basic functionality</p>
+<p>3. <strong>Monitor feedback:</strong>
+   - Watch for GitHub issues
+   - Check email for user questions
+   - Be ready to create patch releases if needed</p>
+<hr>
+<h2>Future Releases</h2>
+<p>For future releases, follow this workflow:</p>
+<p>1. <strong>Update version numbers:</strong>
+   - Edit <code>addon.xml</code> in the relevant add-on directory
+   - Update version in README if needed</p>
+<p>2. <strong>Rebuild repository:</strong>
+   <pre><code>bash
+   python3 scripts/generate_repo.py
+   </code></pre></p>
+<p>3. <strong>Create release notes:</strong>
+   - Document changes since last release
+   - Follow the format in <code>RELEASE_NOTES.md</code></p>
+<p>4. <strong>Tag and release:</strong>
+   - Create new tag (e.g., <code>v1.1.0</code>)
+   - Upload updated zip files
+   - Publish release notes</p>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>If tag creation fails:</h3>
+<pre><code>bash
+<h1>Delete local tag and recreate</h1>
+git tag -d v1.0.0
+git tag -a v1.0.0 -m "Release v1.0.0 - Initial Kodi Repository Release"
+git push origin v1.0.0
+</code></pre>
+<h3>If release upload fails:</h3>
+- Check file sizes (GitHub has 2GB limit per file)
+- Verify you have release creation permissions
+- Try uploading files one at a time
+<h3>If users report installation issues:</h3>
+1. Verify the zip files are not corrupted
+2. Check that the repository URL in <code>repository.seranov/addon.xml</code> is correct
+3. Ensure <code>addons.xml</code> and <code>addons.xml.md5</code> are accessible via the raw GitHub URL
+<hr>
+<h2>Contact</h2>
+<p>For questions about this release process:
+- <strong>Email:</strong> seranov@yandex.ru
+- <strong>GitHub:</strong> https://github.com/seranov/seranov-kodi/issues
+</p>
+    </div>
+</body>
+</html>

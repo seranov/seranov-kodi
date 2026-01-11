@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTALLATION</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Installation Guide</h1>
+<blockquote><a href="INSTALLATION.ru.md">Русская версия / Russian version</a></blockquote>
+<h2>Quick Start</h2>
+<p>The easiest way to install all add-ons from this repository is to add the repository URL in Kodi.</p>
+<h2>Option 1: Install via Direct URL (Easiest)</h2>
+<p>This method allows you to install the repository directly from the internet without downloading a file to your computer.</p>
+<h3>Direct ZIP Installation from URL</h3>
+<p>⚠️ <strong>Important:</strong> First enable installation from unknown sources (see below).</p>
+<p>1. <strong>Enable "Unknown sources" in Kodi:</strong>
+   - Open Kodi
+   - Go to <strong>Settings</strong> (gear icon)
+   - Select <strong>System</strong> → <strong>Add-ons</strong>
+   - Enable <strong>Unknown sources</strong>
+   - Click <strong>Yes</strong> to confirm the warning</p>
+<p>2. <strong>Install repository from URL:</strong>
+   - Return to the home screen
+   - Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>Install from zip file</strong>
+   - Select <strong><None></strong> or enter the path directly
+   - Enter the URL:
+     <pre><code>
+     https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+     </code></pre>
+   - Click <strong>OK</strong>
+   - Wait for the "Add-on installed" notification</p>
+<strong>Alternative URL (if GitHub Pages is activated):</strong>
+<pre><code>
+https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
+</code></pre>
+<p>After installing the repository, all add-ons will receive automatic updates!</p>
+<h2>Option 2: Install Repository Add-on from Downloaded ZIP</h2>
+<p>This is an alternative method if you have issues with online installation.</p>
+<p>1. <strong>Download the repository zip file:</strong>
+   - Go to <a href="https://github.com/seranov/seranov-kodi/releases/latest">Releases</a>
+   - Download <code>repository.seranov-1.0.0.zip</code>
+   
+   <strong>Direct links:</strong>
+   - Always available: <code>https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip</code>
+   - Via GitHub Pages (after activation): <code>https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip</code></p>
+<p>2. <strong>Enable "Unknown sources" in Kodi:</strong>
+   - Open Kodi <strong>Settings</strong> (gear icon)
+   - Go to <strong>System</strong> → <strong>Add-ons</strong>
+   - Enable <strong>Unknown sources</strong>
+   - Click <strong>Yes</strong> to confirm the warning</p>
+<p>3. <strong>Install the repository:</strong>
+   - Go to <strong>Add-ons</strong> menu (puzzle piece icon)
+   - Click the <strong>box icon</strong> at the top left
+   - Select <strong>Install from zip file</strong>
+   - Navigate to where you downloaded <code>repository.seranov-1.0.0.zip</code>
+   - Select the file and wait for the "Add-on installed" notification</p>
+<p>4. <strong>Install add-ons from the repository:</strong>
+   - Go to <strong>Add-ons</strong> menu
+   - Click the <strong>box icon</strong> at the top left
+   - Select <strong>Install from repository</strong>
+   - Select <strong>Seranov's Kodi Repository</strong>
+   - Choose the category (Video add-ons, Context menus, Services)
+   - Select the add-on you want to install
+   - Click <strong>Install</strong></p>
+<h2>Option 3: Install Individual Add-on Without Repository</h2>
+<p>If you only want one specific add-on:</p>
+<p>1. Download the specific add-on zip from <a href="https://github.com/seranov/seranov-kodi/releases/latest">Releases</a>:
+   - <code>plugin.video.random.recursive-1.0.0.zip</code> - Random Player
+   - <code>context.screenshots-1.0.5.zip</code> - Popup Screenshots
+   - <code>service.seranov.nfoscanner-1.0.0.zip</code> - NFO Scanner Service
+   - <code>plugin.video.unified.browser-1.0.0.zip</code> - Unified Browser</p>
+<p>2. Follow steps 2-3 from <strong>Option 2</strong> to install the zip file</p>
+<strong>⚠️ Important:</strong> Without installing the repository, you won't receive automatic updates.
+<h2>Automatic Updates</h2>
+<blockquote><strong>✅ Now Available:</strong> The repository is published via GitHub Pages and supports automatic updates!</blockquote>
+<p>After installing the repository add-on (Option 1), Kodi will automatically check for updates to all installed add-ons.</p>
+<strong>Repository URL:</strong> <code>https://seranov.github.io/seranov-kodi/</code>
+<h3>How Automatic Updates Work</h3>
+<p>1. <strong>Install the repository once</strong> using the ZIP file
+2. <strong>Kodi checks for updates</strong> automatically (usually every 24 hours)
+3. <strong>You get notified</strong> when updates are available
+4. <strong>Install updates</strong> with one click from the add-ons menu</p>
+<h3>Manual Update Check</h3>
+<p>To manually check for updates:
+1. Go to <strong>Add-ons</strong> menu
+2. Right-click on <strong>Seranov's Kodi Repository</strong>
+3. Select <strong>Check for updates</strong></p>
+<hr>
+<h2>Available Add-ons</h2>
+<h3>Repository</h3>
+- <strong>File:</strong> <code>repository.seranov-1.0.0.zip</code>
+- Install this first for easy access to all other add-ons
+<h3>Random Recursive Video Player</h3>
+- <strong>File:</strong> <code>plugin.video.random.recursive-1.0.0.zip</code>
+- Play videos recursively in random order
+<h3>Unified Video Browser</h3>
+- <strong>File:</strong> <code>plugin.video.unified.browser-1.0.0.zip</code>
+- Browse all videos in a unified interface
+<h3>Popup Screenshots</h3>
+- <strong>File:</strong> <code>context.screenshots-1.0.5.zip</code>
+- Display screenshots in a slideshow
+<h3>NFO Scanner Service</h3>
+- <strong>File:</strong> <code>service.seranov.nfoscanner-1.0.0.zip</code>
+- Background NFO file scanner
+<hr>
+<h2>Troubleshooting</h2>
+<h3>"Install from zip file" option is greyed out</h3>
+<strong>Solution:</strong> You need to enable "Unknown sources" in Settings → System → Add-ons
+<h3>Add-on installation fails</h3>
+<strong>Causes and Solutions:</strong>
+<p>1. <strong>Internet connection issue</strong>
+   - Check your internet connection
+   - Try again later</p>
+<p>2. <strong>Corrupted download</strong>
+   - Make sure the ZIP file was downloaded correctly
+   - Try downloading again from <a href="https://github.com/seranov/seranov-kodi/releases">Releases</a></p>
+<p>3. <strong>Unknown sources disabled</strong>
+   - Enable "Unknown sources" in settings (see Option 1, Step 2)</p>
+<p>4. <strong>Outdated Kodi version</strong>
+   - Update Kodi to version 19.x or later</p>
+<h3>Repository doesn't show any add-ons</h3>
+<strong>Solution:</strong>
+- Make sure you have an internet connection
+- Try updating the repository: Right-click on "Seranov's Kodi Repository" and select "Check for updates"
+<hr>
+<h2>Additional Resources</h2>
+<p>- <a href="QUICKSTART.md">Quick Start Guide</a>
+- <a href="CONTRIBUTING.md">Contributing Guide</a>
+- <a href="RELEASE_NOTES.md">Release Notes</a></p>
+
+    </div>
+</body>
+</html>

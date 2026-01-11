@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTRIBUTING</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Contributing to Seranov's Kodi Add-ons Repository</h1>
+<p>Thank you for your interest in contributing! This guide will help you create new service plugins for this repository.</p>
+<h2>Creating a New Service Plugin</h2>
+<h3>Step 1: Use the NFO Scanner as a Reference</h3>
+<p>The <code>service.seranov.nfoscanner</code> addon provides a good example of a complete service plugin with:</p>
+<p>- Background scanning with configurable intervals
+- Event monitoring (playback, settings changes)
+- JSON-RPC API integration with Kodi
+- Threading support
+- Settings management
+- Localization support</p>
+<p>You can use it as a reference for creating your own service plugins.</p>
+<h3>Step 2: Create Your Service Structure</h3>
+<pre><code>bash
+<h1>Create the service directory</h1>
+mkdir -p service.seranov.yourplugin/resources/lib
+mkdir -p service.seranov.yourplugin/resources/language/resource.language.en_gb
+</code></pre>
+<h3>Step 3: Update addon.xml</h3>
+<p>Edit <code>service.seranov.yourplugin/addon.xml</code>:</p>
+<p>1. Change the <code>id</code> attribute: <code>service.seranov.yourplugin</code>
+2. Update the <code>name</code> attribute: <code>Your Plugin Name</code>
+3. Update <code>version</code> to <code>1.0.0</code>
+4. Update <code>summary</code> and <code>description</code>
+5. Keep the <code>provider-name</code> as <code>seranov</code> or change to your name</p>
+<p>Example:
+<pre><code>xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.seranov.myplugin" name="My Custom Service" version="1.0.0" provider-name="seranov">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.service" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">My custom service plugin</summary>
+        <description lang="en_GB">This service does something useful</description>
+        ...
+    </extension>
+</addon>
+</code></pre></p>
+<h3>Step 4: Implement Your Service Logic</h3>
+<p>Edit <code>service.seranov.yourplugin/service.py</code>:</p>
+<strong>For Template 1 (Periodic Service):</strong>
+- Modify the <code>do<em>service</em>work()</code> method to implement your logic
+- Adjust the <code>check_interval</code> setting as needed
+<strong>For Template 2 (Event-Driven Service):</strong>
+- Implement <code>on<em>playback</em>started()</code> and <code>on<em>playback</em>stopped()</code> methods
+- Add additional event handlers in the <code>ServiceMonitor</code> class
+- Modify the <code>run()</code> method if needed
+<h3>Step 5: Update Settings</h3>
+<p>Edit <code>service.seranov.yourplugin/resources/settings.xml</code>:</p>
+<p>Add or modify settings for your plugin. Example:</p>
+<pre><code>xml
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32001">
+        <setting id="my_setting" type="text" label="32020" default="value"/>
+        <setting id="enable_feature" type="bool" label="32021" default="true"/>
+    </category>
+</settings>
+</code></pre>
+<h3>Step 6: Update Language Strings</h3>
+<p>Edit <code>service.seranov.yourplugin/resources/language/resource.language.en_gb/strings.xml</code>:</p>
+<pre><code>xml
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+    <string id="32000">Your Plugin Name</string>
+    <string id="32001">General</string>
+    <string id="32020">My Setting</string>
+    <string id="32021">Enable Feature</string>
+</strings>
+</code></pre>
+<h3>Step 7: Add Your Icon</h3>
+<p>Replace the icon if desired:
+- File: <code>service.seranov.yourplugin/icon.png</code>
+- Recommended size: 256x256 pixels or 512x512 pixels
+- Format: PNG with transparency</p>
+<h3>Step 8: Test Your Plugin Locally</h3>
+<p>1. Copy your plugin directory to Kodi's addons folder:
+   - Linux: <code>~/.kodi/addons/</code>
+   - Windows: <code>%APPDATA%\Kodi\addons\</code>
+   - macOS: <code>~/Library/Application Support/Kodi/addons/</code></p>
+<p>2. Restart Kodi or refresh add-ons</p>
+<p>3. Enable your service in <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>My Add-ons</strong> → <strong>Services</strong></p>
+<p>4. Check the Kodi log for any errors:
+   - Linux/macOS: <code>~/.kodi/temp/kodi.log</code>
+   - Windows: <code>%APPDATA%\Kodi\kodi.log</code></p>
+<h3>Step 9: Generate Repository Files</h3>
+<p>Run the repository generation script:</p>
+<pre><code>bash
+python3 scripts/generate_repo.py
+</code></pre>
+<p>This will:
+- Create a ZIP file for your plugin in the <code>repo/</code> directory
+- Update <code>addons.xml</code> with your plugin's metadata
+- Update <code>addons.xml.md5</code> checksum</p>
+<h3>Step 10: Submit Your Plugin</h3>
+<p>1. Commit your changes:
+   <pre><code>bash
+   git add service.seranov.yourplugin/
+   git commit -m "Add service.seranov.yourplugin"
+   </code></pre></p>
+<p>2. Push to your branch and create a pull request</p>
+<h2>Best Practices</h2>
+<h3>Code Quality</h3>
+<p>- Use meaningful variable and function names
+- Add comments for complex logic
+- Follow PEP 8 style guide for Python code
+- Handle exceptions gracefully
+- Use logging instead of print statements</p>
+<h3>Settings</h3>
+<p>- Provide sensible default values
+- Group related settings in categories
+- Use appropriate setting types (text, number, bool, select)
+- Add validation for user input</p>
+<h3>Logging</h3>
+<p>Always use the Kodi logging system:</p>
+<pre><code>python
+import xbmc
+<p>xbmc.log('[service.seranov.yourplugin] Your message', xbmc.LOGINFO)
+</code></pre></p>
+<p>Log levels:
+- <code>xbmc.LOGDEBUG</code>: Debug messages
+- <code>xbmc.LOGINFO</code>: Informational messages
+- <code>xbmc.LOGWARNING</code>: Warnings
+- <code>xbmc.LOGERROR</code>: Errors
+- <code>xbmc.LOGFATAL</code>: Fatal errors</p>
+<h3>Performance</h3>
+<p>- Use <code>monitor.waitForAbort()</code> for delays instead of <code>time.sleep()</code>
+- Don't do heavy processing in the main thread
+- Respect the <code>abortRequested()</code> flag for clean shutdown
+- Be mindful of resource usage (CPU, memory, network)</p>
+<h3>Localization</h3>
+<p>- Use string IDs (32000+) for all user-facing text
+- Provide English strings at minimum
+- Consider adding translations for other languages</p>
+<h2>Common Patterns</h2>
+<h3>Reading Settings</h3>
+<pre><code>python
+import xbmcaddon
+<p>addon = xbmcaddon.Addon()
+my<em>setting = addon.getSetting('my</em>setting')
+enable<em>feature = addon.getSetting('enable</em>feature') == 'true'
+</code></pre></p>
+<h3>Showing Notifications</h3>
+<pre><code>python
+import xbmcgui
+<p>xbmcgui.Dialog().notification(
+    heading='My Plugin',
+    message='Something happened',
+    icon=xbmcgui.NOTIFICATION_INFO,
+    time=5000  # milliseconds
+)
+</code></pre></p>
+<h3>Executing JSON-RPC Commands</h3>
+<pre><code>python
+import xbmc
+import json
+<p>request = {
+    'jsonrpc': '2.0',
+    'method': 'Player.GetActivePlayers',
+    'id': 1
+}
+response = json.loads(xbmc.executeJSONRPC(json.dumps(request)))
+</code></pre></p>
+<h2>Resources</h2>
+<p>- <a href="https://kodi.wiki/view/Add-on_development">Kodi Add-on Development</a>
+- <a href="https://codedocs.xyz/xbmc/xbmc/">Kodi Python API</a>
+- <a href="https://kodi.wiki/view/JSON-RPC_API">Kodi JSON-RPC API</a></p>
+<h2>Questions?</h2>
+<p>If you have questions or need help, please:
+1. Check existing service plugins for examples
+2. Review the Kodi documentation
+3. Open an issue on GitHub</p>
+<p>Happy coding! 🎉
+</p>
+    </div>
+</body>
+</html>

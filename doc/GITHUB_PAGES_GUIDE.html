@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GITHUB PAGES GUIDE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>GitHub Pages Deployment - User Guide</h1>
+<h2>Overview</h2>
+<p>This document describes how the GitHub Pages deployment works and what users will see when visiting your Kodi repository.</p>
+<h2>Deployment Structure</h2>
+<p>When the GitHub Actions workflow runs, it creates the following structure in the <code>docs/</code> directory:</p>
+<pre><code>
+docs/
+├── .nojekyll                          # Disables Jekyll processing
+├── readme.html                        # Main landing page with addon cards
+├── addons.xml                         # Repository metadata for Kodi
+├── addons.xml.md5                     # Checksum for validation
+│
+├── doc/                               # Documentation (converted from Markdown)
+│   ├── README.html
+│   ├── QUICKSTART.html
+│   ├── INSTALLATION.html
+│   ├── CONTRIBUTING.html
+│   └── ... (all .md files from /doc directory)
+│
+└── [addon-directories]/               # Each addon gets its own directory
+    ├── context.screenshots/
+    │   ├── context.screenshots-1.0.5.zip
+    │   ├── icon.png
+    │   └── fanart.jpg
+    │
+    ├── plugin.video.unified.browser/
+    │   ├── plugin.video.unified.browser-1.0.0.zip
+    │   └── icon.png
+    │
+    └── ... (other addons)
+</code></pre>
+<h2>Main Landing Page (readme.html)</h2>
+<p>The <code>readme.html</code> file serves as the main landing page for your repository. It includes:</p>
+<h3>Features</h3>
+- <strong>Modern responsive design</strong> with gradient background
+- <strong>Addon cards</strong> for each available add-on with:
+  - Add-on name and version
+  - English summary and description
+  - Download ZIP button
+  - View files link
+  
+- <strong>Installation instructions</strong> with two methods:
+  1. Repository method (recommended)
+  2. Direct ZIP installation
+<p>- <strong>Documentation links</strong> to all converted HTML documents
+- <strong>Repository metadata links</strong> (addons.xml, addons.xml.md5)</p>
+<h3>CSS Styling</h3>
+The page includes embedded CSS with:
+- Grid layout for addon cards
+- Hover effects and animations
+- Mobile-responsive design
+- GitHub-style colors and typography
+<h2>URL Structure</h2>
+<h3>Main Repository URL</h3>
+<pre><code>
+https://seranov.github.io/kodi-play-random/readme.html
+</code></pre>
+<p>OR</p>
+<pre><code>
+https://seranov.github.io/kodi-play-random/
+</code></pre>
+(This will serve <code>readme.html</code> by default if properly configured)
+<h3>Addon Download URLs</h3>
+<pre><code>
+https://seranov.github.io/kodi-play-random/{addon-id}/{addon-id}-{version}.zip
+</code></pre>
+<p>Example:
+<pre><code>
+https://seranov.github.io/kodi-play-random/context.screenshots/context.screenshots-1.0.5.zip
+</code></pre></p>
+<h3>Documentation URLs</h3>
+<pre><code>
+https://seranov.github.io/kodi-play-random/doc/{filename}.html
+</code></pre>
+<p>Examples:
+<pre><code>
+https://seranov.github.io/kodi-play-random/doc/README.html
+https://seranov.github.io/kodi-play-random/doc/INSTALLATION.html
+</code></pre></p>
+<h2>For Kodi Integration</h2>
+<p>The repository can be added to Kodi using the direct repository URL:
+<pre><code>
+https://seranov.github.io/kodi-play-random/
+</code></pre></p>
+<p>Kodi will automatically find and parse <code>addons.xml</code> to discover available add-ons.</p>
+<h2>File Generation Process</h2>
+<h3>Step-by-step workflow:</h3>
+<p>1. <strong>Create directories</strong> - Create docs/doc and addon subdirectories
+2. <strong>Create ZIP archives</strong> - Package each addon with its assets
+3. <strong>Generate addons.xml</strong> - Create repository metadata from addon.xml files
+4. <strong>Generate checksum</strong> - Create MD5 hash for validation
+5. <strong>Create .nojekyll</strong> - Disable Jekyll to prevent file processing
+6. <strong>Convert documentation</strong> - Convert all .md files to .html with styling
+7. <strong>Generate readme.html</strong> - Create main landing page with addon cards
+8. <strong>Generate index pages</strong> - Create HTML index pages for each addon directory
+9. <strong>Deploy to gh-pages</strong> - Push all files to GitHub Pages</p>
+<h2>Python Scripts Used</h2>
+<h3>convert<em>md</em>to_html.py</h3>
+Converts Markdown files to HTML with GitHub-style formatting.
+<pre><code>bash
+python3 scripts/convert<em>md</em>to<em>html.py <input</em>dir> <output_dir>
+</code></pre>
+<p>Features:
+- Supports both markdown library and fallback basic conversion
+- Generates full HTML5 documents
+- Adds navigation links
+- Applies GitHub-style CSS</p>
+<h3>generate_readme.py</h3>
+Generates readme.html with links to all addons.
+<pre><code>bash
+python3 scripts/generate<em>readme.py <docs</em>dir>
+</code></pre>
+<p>Features:
+- Parses addon.xml files
+- Extracts addon metadata (name, version, description)
+- Creates attractive addon cards
+- Includes installation instructions
+- Links to documentation</p>
+<h2>Customization</h2>
+<h3>Colors</h3>
+The readme.html uses a purple gradient:
+<pre><code>css
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+</code></pre>
+<p>Modify in the HTML to change color scheme.</p>
+<h3>Add-on Display</h3>
+The addon cards are automatically generated from addon.xml files. To customize:
+<p>1. Edit addon.xml in your addon directory
+2. Update the <code><summary></code> and <code><description></code> tags with lang="en_GB"
+3. Re-run the workflow</p>
+<h3>Documentation Links</h3>
+Edit the documentation links section in <code>generate_readme.py</code> to add/remove links:
+<pre><code>python
+<li><a href="doc/YOURFILE.html">📖 Your Documentation</a></li>
+</code></pre>
+<h2>Troubleshooting</h2>
+<h3>Issue: Addon cards not showing</h3>
+- Check that addon.xml files exist in addon directories
+- Ensure addon directories follow the naming pattern: <code>plugin.<em></code>, <code>service.</em></code>, <code>context.<em></code>, or <code>repository.</em></code>
+<h3>Issue: Documentation not showing</h3>
+- Check that .md files are in the <code>/doc</code> directory
+- Ensure Python markdown library is available (optional, falls back to basic conversion)
+- Check that HTML files were generated in <code>docs/doc/</code>
+<h3>Issue: ZIP downloads broken</h3>
+- Ensure addon ZIP files were created successfully
+- Check that addon IDs and versions match between addon.xml and actual files
+<h2>GitHub Actions Workflow</h2>
+<p>The deployment is triggered by:
+- Push to main branch
+- New version tags (v*)
+- Manual workflow_dispatch</p>
+<p>The workflow runs in Ubuntu environment and uses:
+- Python 3.9+
+- rsync for file operations
+- zip command for archiving</p>
+<h2>Security Notes</h2>
+<p>- .nojekyll disables Jekyll processing (prevents unwanted file transformations)
+- addons.xml.md5 provides checksum verification for Kodi
+- All files are served from GitHub Pages (HTTPS by default)
+- No server-side processing (static files only)</p>
+<h2>Future Enhancements</h2>
+<p>Possible improvements:
+1. Search functionality in readme.html
+2. Add-on screenshots/previews
+3. Automatic changelog display
+4. Multi-language support (i18n)
+5. User ratings/reviews
+6. Automated changelog generation</p>
+<h2>Support</h2>
+<p>For issues or questions:
+- Check GitHub Issues: https://github.com/seranov/seranov-kodi/issues
+- Review workflow logs in Actions tab
+- Validate addon.xml files with XML validator</p>
+
+    </div>
+</body>
+</html>

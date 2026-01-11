@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUILD AND PUBLISH</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Build and Publish Guide</h1>
+<blockquote><a href="BUILD<em>AND</em>PUBLISH.ru.md">Русская версия / Russian version</a></blockquote>
+<p>This guide explains how to build and publish releases of the Kodi repository with automatic deployment to GitHub Pages.</p>
+<blockquote>💡 <strong>Quick Update Guide:</strong> If you just want to update a plugin version and publish it, see the <a href="VERSION_UPDATE.md">Version Update Guide</a> for a streamlined step-by-step process.</blockquote>
+<h2>Overview</h2>
+<p>The repository uses an automated CI/CD pipeline that:
+- ✅ Builds ZIP archives for all add-ons
+- ✅ Generates <code>addons.xml</code> and <code>addons.xml.md5</code>
+- ✅ Deploys to GitHub Pages automatically
+- ✅ Enables automatic updates in Kodi</p>
+<strong>Repository URL:</strong> <code>https://seranov.github.io/seranov-kodi/</code>
+<hr>
+<h2>Local Build (Testing)</h2>
+<h3>Prerequisites</h3>
+<p>- Python 3.9 or later
+- PowerShell (Windows) or Bash (Linux/Mac)
+- Git</p>
+<h3>Build Repository Locally</h3>
+<p>#### Windows (PowerShell)</p>
+<pre><code>powershell
+<h1>Navigate to repository root</h1>
+cd C:\prj\seranov-kodi
+<h1>Run build script</h1>
+.\scripts\build-release.ps1
+</code></pre>
+<strong>Build Options:</strong>
+<pre><code>powershell
+<h1>Build with specific version</h1>
+.\scripts\build-release.ps1 -Version "1.0.1"
+<h1>Skip build, just show info</h1>
+.\scripts\build-release.ps1 -SkipBuild
+<h1>Create git tag</h1>
+.\scripts\build-release.ps1 -CreateGitTag
+</code></pre>
+<p>#### Linux/Mac (Bash)</p>
+<pre><code>bash
+<h1>Navigate to repository root</h1>
+cd ~/seranov-kodi
+<h1>Run Python generator directly</h1>
+python3 scripts/generate_repo.py
+</code></pre>
+<h3>What Gets Built</h3>
+<p>After running the build, the <code>repo/</code> directory will contain:</p>
+<pre><code>
+repo/
+├── addons.xml              # Repository metadata
+├── addons.xml.md5          # Checksum file
+├── context.screenshots/
+│   ├── context.screenshots-1.0.5.zip
+│   └── icon.png
+├── plugin.video.random.recursive/
+│   ├── plugin.video.random.recursive-1.0.0.zip
+│   └── icon.png
+├── plugin.video.unified.browser/
+│   ├── plugin.video.unified.browser-1.0.0.zip
+│   └── icon.png
+├── repository.seranov/
+│   ├── repository.seranov-1.0.0.zip
+│   └── icon.png
+└── service.seranov.nfoscanner/
+    ├── service.seranov.nfoscanner-1.0.0.zip
+    └── icon.png
+</code></pre>
+<hr>
+<h2>Automated GitHub Pages Deployment</h2>
+<h3>How It Works</h3>
+<p>The repository uses <strong>GitHub Actions</strong> to automatically build and deploy on every push to <code>main</code>:</p>
+<p>1. <strong>Trigger:</strong> Push to <code>main</code> branch or tag starting with <code>v*</code>
+2. <strong>Build:</strong> Creates all ZIP archives and metadata files
+3. <strong>Deploy:</strong> Publishes to <code>gh-pages</code> branch
+4. <strong>Available:</strong> Files are served via <code>https://seranov.github.io/seranov-kodi/</code></p>
+<h3>Workflow File</h3>
+<code>.github/workflows/publish-release.yml</code>
+<strong>Key Features:</strong>
+- ✅ Python 3.9+ for modern Path APIs
+- ✅ Creates ZIP archives for all add-ons
+- ✅ Generates <code>addons.xml</code> with proper indentation
+- ✅ Calculates MD5 checksums
+- ✅ Deploys to GitHub Pages (<code>gh-pages</code> branch)
+- ✅ Creates <code>.nojekyll</code> to prevent Jekyll processing
+<h3>Monitoring Deployments</h3>
+<p>1. <strong>View GitHub Actions:</strong>
+   - Go to: https://github.com/seranov/seranov-kodi/actions
+   - Check workflow status: <strong>Publish Kodi Repository</strong></p>
+<p>2. <strong>Check gh-pages branch:</strong>
+   - Go to: https://github.com/seranov/seranov-kodi/tree/gh-pages
+   - Verify files are present</p>
+<p>3. <strong>Test Repository URL:</strong>
+   - Visit: https://seranov.github.io/seranov-kodi/addons.xml
+   - Should display XML content</p>
+<hr>
+<h2>Publishing a New Release</h2>
+<h3>Step 1: Update Version Numbers</h3>
+<p>Update version in relevant <code>addon.xml</code> files:</p>
+<strong>Example:</strong> Update <code>plugin.video.random.recursive/addon.xml</code>
+<pre><code>xml
+<addon id="plugin.video.random.recursive" version="1.0.1" ...>
+</code></pre>
+<strong>Files to check:</strong>
+- <code>plugin.video.random.recursive/addon.xml</code>
+- <code>plugin.video.unified.browser/addon.xml</code>
+- <code>context.screenshots/addon.xml</code>
+- <code>service.seranov.nfoscanner/addon.xml</code>
+- <code>repository.seranov/addon.xml</code> (if repository version changes)
+<h3>Step 2: Update Changelog</h3>
+<p>Add changes to changelog files:
+- <code>doc/RELEASE_NOTES.md</code>
+- Individual add-on changelogs (if any)</p>
+<h3>Step 3: Commit and Push</h3>
+<pre><code>bash
+<h1>Add changes</h1>
+git add .
+<h1>Commit with descriptive message</h1>
+git commit -m "Release version 1.0.1
+<p>- Updated plugin.video.random.recursive to 1.0.1
+- Fixed playback issues
+- Added new features"</p>
+<h1>Push to main</h1>
+git push origin main
+</code></pre>
+<h3>Step 4: Create Git Tag (Optional)</h3>
+<pre><code>bash
+<h1>Create annotated tag</h1>
+git tag -a v1.0.1 -m "Release version 1.0.1"
+<h1>Push tag</h1>
+git push origin v1.0.1
+</code></pre>
+<h3>Step 5: Wait for Deployment</h3>
+<p>1. <strong>GitHub Actions runs automatically</strong> after push
+2. <strong>Monitor progress</strong> at: https://github.com/seranov/seranov-kodi/actions
+3. <strong>Deployment takes ~1-2 minutes</strong>
+4. <strong>Check GitHub Pages</strong> is updated</p>
+<h3>Step 6: Verify Deployment</h3>
+<pre><code>bash
+<h1>Check addons.xml is updated</h1>
+curl https://seranov.github.io/seranov-kodi/addons.xml
+<h1>Check specific add-on ZIP exists</h1>
+curl -I https://seranov.github.io/seranov-kodi/plugin.video.random.recursive/plugin.video.random.recursive-1.0.1.zip
+</code></pre>
+<h3>Step 7: Test in Kodi</h3>
+<p>1. Open Kodi
+2. Go to <strong>Add-ons</strong> → <strong>Seranov's Kodi Repository</strong>
+3. Right-click → <strong>Check for updates</strong>
+4. Verify new version appears</p>
+<hr>
+<h2>Creating GitHub Releases (Optional)</h2>
+<p>While GitHub Pages handles automatic updates, you can still create GitHub Releases for better visibility:</p>
+<h3>Step 1: Go to Releases</h3>
+<p>Visit: https://github.com/seranov/seranov-kodi/releases/new</p>
+<h3>Step 2: Fill Release Form</h3>
+<p>- <strong>Tag version:</strong> <code>v1.0.1</code> (select existing or create new)
+- <strong>Target:</strong> <code>main</code>
+- <strong>Release title:</strong> <code>v1.0.1 - Feature Update</code>
+- <strong>Description:</strong> Copy from <code>RELEASE_NOTES.md</code></p>
+<h3>Step 3: Attach Files (Optional)</h3>
+<p>Upload key files from <code>repo/</code> directory:
+- <code>repository.seranov-1.0.0.zip</code> (main installation file)
+- Updated add-on ZIPs</p>
+<h3>Step 4: Publish Release</h3>
+<p>Click <strong>Publish release</strong></p>
+<hr>
+<h2>GitHub Pages Configuration</h2>
+<h3>Initial Setup (Already Done)</h3>
+<p>The repository is configured with:</p>
+<p>1. <strong>GitHub Pages Settings:</strong>
+   - Source: <code>gh-pages</code> branch
+   - Custom domain: None
+   - URL: <code>https://seranov.github.io/seranov-kodi/</code></p>
+<p>2. <strong>Repository Settings:</strong>
+   - Workflow permissions: Read and write
+   - Pages enabled</p>
+<h3>Verifying Configuration</h3>
+<p>1. Go to: https://github.com/seranov/seranov-kodi/settings/pages
+2. Check:
+   - ✅ Source: Deploy from branch <code>gh-pages</code>
+   - ✅ Branch: <code>gh-pages</code> / <code>root</code>
+   - ✅ Status: <strong>Your site is live at https://seranov.github.io/seranov-kodi/</strong></p>
+<hr>
+<h2>Troubleshooting</h2>
+<h3>Deployment Fails</h3>
+<strong>Check GitHub Actions logs:</strong>
+1. Go to: https://github.com/seranov/seranov-kodi/actions
+2. Click on failed workflow
+3. Review error messages
+<strong>Common issues:</strong>
+- Missing <code>addon.xml</code> files
+- Invalid XML syntax
+- Python version mismatch (needs 3.9+)
+<h3>GitHub Pages Not Updating</h3>
+<strong>Solutions:</strong>
+1. <strong>Check gh-pages branch exists:</strong>
+   - https://github.com/seranov/seranov-kodi/tree/gh-pages
+<p>2. <strong>Clear GitHub Pages cache:</strong>
+   - Wait 5-10 minutes for CDN propagation
+   - Try in incognito/private browser window</p>
+<p>3. <strong>Check workflow permissions:</strong>
+   - Settings → Actions → General → Workflow permissions
+   - Should be: <strong>Read and write permissions</strong></p>
+<h3>Kodi Not Detecting Updates</h3>
+<strong>Solutions:</strong>
+1. <strong>Force update check:</strong>
+   - Right-click on repository → Check for updates
+<p>2. <strong>Verify addons.xml:</strong>
+   - Visit: https://seranov.github.io/seranov-kodi/addons.xml
+   - Verify version numbers are correct</p>
+<p>3. <strong>Check Kodi log:</strong>
+   - Look for repository update errors
+   - Windows: <code>%APPDATA%\Kodi\kodi.log</code></p>
+<hr>
+<h2>Advanced: Manual Deployment</h2>
+<p>If automated deployment fails, you can deploy manually:</p>
+<h3>Step 1: Build Locally</h3>
+<pre><code>powershell
+<h1>Build repository</h1>
+.\scripts\build-release.ps1
+</code></pre>
+<h3>Step 2: Copy to docs/ Directory</h3>
+<pre><code>powershell
+<h1>Copy repo contents to docs/</h1>
+Copy-Item -Path repo\* -Destination docs\ -Recurse -Force
+</code></pre>
+<h3>Step 3: Commit and Push</h3>
+<pre><code>bash
+git add docs/
+git commit -m "Manual deployment"
+git push origin main
+</code></pre>
+<h3>Step 4: Deploy to gh-pages</h3>
+<pre><code>bash
+<h1>Using subtree push</h1>
+git subtree push --prefix docs origin gh-pages
+<h1>Or force push if needed</h1>
+git push origin <code>git subtree split --prefix docs main</code>:gh-pages --force
+</code></pre>
+<hr>
+<h2>File Structure Reference</h2>
+<h3>Source Files (in repository root)</h3>
+<pre><code>
+plugin.video.random.recursive/
+  addon.xml              # Version: 1.0.0
+  main.py
+  resources/...
+<p>context.screenshots/
+  addon.xml              # Version: 1.0.5
+  addon.py
+  resources/...</p>
+<p>repository.seranov/
+  addon.xml              # Version: 1.0.0
+  icon.png</p>
+<p>scripts/
+  build-release.ps1      # Windows build script
+  generate_repo.py       # Python generator
+  deploy-local.ps1       # Local deployment
+</code></pre></p>
+<h3>Generated Files (in repo/ and docs/)</h3>
+<pre><code>
+repo/                    # Local build output
+docs/                    # GitHub Pages content (deployed to gh-pages)
+  addons.xml
+  addons.xml.md5
+  .nojekyll
+  context.screenshots/
+    context.screenshots-1.0.5.zip
+    icon.png
+  plugin.video.random.recursive/
+    plugin.video.random.recursive-1.0.0.zip
+    icon.png
+  ...
+</code></pre>
+<hr>
+<h2>Best Practices</h2>
+<h3>Version Numbering</h3>
+<p>Follow Semantic Versioning: <code>MAJOR.MINOR.PATCH</code></p>
+<p>- <strong>MAJOR:</strong> Breaking changes
+- <strong>MINOR:</strong> New features, backward compatible
+- <strong>PATCH:</strong> Bug fixes</p>
+<h3>Commit Messages</h3>
+<p>Use clear, descriptive commit messages:</p>
+<pre><code>
+✅ Good:
+Release version 1.0.1 - Fix video playback
+<p>❌ Bad:
+update
+fix
+changes
+</code></pre></p>
+<h3>Testing Before Release</h3>
+<p>1. <strong>Build locally first:</strong>
+   <pre><code>powershell
+   .\scripts\build-release.ps1
+   </code></pre></p>
+<p>2. <strong>Test ZIP installation in Kodi:</strong>
+   - Install from <code>repo/*.zip</code> files
+   - Verify add-ons work correctly</p>
+<p>3. <strong>Check metadata:</strong>
+   - Open <code>repo/addons.xml</code>
+   - Verify all versions and dependencies</p>
+<h3>Documentation</h3>
+<p>Always update:
+- ✅ <code>RELEASE_NOTES.md</code> - User-facing changes
+- ✅ <code>addon.xml</code> - Version numbers
+- ✅ Changelog sections</p>
+<hr>
+<h2>Resources</h2>
+<h3>Documentation</h3>
+- <a href="VERSION_UPDATE.md">Version Update Guide</a> - Step-by-step guide for updating plugin versions
+- <a href="INSTALLATION.md">Installation Guide</a>
+- <a href="RELEASE_NOTES.md">Release Notes</a>
+- <a href="CONTRIBUTING.md">Contributing Guide</a>
+<h3>Scripts</h3>
+- <code>scripts/build-release.ps1</code> - Windows build and release
+- <code>scripts/generate_repo.py</code> - Python repository generator
+- <code>scripts/deploy-local.ps1</code> - Local Kodi deployment
+<h3>External Links</h3>
+- <a href="https://kodi.wiki/view/Add-on_development">Kodi Add-on Development</a>
+- <a href="https://docs.github.com/en/pages">GitHub Pages Documentation</a>
+- <a href="https://docs.github.com/en/actions">GitHub Actions Documentation</a>
+<hr>
+<h2>Support</h2>
+<p>If you encounter issues:</p>
+<p>1. <strong>Check documentation:</strong> <a href="../doc/">doc/</a>
+2. <strong>GitHub Issues:</strong> <a href="https://github.com/seranov/seranov-kodi/issues">github.com/seranov/seranov-kodi/issues</a>
+3. <strong>Email:</strong> seranov@yandex.ru</p>
+<hr>
+<strong>Last Updated:</strong> 2026-01-07
+
+    </div>
+</body>
+</html>

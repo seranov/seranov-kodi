@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUICKSTART</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Quick Start Guide</h1>
+<p>This guide will help you quickly get started with using the Seranov's Kodi repository and service plugins.</p>
+<h2>Installation</h2>
+<h3>Installing the Repository</h3>
+<p>1. <strong>Download the repository addon:</strong>
+   - Go to the <a href="https://github.com/seranov/seranov-kodi/releases">releases</a> or the <code>repo</code> directory
+   - Download <code>repository.seranov-1.0.0.zip</code></p>
+<p>2. <strong>Install in Kodi:</strong>
+   - Open Kodi
+   - Go to <strong>Settings</strong> (gear icon) → <strong>Add-ons</strong>
+   - Click <strong>Install from zip file</strong>
+   - Navigate to the downloaded <code>repository.seranov-1.0.0.zip</code>
+   - Wait for the "Add-on installed" notification</p>
+<p>3. <strong>Browse available add-ons:</strong>
+   - Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>Install from repository</strong>
+   - Select <strong>Seranov's Kodi Repository</strong>
+   - Browse categories to find available add-ons</p>
+<h3>Installing Individual Service Plugins</h3>
+<p>If you want to install a service plugin without the repository:</p>
+<p>1. Download the service plugin zip file (e.g., <code>service.seranov.nfoscanner-1.0.0.zip</code>)
+2. In Kodi, go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>Install from zip file</strong>
+3. Navigate to the downloaded zip file and install</p>
+<h2>Using Service Plugins</h2>
+<h3>NFO Scanner Service</h3>
+<p>A background service that automatically scans video folders for metadata changes.</p>
+<strong>Configuration:</strong>
+1. Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>My Add-ons</strong> → <strong>Services</strong>
+2. Select <strong>NFO Scanner Service</strong>
+3. Click <strong>Configure</strong>
+4. Adjust settings:
+   - <strong>Scan Interval</strong>: How often to scan (in minutes, default: 60)
+   - <strong>Thread Count</strong>: Number of scanning threads (1-4, default: 1)
+   - <strong>Pause on Playback</strong>: Pause scanning during video playback
+   - <strong>Enable Service</strong>: Enable or disable the scanner
+   - <strong>Scan Network Sources</strong>: Include network sources in scanning
+<strong>What it does:</strong>
+- Scans video folders for movie.nfo files
+- Checks if movie.nfo is newer than the Kodi database entry
+- Re-imports metadata when changes are detected
+- Processes category.nfo files for genre management
+- Pauses during video playback to avoid performance issues
+- Prioritizes folders based on user navigation
+<strong>Manual Controls:</strong>
+- Use the <strong>Start Manual Scan</strong> button to trigger an immediate scan
+- Use the <strong>Stop Scan</strong> button to stop the current scan
+- Use the <strong>Clear Cache</strong> button to reset the scanned folders list
+<h3>Enabling/Disabling Services</h3>
+<p>To enable or disable a service:
+1. Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>My Add-ons</strong> → <strong>Services</strong>
+2. Select the service
+3. Click <strong>Enable</strong> or <strong>Disable</strong></p>
+<h3>Viewing Service Logs</h3>
+<p>To check if a service is working correctly:</p>
+<p>1. Enable <strong>Debug logging</strong>:
+   - Go to <strong>Settings</strong> → <strong>System</strong> → <strong>Logging</strong>
+   - Enable <strong>Enable debug logging</strong></p>
+<p>2. View the log file:
+   - <strong>Linux/macOS</strong>: <code>~/.kodi/temp/kodi.log</code>
+   - <strong>Windows</strong>: <code>%APPDATA%\Kodi\kodi.log</code>
+   - <strong>Android</strong>: Use a log viewer app or adb</p>
+<p>3. Look for messages from your service:
+   <pre><code>
+   [NFOScanner] NFO Scanner Service v1.0.0 started
+   [NFOScanner] Scanning started
+   </code></pre></p>
+<h2>Developing Your Own Service Plugin</h2>
+<p>Want to create your own service plugin? See <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for a complete guide.</p>
+<h3>Quick Development Setup</h3>
+<p>1. <strong>Use the NFO Scanner as reference:</strong>
+   <pre><code>bash
+   # Study the service.seranov.nfoscanner structure
+   </code></pre></p>
+<p>2. <strong>Update metadata:</strong>
+   - Edit <code>addon.xml</code> with your plugin details
+   - Update strings in <code>resources/language/resource.language.en_gb/strings.xml</code></p>
+<p>3. <strong>Implement your logic:</strong>
+   - Edit <code>service.py</code> to add your custom functionality</p>
+<p>4. <strong>Test locally:</strong>
+   - Copy to Kodi's addons directory
+   - Restart Kodi
+   - Enable the service</p>
+<p>5. <strong>Build repository:</strong>
+   <pre><code>bash
+   python3 scripts/generate_repo.py
+   </code></pre></p>
+<h2>Troubleshooting</h2>
+<h3>Service not starting</h3>
+<p>1. Check if the service is enabled:
+   - <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>My Add-ons</strong> → <strong>Services</strong> → Select your service → <strong>Enable</strong></p>
+<p>2. Check the Kodi log for errors:
+   - Enable debug logging
+   - Look for error messages related to your service</p>
+<p>3. Verify dependencies:
+   - Ensure all required dependencies are installed</p>
+<h3>Service not working as expected</h3>
+<p>1. Enable debug mode in the service settings
+2. Check the Kodi log for detailed messages
+3. Verify your settings are correct
+4. Test with a simple action to isolate the issue</p>
+<h3>Changes not taking effect</h3>
+<p>1. Disable the service
+2. Restart Kodi
+3. Enable the service again</p>
+<h2>Repository Updates</h2>
+<p>To update add-ons from the repository:</p>
+<p>1. The repository checks for updates automatically
+2. Go to <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>My Add-ons</strong>
+3. Select an add-on with an available update
+4. Click <strong>Update</strong></p>
+<p>Or update all add-ons at once:
+- <strong>Settings</strong> → <strong>Add-ons</strong> → <strong>Updates</strong> → <strong>Update all</strong></p>
+<h2>Support</h2>
+<p>For issues, questions, or contributions:
+- GitHub Issues: <a href="https://github.com/seranov/seranov-kodi/issues">https://github.com/seranov/seranov-kodi/issues</a>
+- Email: seranov@yandex.ru</p>
+<h2>Links</h2>
+<p>- <a href="README.md">README.md</a> - Full documentation
+- <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> - Development guide
+- <a href="https://kodi.wiki/view/Add-on_development">Kodi Add-on Development</a>
+</p>
+    </div>
+</body>
+</html>

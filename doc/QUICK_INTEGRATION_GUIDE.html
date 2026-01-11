@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUICK INTEGRATION GUIDE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Quick Integration Guide</h1>
+<h2>For GitHub Actions Workflow</h2>
+<p>The deployment workflow is fully configured in <code>.github/workflows/publish-release.yml</code>.</p>
+<h3>Trigger Events</h3>
+<p>The workflow automatically runs on:</p>
+<pre><code>yaml
+on:
+  push:
+    branches:
+      - main          # Any push to main branch
+    tags:
+      - 'v*'         # Any version tag (v1.0.0, v1.1.0, etc.)
+  workflow_dispatch:  # Manual trigger from GitHub Actions tab
+</code></pre>
+<h3>Required Repository Settings</h3>
+<p>1. <strong>GitHub Pages Configuration</strong>
+   - Branch: <code>gh-pages</code>
+   - Source: <code>/</code> (root)
+   - Enforce HTTPS: Yes (recommended)</p>
+<p>2. <strong>Permissions</strong>
+   - Actions: Read and write permissions (for gh-pages deployment)
+   - Contents: Read access (for workflow)</p>
+<h3>How It Works</h3>
+<pre><code>
+1. Push to main or tag
+    ↓
+2. GitHub Actions workflow starts
+    ↓
+3. Checkout repository code
+    ↓
+4. Create addon ZIP archives
+    ↓
+5. Generate addons.xml metadata
+    ↓
+6. Convert .md files to .html
+    ↓
+7. Generate readme.html
+    ↓
+8. Deploy to gh-pages branch
+    ↓
+9. GitHub Pages serves the site
+</code></pre>
+<h2>For Local Development</h2>
+<h3>Create Test Addon</h3>
+<pre><code>bash
+mkdir -p test-addon
+cd test-addon
+<h1>Create addon structure</h1>
+cat > addon.xml << 'EOF'
+<?xml version='1.0' encoding='utf-8'?>
+<addon id="plugin.test" name="Test Addon" version="1.0.0" provider-name="test">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">A test addon</summary>
+        <description lang="en_GB">This is a test addon for development</description>
+        <language />
+        <platform>all</platform>
+        <license>MIT</license>
+        <website>https://github.com/your-repo</website>
+        <email>your@email.com</email>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>
+EOF
+<h1>Create main.py</h1>
+echo "# Test addon" > main.py
+<h1>Create icon</h1>
+wget -O icon.png https://via.placeholder.com/256x256?text=Test
+</code></pre>
+<h3>Test Scripts Locally</h3>
+<pre><code>bash
+<h1>1. Test Markdown conversion</h1>
+python3 scripts/convert<em>md</em>to<em>html.py doc test</em>docs/doc
+<h1>2. Test readme generation</h1>
+python3 scripts/generate<em>readme.py test</em>docs
+<h1>3. View generated files</h1>
+open test_docs/readme.html  # macOS
+xdg-open test_docs/readme.html  # Linux
+start test_docs/readme.html  # Windows
+</code></pre>
+<h3>Simulate Full Deployment</h3>
+<pre><code>bash
+#!/bin/bash
+set -e
+<h1>Create output directory</h1>
+mkdir -p docs/doc
+<h1>Create test addon ZIP</h1>
+mkdir -p docs/plugin.test
+cp test-addon/addon.xml docs/plugin.test/
+cp test-addon/icon.png docs/plugin.test/
+cd docs/plugin.test
+zip -r plugin.test-1.0.0.zip addon.xml icon.png
+cd ../..
+<h1>Generate files</h1>
+python3 scripts/convert<em>md</em>to_html.py doc docs/doc
+python3 scripts/generate_readme.py docs
+touch docs/.nojekyll
+<h1>View result</h1>
+echo "Generated files:"
+find docs -type f -name "<em>.html" -o -name "</em>.xml" -o -name "*.md5"
+<h1>Open in browser</h1>
+open docs/readme.html
+</code></pre>
+<h2>For First-Time Setup</h2>
+<h3>1. Enable GitHub Pages</h3>
+<pre><code>bash
+<h1>Go to: Settings → Pages</h1>
+<h1>Source: GitHub Actions (or branch: gh-pages)</h1>
+</code></pre>
+<h3>2. Verify Workflow Permissions</h3>
+<pre><code>bash
+<h1>Go to: Settings → Actions → General</h1>
+<h1>Workflow permissions: Read and write permissions</h1>
+</code></pre>
+<h3>3. Run Workflow</h3>
+<pre><code>bash
+<h1>Push to main or manually trigger:</h1>
+<h1>Actions tab → Publish Kodi Repository → Run workflow</h1>
+</code></pre>
+<h3>4. Check Results</h3>
+<pre><code>bash
+<h1>Wait 1-2 minutes for deployment</h1>
+<h1>Visit: https://username.github.io/repo-name/readme.html</h1>
+</code></pre>
+<h2>Common Issues</h2>
+<h3>Issue: Workflow fails with "No addons found"</h3>
+<strong>Cause:</strong> Addon directories not named correctly or no addon.xml files
+<strong>Solution:</strong>
+<pre><code>bash
+<h1>Ensure addon directories exist and match patterns:</h1>
+ls -d plugin.<em> service.</em> context.<em> repository.</em> 2>/dev/null || echo "No addons found"
+<h1>Ensure addon.xml exists:</h1>
+find . -name "addon.xml" | head -5
+</code></pre>
+<h3>Issue: Documentation not converted</h3>
+<strong>Cause:</strong> Python markdown library not available
+<strong>Solution:</strong> 
+The script has a fallback, so it will still work but with basic formatting. To use advanced formatting:
+<pre><code>bash
+pip install markdown
+</code></pre>
+<h3>Issue: Pages not deploying</h3>
+<strong>Cause:</strong> GitHub Pages not configured properly
+<strong>Solution:</strong>
+1. Check Settings → Pages
+2. Ensure branch is <code>gh-pages</code>
+3. Verify source is <code>/</code> (root)
+4. Check Actions logs for errors
+<h3>Issue: addon.xml not parsing</h3>
+<strong>Cause:</strong> Invalid XML format
+<strong>Solution:</strong>
+<pre><code>bash
+<h1>Validate XML:</h1>
+python3 -m xml.dom.minidom plugin.test/addon.xml
+<h1>Or use online validator:</h1>
+<h1>https://www.xmlvalidation.com/</h1>
+</code></pre>
+<h2>Customization</h2>
+<h3>Change Repository Colors</h3>
+<p>Edit <code>scripts/generate_readme.py</code>, find:</p>
+<pre><code>python
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+</code></pre>
+<p>Change hex colors to your preference.</p>
+<h3>Add Custom Sections to readme.html</h3>
+<p>Edit the HTML template in <code>create<em>html</em>content()</code> function in <code>scripts/generate_readme.py</code>:</p>
+<pre><code>python
+<div class="custom-section">
+    <h2>Custom Title</h2>
+    <p>Custom content here</p>
+</div>
+</code></pre>
+<h3>Modify Documentation Template</h3>
+<p>Edit <code>create<em>html</em>template()</code> in <code>scripts/convert<em>md</em>to_html.py</code> to change styling or layout.</p>
+<h2>Performance Tips</h2>
+<h3>Reduce ZIP File Sizes</h3>
+<pre><code>bash
+<h1>Exclude unnecessary files</h1>
+cat > .zipignore << 'EOF'
+*.pyc
+<strong>pycache</strong>
+.git
+.github
+.idea
+*.md
+EOF
+<h1>Update create<em>addon</em>zip function to use it</h1>
+</code></pre>
+<h3>Cache Generated Files</h3>
+<p>GitHub Actions automatically caches installed packages. For faster builds:</p>
+<pre><code>yaml
+- uses: actions/cache@v3
+  with:
+    path: ~/.cache/pip
+    key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+</code></pre>
+<h3>Monitor Workflow Performance</h3>
+<p>Check Actions tab → Workflow runs → Click run → Timing section</p>
+<h2>Monitoring & Maintenance</h2>
+<h3>Regular Tasks</h3>
+<p>- [ ] Monitor workflow runs (weekly)
+- [ ] Check for broken addon links (monthly)
+- [ ] Update addon versions when releasing (before push)
+- [ ] Validate addon.xml files before release
+- [ ] Test local builds before pushing to main</p>
+<h3>Watch for Errors</h3>
+<p>GitHub will email on workflow failures. Check:</p>
+<p>1. Actions tab
+2. Workflow logs
+3. GitHub Status page</p>
+<h3>Analytics</h3>
+<p>To track usage:
+- Enable GitHub Insights
+- Monitor release download counts
+- Check Pages traffic (Settings → Pages)</p>
+<h2>Integration with Other Tools</h2>
+<h3>Pre-commit Hook</h3>
+<pre><code>bash
+#!/bin/bash
+<h1>.git/hooks/pre-commit</h1>
+<h1>Validate all addon.xml files</h1>
+for addon_xml in */addon.xml; do
+    python3 -m xml.dom.minidom "$addon_xml" > /dev/null || {
+        echo "Invalid XML: $addon_xml"
+        exit 1
+    }
+done
+<p>exit 0
+</code></pre></p>
+<h3>Local GitHub Actions Testing</h3>
+<pre><code>bash
+<h1>Install act: https://github.com/nektos/act</h1>
+act -j build-and-deploy
+<h1>Or simulate with Docker:</h1>
+docker run --rm -v ~/.ssh:/root/.ssh -v $PWD:/workspace \
+    --workdir /workspace \
+    ubuntu:latest bash -c "
+        apt-get update && apt-get install -y python3
+        python3 scripts/generate_readme.py docs
+    "
+</code></pre>
+<h3>CI/CD Pipeline Integration</h3>
+<p>For other CI/CD systems (GitLab CI, Jenkins, etc.):</p>
+<pre><code>bash
+<h1>Run the same steps as GitHub Actions</h1>
+python3 scripts/convert<em>md</em>to_html.py doc docs/doc
+python3 scripts/generate_readme.py docs
+touch docs/.nojekyll
+<h1>Then deploy docs/ directory to your hosting</h1>
+</code></pre>
+<h2>Troubleshooting Checklist</h2>
+<p>- [ ] addon.xml files are valid XML
+- [ ] Addon directory names match expected patterns
+- [ ] .md files exist in <code>/doc</code> directory
+- [ ] Python 3.9+ is being used
+- [ ] GitHub Pages is enabled and configured
+- [ ] Workflow permissions are set to "read and write"
+- [ ] No sensitive data in addon.xml or .md files
+- [ ] All external links in documentation are valid
+- [ ] File permissions allow read/write in docs directory
+- [ ] GitHub Actions log shows no Python errors</p>
+<h2>Getting Help</h2>
+<p>1. Check workflow logs in Actions tab
+2. Review generated files in gh-pages branch
+3. Validate HTML at https://validator.w3.org/
+4. Open issue with:
+   - Workflow log excerpt
+   - Screenshot of error
+   - Steps to reproduce
+   - Output of <code>find . -name "addon.xml"</code></p>
+<h2>Success Indicators</h2>
+<p>✅ Workflow completed successfully (green checkmark)
+✅ readme.html displays addon cards
+✅ Download links work
+✅ Documentation links work
+✅ Can add repository to Kodi
+✅ addons.xml.md5 checksum valid</p>
+<p>Everything else is extra polish!</p>
+
+    </div>
+</body>
+</html>

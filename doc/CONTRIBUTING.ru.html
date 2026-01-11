@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTRIBUTING.ru</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Участие в разработке репозитория аддонов Seranov для Kodi</h1>
+<p>Спасибо за интерес к участию в проекте! Это руководство поможет вам создать новые плагины-службы для этого репозитория.</p>
+<h2>Создание нового плагина-службы</h2>
+<h3>Шаг 1: Используйте NFO Scanner в качестве примера</h3>
+<p>Аддон <code>service.seranov.nfoscanner</code> представляет собой хороший пример полного плагина-службы с:</p>
+<p>- Фоновым сканированием с настраиваемыми интервалами
+- Мониторингом событий (воспроизведение, изменения настроек)
+- Интеграцией JSON-RPC API с Kodi
+- Поддержкой потоков
+- Управлением настройками
+- Поддержкой локализации</p>
+<p>Вы можете использовать его в качестве примера для создания собственных плагинов-служб.</p>
+<h3>Шаг 2: Создайте структуру своей службы</h3>
+<pre><code>bash
+<h1>Создайте директорию службы</h1>
+mkdir -p service.seranov.yourplugin/resources/lib
+mkdir -p service.seranov.yourplugin/resources/language/resource.language.en_gb
+</code></pre>
+<h3>Шаг 3: Обновите addon.xml</h3>
+<p>Отредактируйте <code>service.seranov.yourplugin/addon.xml</code>:</p>
+<p>1. Измените атрибут <code>id</code>: <code>service.seranov.yourplugin</code>
+2. Обновите атрибут <code>name</code>: <code>Имя вашего плагина</code>
+3. Обновите <code>version</code> на <code>1.0.0</code>
+4. Обновите <code>summary</code> и <code>description</code>
+5. Оставьте <code>provider-name</code> как <code>seranov</code> или измените на ваше имя</p>
+<p>Пример:
+<pre><code>xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="service.seranov.myplugin" name="Моя пользовательская служба" version="1.0.0" provider-name="seranov">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    <extension point="xbmc.service" library="service.py"/>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="ru_RU">Мой плагин-служба</summary>
+        <description lang="ru_RU">Эта служба делает что-то полезное</description>
+        ...
+    </extension>
+</addon>
+</code></pre></p>
+<h3>Шаг 4: Реализуйте логику вашей службы</h3>
+<p>Отредактируйте <code>service.seranov.yourplugin/service.py</code>:</p>
+<strong>Для шаблона 1 (периодическая служба):</strong>
+- Измените метод <code>do<em>service</em>work()</code> для реализации вашей логики
+- Настройте параметр <code>check_interval</code> по необходимости
+<strong>Для шаблона 2 (служба, управляемая событиями):</strong>
+- Реализуйте методы <code>on<em>playback</em>started()</code> и <code>on<em>playback</em>stopped()</code>
+- Добавьте дополнительные обработчики событий в класс <code>ServiceMonitor</code>
+- Измените метод <code>run()</code> при необходимости
+<h3>Шаг 5: Обновите настройки</h3>
+<p>Отредактируйте <code>service.seranov.yourplugin/resources/settings.xml</code>:</p>
+<p>Добавьте или измените настройки для вашего плагина. Пример:</p>
+<pre><code>xml
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32001">
+        <setting id="my_setting" type="text" label="32020" default="значение"/>
+        <setting id="enable_feature" type="bool" label="32021" default="true"/>
+    </category>
+</settings>
+</code></pre>
+<h3>Шаг 6: Обновите языковые строки</h3>
+<p>Отредактируйте <code>service.seranov.yourplugin/resources/language/resource.language.en_gb/strings.xml</code>:</p>
+<pre><code>xml
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+    <string id="32000">Имя вашего плагина</string>
+    <string id="32001">Общие</string>
+    <string id="32020">Моя настройка</string>
+    <string id="32021">Включить функцию</string>
+</strings>
+</code></pre>
+<p>Для русской локализации создайте файл <code>resources/language/resource.language.ru_ru/strings.xml</code>:</p>
+<pre><code>xml
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+    <string id="32000">Имя вашего плагина</string>
+    <string id="32001">Общие</string>
+    <string id="32020">Моя настройка</string>
+    <string id="32021">Включить функцию</string>
+</strings>
+</code></pre>
+<h3>Шаг 7: Добавьте свою иконку</h3>
+<p>Замените иконку при желании:
+- Файл: <code>service.seranov.yourplugin/icon.png</code>
+- Рекомендуемый размер: 256x256 пикселей или 512x512 пикселей
+- Формат: PNG с прозрачностью</p>
+<h3>Шаг 8: Тестируйте ваш плагин локально</h3>
+<p>1. Скопируйте директорию вашего плагина в папку аддонов Kodi:
+   - Linux: <code>~/.kodi/addons/</code>
+   - Windows: <code>%APPDATA%\Kodi\addons\</code>
+   - macOS: <code>~/Library/Application Support/Kodi/addons/</code></p>
+<p>2. Перезапустите Kodi или обновите аддоны</p>
+<p>3. Включите вашу службу в <strong>Настройки</strong> → <strong>Дополнения</strong> → <strong>Мои дополнения</strong> → <strong>Службы</strong></p>
+<p>4. Проверьте лог Kodi на наличие ошибок:
+   - Linux/macOS: <code>~/.kodi/temp/kodi.log</code>
+   - Windows: <code>%APPDATA%\Kodi\kodi.log</code></p>
+<h3>Шаг 9: Сгенерируйте файлы репозитория</h3>
+<p>Запустите скрипт генерации репозитория:</p>
+<pre><code>bash
+python3 scripts/generate_repo.py
+</code></pre>
+<p>Это выполнит:
+- Создание ZIP-файла для вашего плагина в директории <code>repo/</code>
+- Обновление <code>addons.xml</code> с метаданными вашего плагина
+- Обновление контрольной суммы <code>addons.xml.md5</code></p>
+<h3>Шаг 10: Отправьте ваш плагин</h3>
+<p>1. Зафиксируйте ваши изменения:
+   <pre><code>bash
+   git add service.seranov.yourplugin/
+   git commit -m "Add service.seranov.yourplugin"
+   </code></pre></p>
+<p>2. Отправьте в вашу ветку и создайте pull request</p>
+<h2>Лучшие практики</h2>
+<h3>Качество кода</h3>
+<p>- Используйте понятные имена переменных и функций
+- Добавляйте комментарии для сложной логики
+- Следуйте руководству по стилю PEP 8 для кода Python
+- Обрабатывайте исключения корректно
+- Используйте логирование вместо print</p>
+<h3>Настройки</h3>
+<p>- Предоставляйте разумные значения по умолчанию
+- Группируйте связанные настройки в категории
+- Используйте подходящие типы настроек (text, number, bool, select)
+- Добавляйте валидацию пользовательского ввода</p>
+<h3>Логирование</h3>
+<p>Всегда используйте систему логирования Kodi:</p>
+<pre><code>python
+import xbmc
+<p>xbmc.log('[service.seranov.yourplugin] Ваше сообщение', xbmc.LOGINFO)
+</code></pre></p>
+<p>Уровни логирования:
+- <code>xbmc.LOGDEBUG</code>: Отладочные сообщения
+- <code>xbmc.LOGINFO</code>: Информационные сообщения
+- <code>xbmc.LOGWARNING</code>: Предупреждения
+- <code>xbmc.LOGERROR</code>: Ошибки
+- <code>xbmc.LOGFATAL</code>: Критические ошибки</p>
+<h3>Производительность</h3>
+<p>- Используйте <code>monitor.waitForAbort()</code> для задержек вместо <code>time.sleep()</code>
+- Не выполняйте тяжелые операции в основном потоке
+- Учитывайте флаг <code>abortRequested()</code> для чистого завершения
+- Следите за использованием ресурсов (CPU, память, сеть)</p>
+<h3>Локализация</h3>
+<p>- Используйте ID строк (32000+) для всего пользовательского текста
+- Как минимум предоставьте английские строки
+- Рассмотрите возможность добавления переводов на другие языки</p>
+<h2>Распространенные шаблоны</h2>
+<h3>Чтение настроек</h3>
+<pre><code>python
+import xbmcaddon
+<p>addon = xbmcaddon.Addon()
+my<em>setting = addon.getSetting('my</em>setting')
+enable<em>feature = addon.getSetting('enable</em>feature') == 'true'
+</code></pre></p>
+<h3>Показ уведомлений</h3>
+<pre><code>python
+import xbmcgui
+<p>xbmcgui.Dialog().notification(
+    heading='Мой плагин',
+    message='Что-то произошло',
+    icon=xbmcgui.NOTIFICATION_INFO,
+    time=5000  # миллисекунды
+)
+</code></pre></p>
+<h3>Выполнение команд JSON-RPC</h3>
+<pre><code>python
+import xbmc
+import json
+<p>request = {
+    'jsonrpc': '2.0',
+    'method': 'Player.GetActivePlayers',
+    'id': 1
+}
+response = json.loads(xbmc.executeJSONRPC(json.dumps(request)))
+</code></pre></p>
+<h2>Ресурсы</h2>
+<p>- <a href="https://kodi.wiki/view/Add-on_development">Разработка аддонов для Kodi</a>
+- <a href="https://codedocs.xyz/xbmc/xbmc/">Python API для Kodi</a>
+- <a href="https://kodi.wiki/view/JSON-RPC_API">JSON-RPC API для Kodi</a></p>
+<h2>Вопросы?</h2>
+<p>Если у вас есть вопросы или нужна помощь, пожалуйста:
+1. Проверьте существующие плагины-службы для примеров
+2. Изучите документацию Kodi
+3. Откройте issue на GitHub</p>
+<p>Успешной разработки! 🎉
+</p>
+    </div>
+</body>
+</html>

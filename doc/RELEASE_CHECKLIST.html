@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RELEASE CHECKLIST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f6f8fa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+        }
+        h1 {
+            font-size: 2em;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+            border-bottom: 1px solid #eaecef;
+            padding-bottom: 0.3em;
+            color: #24292e;
+        }
+        h3 {
+            font-size: 1.25em;
+            margin: 20px 0 10px 0;
+            color: #24292e;
+        }
+        h4, h5, h6 {
+            margin: 15px 0 10px 0;
+            color: #24292e;
+        }
+        p {
+            margin: 15px 0;
+        }
+        a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #f6f8fa;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        pre {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 16px;
+            overflow: auto;
+            margin: 15px 0;
+            font-size: 85%;
+            line-height: 1.45;
+        }
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        blockquote {
+            padding: 0 1em;
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            margin: 15px 0;
+        }
+        ul, ol {
+            padding-left: 2em;
+            margin: 15px 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 15px 0;
+        }
+        table th {
+            background-color: #f6f8fa;
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+            font-weight: 600;
+        }
+        table td {
+            border: 1px solid #ddd;
+            padding: 6px 13px;
+        }
+        table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 15px 0;
+        }
+        .back-link {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecef;
+        }
+        .back-link a {
+            color: #0366d6;
+        }
+        hr {
+            height: 0.25em;
+            padding: 0;
+            margin: 24px 0;
+            background-color: #e1e4e8;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="back-link">
+            <a href="../">← Back to home</a>
+        </div>
+        <h1>Release Verification Checklist</h1>
+<h2>Pre-Release Verification ✅</h2>
+<h3>Repository Structure</h3>
+- ✅ All 5 add-ons are present and functional
+- ✅ Each add-on has valid <code>addon.xml</code> with correct version
+- ✅ All add-ons have icon.png
+- ✅ Repository metadata points to correct GitHub URLs
+<h3>Build Artifacts (in <code>repo/</code> directory)</h3>
+- ✅ <code>repository.seranov-1.0.0.zip</code> (1.4M) - MD5: d7d0f0277aeb1da64d9df19f133c1d12
+- ✅ <code>plugin.video.random.recursive-1.0.0.zip</code> (1.4M) - MD5: b6ba2d72299786d2d9e0794e6187dcc4
+- ✅ <code>plugin.video.unified.browser-1.0.0.zip</code> (1.4M) - MD5: 5db58b5324f2b23abae957bbc4054f69
+- ✅ <code>context.screenshots-1.0.5.zip</code> (2.8M) - MD5: 841b4ee4b0899ac281249264f9eeb59a
+- ✅ <code>service.seranov.nfoscanner-1.0.0.zip</code> (1.4M) - MD5: 7d62845025f41667d47d4bec083d4051
+- ✅ <code>addons.xml</code> (8.8K) - MD5: d708e0aa9d37e7a7b9f51442e92e85f7
+- ✅ <code>addons.xml.md5</code> (32 bytes) - Contains correct checksum
+<h3>Documentation</h3>
+- ✅ <code>RELEASE_NOTES.md</code> - Comprehensive release notes (English & Russian)
+- ✅ <code>INSTALLATION.md</code> - Detailed installation guide (English & Russian)
+- ✅ <code>RELEASE_GUIDE.md</code> - Instructions for creating GitHub release
+- ✅ <code>README.md</code> - Existing documentation is accurate
+<h3>Localization</h3>
+- ✅ All add-ons have English descriptions
+- ✅ Russian translations added to addon.xml files:
+  - ✅ plugin.video.unified.browser
+  - ✅ context.screenshots
+  - ✅ repository.seranov
+  - ✅ plugin.video.random.recursive
+  - ✅ service.seranov.nfoscanner
+- ✅ <code>addons.xml</code> includes all Russian translations
+<h3>Git Repository</h3>
+- ✅ All changes committed to branch <code>copilot/create-release-for-kodi</code>
+- ✅ Local tag <code>v1.0.0</code> created
+- ✅ No uncommitted changes
+- ✅ Branch is up-to-date with origin
+<hr>
+<h2>Post-Release Tasks (To be completed after merge)</h2>
+<h3>GitHub Actions Required</h3>
+- [ ] Merge pull request to <code>main</code> branch
+- [ ] Push git tag <code>v1.0.0</code> to GitHub
+- [ ] Create GitHub Release v1.0.0
+- [ ] Upload all 7 files from <code>repo/</code> directory to release
+- [ ] Set as latest release
+- [ ] Verify release is accessible
+<h3>Testing After Release</h3>
+- [ ] Download <code>repository.seranov-1.0.0.zip</code> from GitHub release
+- [ ] Install in Kodi test instance
+- [ ] Verify repository shows all 4 add-ons (excluding repository itself)
+- [ ] Install one add-on from repository
+- [ ] Verify add-on functions correctly
+<h3>Communication</h3>
+- [ ] Optional: Announce release on Kodi forums
+- [ ] Optional: Share on social media
+- [ ] Monitor GitHub issues for feedback
+<hr>
+<h2>Add-on Versions Summary</h2>
+<p>| Add-on ID | Version | File Name | Status |
+|-----------|---------|-----------|--------|
+| repository.seranov | 1.0.0 | repository.seranov-1.0.0.zip | ✅ Ready |
+| plugin.video.random.recursive | 1.0.0 | plugin.video.random.recursive-1.0.0.zip | ✅ Ready |
+| plugin.video.unified.browser | 1.0.0 | plugin.video.unified.browser-1.0.0.zip | ✅ Ready |
+| context.screenshots | 1.0.5 | context.screenshots-1.0.5.zip | ✅ Ready |
+| service.seranov.nfoscanner | 1.0.0 | service.seranov.nfoscanner-1.0.0.zip | ✅ Ready |</p>
+<hr>
+<h2>Key Features of This Release</h2>
+<h3>🌟 Highlights</h3>
+1. <strong>Complete Kodi Repository</strong> - All 5 add-ons packaged and ready
+2. <strong>Bilingual Support</strong> - Full English and Russian localization
+3. <strong>Comprehensive Documentation</strong> - Installation guides and release notes
+4. <strong>Manual Updates</strong> - Repository requires manual ZIP installation (GitHub Raw limitations)
+<h3>🎯 Target Audience</h3>
+- Kodi users seeking video management tools
+- Russian-speaking Kodi community
+- Users needing NFO file scanning automation
+- Video collectors with large libraries
+<h3>🔧 Technical Details</h3>
+- <strong>Platform:</strong> Kodi 19 Matrix or later
+- <strong>Python:</strong> 3.x compatible
+- <strong>License:</strong> MIT (except context.screenshots - GPL v2)
+- <strong>Installation:</strong> Direct ZIP download (GitHub Raw does not support directory listing for Kodi repositories)
+<hr>
+<h2>Quick Links</h2>
+<p>- <strong>Repository:</strong> https://github.com/seranov/seranov-kodi
+- <strong>Releases:</strong> https://github.com/seranov/seranov-kodi/releases
+- <strong>Issues:</strong> https://github.com/seranov/seranov-kodi/issues</p>
+<hr>
+<h2>Release Created By</h2>
+<p>GitHub Copilot Workspace Agent
+Date: 2026-01-02
+Branch: copilot/create-release-for-kodi
+Commit: 037df2b</p>
+<strong>Next Steps:</strong> Follow the instructions in <code>RELEASE_GUIDE.md</code> to complete the release creation on GitHub.
+
+    </div>
+</body>
+</html>

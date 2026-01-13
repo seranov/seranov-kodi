@@ -116,6 +116,10 @@ jobs:
             
             echo "Created: $zip_path"
             
+            # Копирование ZIP архива в подпапку аддона / Copy ZIP archive to addon subfolder
+            cp "$zip_path" "docs/$addon_id/"
+            echo "Copied $zip_name to docs/$addon_id/"
+            
             # Копирование icon.png если есть / Copy icon.png if exists
             if [ -f "$addon_dir/icon.png" ]; then
               cp "$addon_dir/icon.png" "docs/$addon_id/"
@@ -391,11 +395,21 @@ jobs:
           # Создание заголовка файла / Create file header
           cat > docs/index.html << 'EOF'
           <!DOCTYPE html>
+          <html>
+          <head>
+              <meta charset="UTF-8">
+              <title>Seranov Kodi Repository</title>
+          </head>
+          <body>
+              <h1>Seranov Kodi Repository</h1>
+              
+              <h2>Repository Installation:</h2>
+              <ul>
           EOF
           
           # Добавление ссылки на repository.seranov.zip первой / Add repository.seranov.zip link first
           if [ -f "docs/repository.seranov.zip" ]; then
-            echo "<a href=\"repository.seranov.zip\">repository.seranov.zip</a>" >> docs/index.html
+            echo "        <li><a href=\"repository.seranov.zip\">repository.seranov.zip</a> (latest)</li>" >> docs/index.html
             echo "Added link: repository.seranov.zip (first)"
           fi
           
@@ -403,9 +417,16 @@ jobs:
           REPO_VERSIONED_ZIP=$(find docs/ -maxdepth 1 -name "repository.seranov-*.zip" -type f | head -n 1)
           if [ -n "$REPO_VERSIONED_ZIP" ]; then
             REPO_VERSIONED_NAME=$(basename "$REPO_VERSIONED_ZIP")
-            echo "<a href=\"$REPO_VERSIONED_NAME\">$REPO_VERSIONED_NAME</a>" >> docs/index.html
+            echo "        <li><a href=\"$REPO_VERSIONED_NAME\">$REPO_VERSIONED_NAME</a></li>" >> docs/index.html
             echo "Added link: $REPO_VERSIONED_NAME (second)"
           fi
+          
+          cat >> docs/index.html << 'EOF'
+              </ul>
+              
+              <h2>Addon Archives:</h2>
+              <ul>
+          EOF
           
           # Добавление ссылок на остальные архивы / Add links to other archives
           for zipfile in docs/*.zip; do
@@ -417,18 +438,38 @@ jobs:
                 continue
               fi
               
-              echo "<a href=\"$zipname\">$zipname</a>" >> docs/index.html
+              echo "        <li><a href=\"$zipname\">$zipname</a></li>" >> docs/index.html
               echo "Added link: $zipname"
             fi
           done
           
-          # Добавление ссылки на addons.xml / Add link to addons.xml
-          echo "<a href=\"https://seranov.github.io/seranov-kodi/addons.xml\">addons.xml</a>" >> docs/index.html
-          echo "Added link to addons.xml"
+          cat >> docs/index.html << 'EOF'
+              </ul>
+              
+              <h2>Addon Directories:</h2>
+              <ul>
+          EOF
           
-          # Добавление ссылки на readme.html / Add link to readme.html
-          echo "<a href=\"https://seranov.github.io/seranov-kodi/readme.html\">readme.html</a>" >> docs/index.html
-          echo "Added link to readme.html"
+          # Добавление ссылок на директории аддонов / Add links to addon directories
+          for addon_dir in docs/*/; do
+            if [ -d "$addon_dir" ]; then
+              addon_name=$(basename "$addon_dir")
+              echo "        <li><a href=\"$addon_name/\">$addon_name/</a></li>" >> docs/index.html
+              echo "Added directory link: $addon_name/"
+            fi
+          done
+          
+          cat >> docs/index.html << 'EOF'
+              </ul>
+              
+              <h2>Repository Files:</h2>
+              <ul>
+                  <li><a href="addons.xml">addons.xml</a> - Addon metadata</li>
+                  <li><a href="readme.html">readme.html</a> - Repository documentation</li>
+              </ul>
+          </body>
+          </html>
+          EOF
           
           echo "✓ Root index.html generated!"
 
@@ -457,16 +498,53 @@ jobs:
           </head>
           <body>
               <h1>$addon_id</h1>
-              <p><a href="../">Back to repository</a></p>
-              <h2>Files:</h2>
+              <p><a href="../">← Back to repository</a></p>
+              
+              <h2>Addon Archives:</h2>
               <ul>
           EOF
               
-              # Добавление ссылок на файлы / Add links to files
+              # Добавление ссылок на ZIP файлы / Add links to ZIP files
+              for file in docs/$addon_id/*.zip; do
+                if [ -f "$file" ]; then
+                  filename=$(basename "$file")
+                  echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                fi
+              done
+              
+              cat >> "docs/$addon_id/index.html" << EOF
+              </ul>
+              
+              <h2>Media Files:</h2>
+              <ul>
+          EOF
+              
+              # Добавление ссылок на медиа файлы / Add links to media files
+              for file in docs/$addon_id/*.{png,jpg,jpeg,gif}; do
+                if [ -f "$file" ]; then
+                  filename=$(basename "$file")
+                  echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                fi
+              done
+              
+              cat >> "docs/$addon_id/index.html" << EOF
+              </ul>
+              
+              <h2>Other Files:</h2>
+              <ul>
+          EOF
+              
+              # Добавление ссылок на остальные файлы / Add links to other files
               for file in docs/$addon_id/*; do
                 if [ -f "$file" ]; then
                   filename=$(basename "$file")
-                  if [ "$filename" != "index.html" ]; then
+                  # Пропуск уже добавленных файлов / Skip already added files
+                  if [ "$filename" != "index.html" ] && \
+                     [[ "$filename" != *.zip ]] && \
+                     [[ "$filename" != *.png ]] && \
+                     [[ "$filename" != *.jpg ]] && \
+                     [[ "$filename" != *.jpeg ]] && \
+                     [[ "$filename" != *.gif ]]; then
                     echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
                   fi
                 fi

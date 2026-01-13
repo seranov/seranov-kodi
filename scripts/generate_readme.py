@@ -34,7 +34,7 @@ class AddonInfo:
         return f"""
         <div class="addon-card">
             <h3>
-                <a href="{self.addon_id}/{zip_name}" class="addon-link">
+                <a href="{zip_name}" class="addon-link">
                     📦 {self.name}
                 </a>
             </h3>
@@ -43,7 +43,7 @@ class AddonInfo:
             <p class="description">{self.description}</p>
             <div class="addon-links">
                 <a href="{self.addon_id}/" class="btn btn-secondary">View Files</a>
-                <a href="{self.addon_id}/{zip_name}" class="btn btn-primary">Download ZIP</a>
+                <a href="{zip_name}" class="btn btn-primary">Download ZIP</a>
             </div>
         </div>
 """

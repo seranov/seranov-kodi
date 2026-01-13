@@ -422,6 +422,10 @@ jobs:
             fi
           done
           
+          # Добавление ссылки на addons.xml / Add link to addons.xml
+          echo "<a href=\"https://seranov.github.io/seranov-kodi/addons.xml\">addons.xml</a>" >> docs/index.html
+          echo "Added link to addons.xml"
+          
           # Добавление ссылки на readme.html / Add link to readme.html
           echo "<a href=\"https://seranov.github.io/seranov-kodi/readme.html\">readme.html</a>" >> docs/index.html
           echo "Added link to readme.html"

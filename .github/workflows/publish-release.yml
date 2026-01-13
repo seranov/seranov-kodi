@@ -475,7 +475,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        timeout-minutes: 5
+        timeout-minutes: 15
         continue-on-error: false
 
       # Шаг 15: Вывод информации об успешном деплое / Step 15: Output deployment info

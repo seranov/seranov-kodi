@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32001">
+        <setting id="cache_path" type="text" label="32010" default="special://temp/unified_browser_cache/"/>
+        <setting id="default_thumb_size" type="slider" label="32011" default="200" range="100,50,500" option="int"/>
+        <setting id="default_view" type="enum" label="32012" lvalues="32020|32021|32022" default="1"/>
+    </category>
+    <category label="32002">
+        <setting id="debug_logging" type="bool" label="32030" default="false"/>
+    </category>
+</settings>

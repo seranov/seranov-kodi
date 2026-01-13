@@ -1,0 +1,3 @@
+<settings>
+    <setting id="target_dir" type="folder" label="Target Directory" default="special://home/" />
+</settings>

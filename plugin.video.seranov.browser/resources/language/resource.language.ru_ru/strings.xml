@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+    <!-- Settings -->
+    <string id="32001">Общие</string>
+    <string id="32002">Дополнительно</string>
+    <string id="32010">Путь к кешу</string>
+    <string id="32011">Размер миниатюры по умолчанию</string>
+    <string id="32012">Вид по умолчанию</string>
+    
+    <!-- Views -->
+    <string id="32020">Фильтры</string>
+    <string id="32021">Список фильмов</string>
+    <string id="32022">Детали</string>
+    
+    <!-- Settings Advanced -->
+    <string id="32030">Отладочное логирование</string>
+    
+    <!-- UI Labels -->
+    <string id="32100">Фильтры</string>
+    <string id="32101">Диапазон лет</string>
+    <string id="32102">С:</string>
+    <string id="32103">До:</string>
+    <string id="32104">Жанры</string>
+    <string id="32105">Теги</string>
+    <string id="32106">Фильтр по ключевым словам</string>
+    <string id="32107">Включить слова:</string>
+    <string id="32108">Исключить слова:</string>
+    <string id="32109">Применить фильтры</string>
+    <string id="32110">Сбросить фильтры</string>
+    
+    <!-- Movie List View -->
+    <string id="32200">Найдено фильмов:</string>
+    <string id="32201">Продолжительность:</string>
+    <string id="32202">Год:</string>
+    <string id="32203">Описание отсутствует</string>
+    
+    <!-- Details View -->
+    <string id="32300">Увеличить размер миниатюры</string>
+    <string id="32301">Уменьшить размер миниатюры</string>
+    
+    <!-- Messages -->
+    <string id="32400">Фильмы не найдены</string>
+    <string id="32401">Загрузка...</string>
+    <string id="32402">Ошибка загрузки данных</string>
+    <string id="32403">Фильтры сброшены</string>
+    <string id="32404">Ошибка: {0}</string>
+</strings>

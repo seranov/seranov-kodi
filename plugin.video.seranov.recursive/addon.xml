@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.seranov.recursive" name="SeraNov Random Recursive Player" version="1.1.0" provider-name="seranov">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+    </requires>
+    
+    <extension point="xbmc.python.pluginsource" library="main.py">
+        <provides>video</provides>
+    </extension>
+    
+    <extension point="xbmc.python.script" library="main.py">
+        <provides>executable</provides>
+    </extension>
+    
+    <extension point="kodi.context.item">
+        <menu id="kodi.core.main">
+            <item library="main.py" args="play-random-recursive">
+                <label>$ADDON[plugin.video.seranov.recursive 32000]</label>
+                <visible>true</visible>
+            </item>
+        </menu>
+    </extension>
+    
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Play videos recursively in random order</summary>
+        <summary lang="ru_RU">Воспроизведение видео рекурсивно в случайном порядке</summary>
+        <description lang="en_GB">Scans a directory and plays all videos randomly from all subfolders.</description>
+        <description lang="ru_RU">Сканирует директорию и воспроизводит все видео в случайном порядке из всех подпапок.</description>
+        <disclaimer lang="en_GB"></disclaimer>
+        <language></language>
+        <platform>all</platform>
+        <license>MIT</license>
+        <forum></forum>
+        <website>https://github.com/seranov/seranov-kodi</website>
+        <email>seranov@yandex.ru</email>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+    </extension>
+</addon>

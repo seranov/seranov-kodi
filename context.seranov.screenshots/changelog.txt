@@ -1,0 +1,34 @@
+Changelog
+=========
+
+Version 1.0.5 (2026-01-02)
+--------------------------
+- Migrated to kodi-play-random repository
+- Updated metadata and unified addon structure
+- Improved compatibility with Kodi Matrix and newer versions
+
+Version 1.0.4
+-------------
+- Bug fixes and stability improvements
+- Updated dependencies
+
+Version 1.0.3
+-------------
+- Enhanced slideshow functionality
+- Added file_id.diz support
+
+Version 1.0.2
+-------------
+- Performance improvements
+- Fixed context menu visibility issues
+
+Version 1.0.1
+-------------
+- Minor bug fixes
+- Updated documentation
+
+Version 1.0.0
+-------------
+- Initial release
+- Basic screenshot slideshow functionality
+- Context menu integration

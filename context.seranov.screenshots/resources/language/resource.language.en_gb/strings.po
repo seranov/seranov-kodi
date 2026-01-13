@@ -79,3 +79,15 @@ msgstr ""
 msgctxt "#30130"
 msgid "Hide artwork files"
 msgstr ""
+
+msgctxt "#30200"
+msgid "Context Menu"
+msgstr ""
+
+msgctxt "#30201"
+msgid "Show in root menu"
+msgstr ""
+
+msgctxt "#30202"
+msgid "Show in SeraNov folder"
+msgstr ""

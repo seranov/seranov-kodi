@@ -18,3 +18,15 @@ msgstr ""
 msgctxt "#32000"
 msgid "Play random recursive"
 msgstr "Воспроизвести случайно рекурсивно"
+
+msgctxt "#32100"
+msgid "Context Menu"
+msgstr "Контекстное меню"
+
+msgctxt "#32101"
+msgid "Show in root menu"
+msgstr "Показывать в корне меню"
+
+msgctxt "#32102"
+msgid "Show in SeraNov folder"
+msgstr "Показывать в папке SeraNov"

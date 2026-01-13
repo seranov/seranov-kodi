@@ -10,7 +10,16 @@
         <menu id="kodi.core.main">
             <item library="contextitem_images.py">
                 <label>$ADDON[context.seranov.screenshots 32000]</label>
-                <visible>true</visible>
+                <visible>String.IsEqual(System.AddonSettings(context.seranov.screenshots,context_menu_root),true)</visible>
+            </item>
+        </menu>
+    </extension>
+
+    <extension point="kodi.context.item">
+        <menu id="seranov">
+            <item library="contextitem_images.py">
+                <label>$ADDON[context.seranov.screenshots 32000]</label>
+                <visible>String.IsEqual(System.AddonSettings(context.seranov.screenshots,context_menu_seranov),true)</visible>
             </item>
         </menu>
     </extension>

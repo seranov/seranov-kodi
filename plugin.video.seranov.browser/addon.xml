@@ -9,6 +9,24 @@
         <provides>video</provides>
     </extension>
     
+    <extension point="kodi.context.item">
+        <menu id="kodi.core.main">
+            <item library="context_menu.py">
+                <label>$ADDON[plugin.video.seranov.browser 32500]</label>
+                <visible>String.IsEqual(System.AddonSettings(plugin.video.seranov.browser,context_menu_root),true)</visible>
+            </item>
+        </menu>
+    </extension>
+    
+    <extension point="kodi.context.item">
+        <menu id="seranov">
+            <item library="context_menu.py">
+                <label>$ADDON[plugin.video.seranov.browser 32500]</label>
+                <visible>String.IsEqual(System.AddonSettings(plugin.video.seranov.browser,context_menu_seranov),true)</visible>
+            </item>
+        </menu>
+    </extension>
+    
     <extension point="xbmc.addon.metadata">
         <summary lang="en_GB">Unified video browser showing all videos, movies and series</summary>
         <summary lang="ru_RU">Единый браузер видео, показывающий все видео, фильмы и сериалы</summary>

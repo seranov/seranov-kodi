@@ -44,4 +44,12 @@
     <string id="32402">Error loading data</string>
     <string id="32403">Filters reset</string>
     <string id="32404">Error: {0}</string>
+    
+    <!-- Context Menu -->
+    <string id="32500">Open Unified Browser</string>
+    
+    <!-- Context Menu Settings -->
+    <string id="32600">Context Menu</string>
+    <string id="32601">Show in root menu</string>
+    <string id="32602">Show in SeraNov folder</string>
 </strings>

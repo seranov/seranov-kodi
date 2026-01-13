@@ -1,3 +1,7 @@
 <settings>
     <setting id="target_dir" type="folder" label="Target Directory" default="special://home/" />
+    <category label="32100">
+        <setting id="context_menu_root" type="bool" label="32101" default="true"/>
+        <setting id="context_menu_seranov" type="bool" label="32102" default="false"/>
+    </category>
 </settings>

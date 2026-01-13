@@ -70,9 +70,9 @@
    - Нажмите **OK**
    - Дождитесь уведомления "Дополнение установлено"
 
-**Альтернативный URL (GitHub raw):**
+**URL репозитория (GitHub Pages):**
 ```
-https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+https://seranov.github.io/seranov-kodi/repository.seranov.zip
 ```
 
 После установки репозитория, все аддоны будут получать автоматические обновления!
@@ -91,16 +91,11 @@ https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/reposit
 
 ### Шаг 2: Скачайте ZIP репозитория
 
-Скачайте последнюю версию репозитория с GitHub:
+Скачайте последнюю версию репозитория с GitHub Pages:
 
-**Прямая ссылка (всегда доступна):**
+**Прямая ссылка:**
 ```
-https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
-```
-
-**Или через GitHub Pages (после активации):**
-```
-https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
+https://seranov.github.io/seranov-kodi/repository.seranov.zip
 ```
 
 Сохраните файл в доступное место (например, на Рабочий стол или в папку Загрузки).
@@ -244,10 +239,11 @@ https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0
 
 ### 404 ошибка при открытии URL
 
-**Причина:** GitHub Pages не активирован или URL неверный  
+**Причина:** GitHub Pages ещё не развёрнут или URL неверный  
 **Решение:** 
-- Используйте альтернативный GitHub raw URL: `https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip`
-- Проверьте, что репозиторий опубликован через GitHub Pages
+- Используйте прямой GitHub Pages URL: `https://seranov.github.io/seranov-kodi/repository.seranov.zip`
+- Проверьте подключение к интернету
+- Попробуйте снова через несколько минут, если GitHub Pages только что развернули
 
 ### Ошибка: "Не удалось установить дополнение"
 

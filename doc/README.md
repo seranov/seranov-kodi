@@ -77,7 +77,7 @@ This folder contains all project documentation in English and Russian.
 
 - 🚀 [Quick Start (EN)](QUICKSTART.md) | [Быстрый старт (RU)](QUICKSTART.ru.md)
 - 📦 [Installation (EN)](INSTALLATION.md) | [Установка (RU)](INSTALLATION.ru.md)
-- 💡 **Repository URL:** `https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/`
+- 💡 **Repository URL:** `https://seranov.github.io/seranov-kodi/`
 
 ### For Developers / Для разработчиков
 

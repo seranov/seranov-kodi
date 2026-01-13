@@ -3,6 +3,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/repo/plugin.video.seranov.browser" />
+      <excludeFolder url="file://$MODULE_DIR$/repo/plugin.video.seranov.recursive" />
+      <excludeFolder url="file://$MODULE_DIR$/repo/repository.seranov" />
+      <excludeFolder url="file://$MODULE_DIR$/repo/service.seranov.nfoscanner" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.13 (kodi-play-random)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />

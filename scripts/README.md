@@ -107,7 +107,7 @@ PowerShell-скрипт для сборки релиза и подготовки
 1. **Обновите версию в addon.xml**
    ```xml
    <!-- Обновите атрибут version -->
-   <addon id="plugin.video.seranov.recursive" version="1.0.1" name="SeraNov Random Recursive Player" provider-name="seranov">
+   <addon id="plugin.video.seranov.recursive" version="1.0.1" ...>
    ```
 
 2. **Соберите репозиторий**
@@ -151,7 +151,7 @@ PowerShell-скрипт для сборки релиза и подготовки
 
 1. **Скачайте ZIP репозитория**
    ```
-   https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov-1.0.0.zip
+   https://seranov.github.io/seranov-kodi/repository.seranov.zip
    ```
 
 2. **Установите в Kodi:**
@@ -175,19 +175,19 @@ PowerShell-скрипт для сборки релиза и подготовки
 
 ## URL репозитория / Repository URLs
 
-После публикации на GitHub, пользователи могут скачать:
+После публикации на GitHub Pages, пользователи могут скачать:
 
 **Прямая ссылка на ZIP репозитория:**
 ```
-https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov-1.0.0.zip
+https://seranov.github.io/seranov-kodi/repository.seranov.zip
 ```
 
 **Файл metadata репозитория:**
 ```
-https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/addons.xml
+https://seranov.github.io/seranov-kodi/addons.xml
 ```
 
-> **⚠️ Важно:** GitHub Raw (`raw.githubusercontent.com`) не поддерживает листинг директорий. Kodi не может использовать `https://raw.githubusercontent.com/.../repo/` как источник репозитория. Для автоматических обновлений требуется GitHub Pages или другой веб-хостинг с поддержкой директорий.
+> **✅ Примечание:** Репозиторий публикуется на GitHub Pages, который поддерживает листинг директорий и прямой доступ к файлам. Kodi автоматически получает обновления через `https://seranov.github.io/seranov-kodi/addons.xml`.
 
 ## Автоматизация / Automation
 
@@ -232,65 +232,6 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 3. Проверьте лог Kodi на наличие ошибок
 
 ### Ошибка: Не удаётся найти addon.xml
-**Решение:** Убедитесь, что вы запускаете скрипты из корня репозитория
-
-## Дополнительные ресурсы / Additional Resources
-
-- [Документация Kodi по разработке аддонов](https://kodi.wiki/view/Add-on_development)
-- [Формат addon.xml](https://kodi.wiki/view/Addon.xml)
-- [Создание репозитория Kodi](https://kodi.wiki/view/HOW-TO:Create_Kodi_add-on_repository)
-```
-
-**Файл metadata репозитория:**
-```
-https://raw.githubusercontent.com/seranov/seranov-kodi/main/repo/addons.xml
-```
-
-> **⚠️ Важно:** GitHub Raw (`raw.githubusercontent.com`) не поддерживает листинг директорий. Kodi не может использовать `https://raw.githubusercontent.com/.../repo/` как источник репозитория. Для автоматических обновлений требуется GitHub Pages или другой веб-хостинг с поддержкой директорий.
-
-## Автоматизация / Automation
-
-### GitHub Actions (опционально)
-
-Вы можете настроить GitHub Actions для автоматической сборки:
-
-```yaml
-# .github/workflows/build.yml
-name: Build Repository
-on:
-  push:
-    branches: [main]
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - run: python scripts/generate_repo.py
-      - uses: actions/upload-artifact@v2
-        with:
-          name: repository
-          path: repo/
-```
-
-## Устранение неполадок / Troubleshooting
-
-### Ошибка: Python не найден
-**Решение:** Установите Python 3.x с https://www.python.org/
-
-### Ошибка: PowerShell не может запустить скрипт
-**Решение:** Разрешите выполнение скриптов:
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
-```
-
-### Ошибка: Kodi не видит аддоны
-**Решение:** 
-1. Убедитесь, что пути правильные
-2. Перезапустите Kodi
-3. Проверьте лог Kodi на наличие ошибок
-
-### Ошибка: Не удается найти addon.xml
 **Решение:** Убедитесь, что вы запускаете скрипты из корня репозитория
 
 ## Дополнительные ресурсы / Additional Resources

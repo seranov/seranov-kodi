@@ -69,9 +69,9 @@ This method allows you to install the repository directly from the internet with
    - Click **OK**
    - Wait for the "Add-on installed" notification
 
-**Alternative URL (GitHub raw):**
+**Repository URL (GitHub Pages):**
 ```
-https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+https://seranov.github.io/seranov-kodi/repository.seranov.zip
 ```
 
 After installing the repository, all add-ons will receive automatic updates!
@@ -81,12 +81,8 @@ After installing the repository, all add-ons will receive automatic updates!
 This is an alternative method if you have issues with online installation.
 
 1. **Download the repository zip file:**
-   - Go to [Releases](https://github.com/seranov/seranov-kodi/releases/latest)
-   - Download `repository.seranov-1.0.0.zip`
-   
-   **Direct links:**
-   - Always available: `https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip`
-   - Via GitHub Pages (after activation): `https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip`
+   - Direct link: `https://seranov.github.io/seranov-kodi/repository.seranov.zip`
+   - Or go to [Releases](https://github.com/seranov/seranov-kodi/releases/latest)
 
 2. **Enable "Unknown sources" in Kodi:**
    - Open Kodi **Settings** (gear icon)
@@ -187,10 +183,11 @@ To manually check for updates:
 
 ### 404 error when opening URL
 
-**Cause:** GitHub Pages is not activated or the URL is incorrect  
+**Cause:** GitHub Pages is not yet deployed or the URL is incorrect  
 **Solution:** 
-- Use the alternative GitHub raw URL: `https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip`
-- Check that the repository is published via GitHub Pages
+- Use the direct GitHub Pages URL: `https://seranov.github.io/seranov-kodi/repository.seranov.zip`
+- Check that you have internet connection
+- Try again in a few minutes if GitHub Pages was just deployed
 
 ### Add-on installation fails
 

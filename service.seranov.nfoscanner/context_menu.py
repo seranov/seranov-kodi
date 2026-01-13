@@ -21,6 +21,7 @@ def scan_folder_manually():
         addon = xbmcaddon.Addon()
         
         # Get the folder path from the list item
+        # Note: sys.listitem is a Kodi-specific attribute added by Kodi when running context menu scripts
         if hasattr(sys, 'listitem') and sys.listitem:
             folder_path = sys.listitem.getPath()
         else:
@@ -52,18 +53,15 @@ def scan_folder_manually():
             addon.getLocalizedString(32121)   # "Scanning folder..."
         )
         
-        # Create a monitor for abort checking
-        monitor = xbmc.Monitor()
-        
-        # Create scanner instance
-        scanner = NFOScanner(addon, monitor)
-        
-        # Scan the folder
         try:
-            scanned_count = scanner.scan_folder(folder_path)
+            # Create a monitor for abort checking
+            monitor = xbmc.Monitor()
             
-            # Close progress dialog
-            progress.close()
+            # Create scanner instance
+            scanner = NFOScanner(addon, monitor)
+            
+            # Scan the folder
+            scanned_count = scanner.scan_folder(folder_path)
             
             # Show notification with result
             if scanned_count > 0:
@@ -81,7 +79,6 @@ def scan_folder_manually():
             log(f'Manual scan completed: {scanned_count} items processed')
             
         except Exception as e:
-            progress.close()
             log(f'Error during scan: {e}', xbmc.LOGERROR)
             xbmcgui.Dialog().notification(
                 addon.getLocalizedString(32100),  # "NFO Scanner"
@@ -89,6 +86,9 @@ def scan_folder_manually():
                 xbmcgui.NOTIFICATION_ERROR,
                 5000
             )
+        finally:
+            # Always close progress dialog
+            progress.close()
     
     except Exception as e:
         log(f'Error in context menu: {e}', xbmc.LOGERROR)

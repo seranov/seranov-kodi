@@ -82,9 +82,9 @@ jobs:
             
             echo "Processing $addon_id version $version..."
             
-            # Создание ZIP архива / Create ZIP archive
+            # Создание ZIP архива в корне docs / Create ZIP archive in docs root
             local zip_name="${addon_id}-${version}.zip"
-            local zip_path="docs/${addon_id}/${zip_name}"
+            local zip_path="docs/${zip_name}"
             
             # Удаление старого архива если есть / Remove old archive if exists
             rm -f "$zip_path"
@@ -133,10 +133,10 @@ jobs:
           
           # Создание копии repository.seranov.zip без версии / Create copy of repository.seranov.zip without version
           echo "Creating versionless copy of repository.seranov..."
-          REPO_ZIP=$(find docs/repository.seranov/ -name "repository.seranov-*.zip" | head -n 1)
+          REPO_ZIP=$(find docs/ -maxdepth 1 -name "repository.seranov-*.zip" | head -n 1)
           if [ -n "$REPO_ZIP" ]; then
-            cp "$REPO_ZIP" "docs/repository.seranov/repository.seranov.zip"
-            echo "Created: docs/repository.seranov/repository.seranov.zip"
+            cp "$REPO_ZIP" "docs/repository.seranov.zip"
+            echo "Created: docs/repository.seranov.zip"
           else
             echo "Warning: repository.seranov ZIP not found"
           fi
@@ -255,38 +255,32 @@ jobs:
           EOF
           
           # Добавление ссылки на repository.seranov.zip первой / Add repository.seranov.zip link first
-          if [ -f "docs/repository.seranov/repository.seranov.zip" ]; then
-            echo "<a href=\"repository.seranov/repository.seranov.zip\">repository.seranov.zip</a>" >> docs/index.html
-            echo "Added link: repository.seranov/repository.seranov.zip (first)"
+          if [ -f "docs/repository.seranov.zip" ]; then
+            echo "<a href=\"repository.seranov.zip\">repository.seranov.zip</a>" >> docs/index.html
+            echo "Added link: repository.seranov.zip (first)"
           fi
           
           # Добавление ссылки на repository.seranov-X.X.X.zip второй / Add repository.seranov-X.X.X.zip link second
-          REPO_VERSIONED_ZIP=$(find docs/repository.seranov/ -name "repository.seranov-*.zip" -type f | head -n 1)
+          REPO_VERSIONED_ZIP=$(find docs/ -maxdepth 1 -name "repository.seranov-*.zip" -type f | head -n 1)
           if [ -n "$REPO_VERSIONED_ZIP" ]; then
             REPO_VERSIONED_NAME=$(basename "$REPO_VERSIONED_ZIP")
-            echo "<a href=\"repository.seranov/$REPO_VERSIONED_NAME\">$REPO_VERSIONED_NAME</a>" >> docs/index.html
-            echo "Added link: repository.seranov/$REPO_VERSIONED_NAME (second)"
+            echo "<a href=\"$REPO_VERSIONED_NAME\">$REPO_VERSIONED_NAME</a>" >> docs/index.html
+            echo "Added link: $REPO_VERSIONED_NAME (second)"
           fi
           
           # Добавление ссылок на остальные архивы / Add links to other archives
-          for addon_dir in docs/*/; do
-            addon_id=$(basename "$addon_dir")
-            
-            # Пропуск директории doc и repository.seranov (уже обработан) / Skip doc directory and repository.seranov (already processed)
-            if [ "$addon_id" = "doc" ] || [ "$addon_id" = "repository.seranov" ]; then
-              continue
-            fi
-            
-            # Поиск ZIP файлов в директории аддона / Find ZIP files in addon directory
-            for zipfile in "$addon_dir"*.zip; do
-              if [ -f "$zipfile" ]; then
-                zipname=$(basename "$zipfile")
-                
-                # Формат: addon_id/zipname
-                echo "<a href=\"$addon_id/$zipname\">$zipname</a>" >> docs/index.html
-                echo "Added link: $addon_id/$zipname"
+          for zipfile in docs/*.zip; do
+            if [ -f "$zipfile" ]; then
+              zipname=$(basename "$zipfile")
+              
+              # Пропуск уже добавленных repository.seranov файлов / Skip already added repository.seranov files
+              if [ "$zipname" = "repository.seranov.zip" ] || [[ "$zipname" == repository.seranov-*.zip ]]; then
+                continue
               fi
-            done
+              
+              echo "<a href=\"$zipname\">$zipname</a>" >> docs/index.html
+              echo "Added link: $zipname"
+            fi
           done
           
           # Добавление ссылки на readme.html / Add link to readme.html

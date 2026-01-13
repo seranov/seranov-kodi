@@ -8,10 +8,9 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 - 📖 **[Installation Guide](doc/INSTALLATION.md)** - How to install the repository and add-ons
 - 🚀 **[Quick Start Guide](doc/QUICKSTART.md)** - Get started quickly
-- 🔧 **[Build & Publish Guide](doc/BUILD_AND_PUBLISH.md)** - Complete build and deployment instructions
 - 🔄 **[Version Update Guide](doc/VERSION_UPDATE.md)** - How to update plugin versions and publish updates
-- 🤝 **[Contributing Guide](doc/CONTRIBUTING.md)** - How to contribute and create new add-ons
 - 📝 **[Release Notes](doc/RELEASE_NOTES.md)** - Latest changes and updates
+- 📋 **[Documentation Index](doc/INDEX.md)** - Complete documentation overview
 
 ## Repository Structure
 
@@ -80,7 +79,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 
 📦 **Quick Start - Option 1 (URL Installation):**
 
-⚠️ **Requires:** GitHub Pages must be activated first (see [KODI_URL_INSTALLATION.md](doc/KODI_URL_INSTALLATION.md))
+⚠️ **Requires:** GitHub Pages must be activated (available at: https://seranov.github.io/seranov-kodi/)
 
 1. In Kodi: **Settings** → **File manager** → **Add source**
 2. Enter URL: `https://seranov.github.io/seranov-kodi/`
@@ -96,8 +95,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 3. Select the downloaded file
 4. Done! Now install add-ons from the repository
 
-📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)  
-🚀 **URL Setup Guide:** See [KODI_URL_INSTALLATION.md](doc/KODI_URL_INSTALLATION.md)
+📖 **Detailed Instructions:** See [Installation Guide](doc/INSTALLATION.md)
 
 ### Automatic Updates
 
@@ -122,7 +120,9 @@ The repository uses **GitHub Actions** for automated builds and deployment:
 
 **Workflow:** `.github/workflows/publish-release.yml`
 
-For complete build and deployment documentation, see [BUILD_AND_PUBLISH.md](doc/BUILD_AND_PUBLISH.md)
+For more details on GitHub Actions integration, see:
+- [QUICK_INTEGRATION_GUIDE.md](doc/QUICK_INTEGRATION_GUIDE.md)
+- [RELEASE_GUIDE.md](doc/RELEASE_GUIDE.md)
 
 ### Available Scripts
 

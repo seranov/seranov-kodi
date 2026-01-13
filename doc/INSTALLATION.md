@@ -6,13 +6,13 @@
 
 The easiest way to install all add-ons from this repository is to add the repository URL in Kodi.
 
-## Option 1: Install via Direct URL (Easiest)
+## Option 1: Install via File Manager (Recommended)
 
-This method allows you to install the repository directly from the internet without downloading a file to your computer.
+This method adds the repository as a file source in Kodi, allowing you to browse and install add-ons directly.
 
-### Direct ZIP Installation from URL
+### Prerequisites
 
-⚠️ **Important:** First enable installation from unknown sources (see below).
+⚠️ **Important:** First enable installation from unknown sources.
 
 1. **Enable "Unknown sources" in Kodi:**
    - Open Kodi
@@ -21,25 +21,62 @@ This method allows you to install the repository directly from the internet with
    - Enable **Unknown sources**
    - Click **Yes** to confirm the warning
 
-2. **Install repository from URL:**
-   - Return to the home screen
+### Installation Steps
+
+1. **Add Repository as File Source:**
+   - Go to **Settings** → **File manager**
+   - Click **Add source**
+   - Click **<None>**
+   - Enter URL: `https://seranov.github.io/seranov-kodi/`
+   - Enter name: `Seranov Repo`
+   - Click **OK**
+
+2. **Install Repository:**
+   - Go to **Settings** → **Add-ons** → **Install from zip file**
+   - Select **Seranov Repo**
+   - Navigate to `repository.seranov` folder
+   - Select `repository.seranov-1.0.0.zip`
+   - Wait for the "Add-on installed" notification
+
+3. **Install Add-ons:**
+   - Go to **Add-ons** → **Install from repository**
+   - Select **Seranov's Kodi Repository**
+   - Choose the category (Video add-ons, Context menus, Services)
+   - Install the add-ons you need
+
+### Benefits of URL Installation
+
+✅ **Automatic Updates** - Kodi will automatically check for updates  
+✅ **Easy** - No need to download files manually  
+✅ **Always Current** - URL always points to the latest version  
+✅ **Single Entry Point** - All add-ons available from one repository
+
+## Option 2: Install via Direct URL
+
+This method allows you to install the repository directly from the internet without adding it as a file source.
+
+### Direct ZIP Installation from URL
+
+⚠️ **Important:** First enable installation from unknown sources (see Option 1 above).
+
+1. **Install repository from URL:**
    - Go to **Settings** → **Add-ons** → **Install from zip file**
    - Select **<None>** or enter the path directly
    - Enter the URL:
      ```
-     https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
+     https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
      ```
    - Click **OK**
    - Wait for the "Add-on installed" notification
 
-**Alternative URL (if GitHub Pages is activated):**
+**Alternative URL (GitHub raw):**
 ```
-https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0.0.zip
+https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip
 ```
 
 After installing the repository, all add-ons will receive automatic updates!
 
-## Option 2: Install Repository Add-on from Downloaded ZIP
+## Option 3: Install Repository Add-on from Downloaded ZIP
 
 This is an alternative method if you have issues with online installation.
 
@@ -73,7 +110,7 @@ This is an alternative method if you have issues with online installation.
    - Select the add-on you want to install
    - Click **Install**
 
-## Option 3: Install Individual Add-on Without Repository
+## Option 4: Install Individual Add-on Without Repository
 
 If you only want one specific add-on:
 
@@ -83,7 +120,7 @@ If you only want one specific add-on:
    - `service.seranov.nfoscanner-1.0.0.zip` - NFO Scanner Service
    - `plugin.video.unified.browser-1.0.0.zip` - Unified Browser
 
-2. Follow steps 2-3 from **Option 2** to install the zip file
+2. Follow steps 2-3 from **Option 3** to install the zip file
 
 **⚠️ Important:** Without installing the repository, you won't receive automatic updates.
 
@@ -141,6 +178,20 @@ To manually check for updates:
 
 **Solution:** You need to enable "Unknown sources" in Settings → System → Add-ons
 
+### Files not showing in Kodi
+
+**Cause:** Kodi caches the source content  
+**Solution:** 
+- Restart Kodi
+- Or remove the source and add it again
+
+### 404 error when opening URL
+
+**Cause:** GitHub Pages is not activated or the URL is incorrect  
+**Solution:** 
+- Use the alternative GitHub raw URL: `https://github.com/seranov/seranov-kodi/raw/main/repo/repository.seranov/repository.seranov-1.0.0.zip`
+- Check that the repository is published via GitHub Pages
+
 ### Add-on installation fails
 
 **Causes and Solutions:**
@@ -154,7 +205,7 @@ To manually check for updates:
    - Try downloading again from [Releases](https://github.com/seranov/seranov-kodi/releases)
 
 3. **Unknown sources disabled**
-   - Enable "Unknown sources" in settings (see Option 1, Step 2)
+   - Enable "Unknown sources" in settings (see Option 1, Step 1)
 
 4. **Outdated Kodi version**
    - Update Kodi to version 19.x or later

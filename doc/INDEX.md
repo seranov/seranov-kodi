@@ -11,12 +11,10 @@ This directory contains all documentation for the Kodi Play Random project.
 - **[GITHUB_PAGES_GUIDE.md](GITHUB_PAGES_GUIDE.md)** - How the website works
 
 ### For Developers
-- **[CONTRIBUTING.md](CONTRIBUTING.md)** - How to contribute to the project
 - **[PYTHON_SCRIPTS_GUIDE.md](PYTHON_SCRIPTS_GUIDE.md)** - Technical documentation for conversion scripts
 - **[QUICK_INTEGRATION_GUIDE.md](QUICK_INTEGRATION_GUIDE.md)** - Integration with GitHub Actions
 
 ### For Project Maintainers
-- **[BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md)** - Build and publishing process
 - **[RELEASE_GUIDE.md](RELEASE_GUIDE.md)** - How to create releases
 - **[RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)** - Checklist before release
 - **[VERSION_UPDATE.md](VERSION_UPDATE.md)** - How to update versions
@@ -31,11 +29,8 @@ This directory contains all documentation for the Kodi Play Random project.
 | QUICKSTART.ru.md | Russian quick start | Russian speakers |
 | INSTALLATION.md | Installation instructions | Users |
 | INSTALLATION.ru.md | Russian installation guide | Russian speakers |
-| KODI_URL_INSTALLATION.md | Installing from repository URL | Users |
-| CONTRIBUTING.md | Contribution guidelines | Developers |
-| CONTRIBUTING.ru.md | Russian contribution guide | Russian developers |
-| BUILD_AND_PUBLISH.md | Build and publish guide | Maintainers |
-| BUILD_AND_PUBLISH.ru.md | Russian build guide | Russian maintainers |
+| PYTHON_SCRIPTS_GUIDE.md | Python script documentation | Developers |
+| QUICK_INTEGRATION_GUIDE.md | CI/CD integration | DevOps |
 | RELEASE_GUIDE.md | Release process | Maintainers |
 | RELEASE_CHECKLIST.md | Pre-release checklist | Release manager |
 | RELEASE_COMPLETE.md | Completed release info | Maintainers |
@@ -43,8 +38,6 @@ This directory contains all documentation for the Kodi Play Random project.
 | VERSION_UPDATE.md | Version update procedure | Maintainers |
 | VERSION_UPDATE.ru.md | Russian version update | Russian maintainers |
 | GITHUB_PAGES_GUIDE.md | GitHub Pages setup | Website maintainers |
-| PYTHON_SCRIPTS_GUIDE.md | Python script documentation | Developers |
-| QUICK_INTEGRATION_GUIDE.md | CI/CD integration | DevOps |
 
 ## Documentation Organization
 
@@ -58,27 +51,25 @@ Start here:
 
 #### Developers
 Start here:
-1. [CONTRIBUTING.md](CONTRIBUTING.md)
-2. [PYTHON_SCRIPTS_GUIDE.md](PYTHON_SCRIPTS_GUIDE.md)
-3. [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md)
+1. [PYTHON_SCRIPTS_GUIDE.md](PYTHON_SCRIPTS_GUIDE.md)
+2. [QUICK_INTEGRATION_GUIDE.md](QUICK_INTEGRATION_GUIDE.md)
+3. [RELEASE_GUIDE.md](RELEASE_GUIDE.md)
 
 #### Maintainers
 Start here:
 1. [RELEASE_GUIDE.md](RELEASE_GUIDE.md)
 2. [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md)
-3. [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md)
+3. [VERSION_UPDATE.md](VERSION_UPDATE.md)
 
 ### By Topic
 
 #### Installation
 - [QUICKSTART.md](QUICKSTART.md) - 5-minute setup
 - [INSTALLATION.md](INSTALLATION.md) - Detailed instructions
-- [KODI_URL_INSTALLATION.md](KODI_URL_INSTALLATION.md) - From repository URL
 
 #### Development
-- [CONTRIBUTING.md](CONTRIBUTING.md) - How to contribute
 - [PYTHON_SCRIPTS_GUIDE.md](PYTHON_SCRIPTS_GUIDE.md) - Script details
-- [BUILD_AND_PUBLISH.md](BUILD_AND_PUBLISH.md) - Build process
+- [QUICK_INTEGRATION_GUIDE.md](QUICK_INTEGRATION_GUIDE.md) - CI/CD setup
 
 #### Releases & Versions
 - [RELEASE_GUIDE.md](RELEASE_GUIDE.md) - Release steps
@@ -219,7 +210,7 @@ The `report/` subdirectory contains deployment and progress reports:
 ### Finding Information
 1. Use **Ctrl+F** to search this page
 2. Check **[QUICKSTART.md](QUICKSTART.md)** for common questions
-3. See **[CONTRIBUTING.md](CONTRIBUTING.md)** for development help
+3. See **[PYTHON_SCRIPTS_GUIDE.md](PYTHON_SCRIPTS_GUIDE.md)** for development help
 4. Read **[README.md](README.md)** for comprehensive overview
 
 ### Getting Help
@@ -249,8 +240,8 @@ Current version information available in:
 - `RELEASE_NOTES.md`
 - Main `README.md`
 
-Generated: 2026-01-11
-Last Updated: 2026-01-11
+Generated: 2026-01-13
+Last Updated: 2026-01-13
 
 ---
 

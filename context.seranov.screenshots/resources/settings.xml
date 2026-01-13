@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!-- https://kodi.wiki/view/Add-on_settings_conversion -->
+<settings version="1">
+    <section id="context.seranov.screenshots">
+        <category id="general" label="30101" help="">
+            <group id="1" label="30111">
+                <setting id="startup_mode" type="integer" label="30121" help="">
+                    <level>1</level>
+                    <default>0</default>
+                    <constraints>
+                        <options>
+                            <option label="Text">0</option>
+                            <option label="Tile">1</option>
+                            <option label="Slide">2</option>
+                        </options>
+                    </constraints>
+                    <control type="spinner" format="string">
+                        <heading>30126</heading>
+                    </control>
+                </setting>
+
+                <setting id="auto_scroll_delay_seconds" type="number" label="30123">
+                    <level>1</level>
+                    <default>3</default>
+                    <control type="edit" format="integer">
+                        <heading>30104</heading>
+                    </control>
+                </setting>
+            </group>
+
+            <group id="2" label="30112">
+                <setting id="background_fanart" type="boolean" label="30124">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+
+                <setting id="background_image" type="path" label="30125" help="">
+                    <level>2</level>
+                    <default>
+                        special://home/addons/context.seranov.screenshots/resources/skins/Default/media/background/black.png
+                    </default>
+                    <constraints>
+                        <writable>false</writable>
+                        <masking>image</masking>
+                        <allowempty>true</allowempty>
+                    </constraints>
+                    <control type="button" format="image">
+                        <heading>30125</heading>
+                    </control>
+                </setting>
+
+                <setting id="background_tint" type="integer" label="30126" help="">
+                    <level>3</level>
+                    <default>2</default>
+                    <constraints>
+                        <options>
+                            <option label="None">0</option>
+                            <option label="Little">1</option>
+                            <option label="Medium">2</option>
+                            <option label="Strong">3</option>
+                            <option label="Maximum">4</option>
+                        </options>
+                    </constraints>
+                    <control type="spinner" format="string">
+                        <heading>30126</heading>
+                    </control>
+                </setting>
+            </group>
+
+            <group id="3" label="30113">
+                <setting id="include_non_jpg" type="boolean" label="30127">
+                    <level>2</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+
+                <setting id="hide_small_jpg" type="boolean" label="30128">
+                    <level>2</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+
+                <setting id="minimum_jpg_size_percent" type="integer" label="30129">
+                    <level>3</level>
+                    <default>10</default>
+                    <control type="edit" format="integer">
+                        <heading>30105</heading>
+                    </control>
+                </setting>
+
+                <setting id="hide_art_images" type="boolean" label="30130">
+                    <level>2</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+        </category>
+    </section>
+</settings>

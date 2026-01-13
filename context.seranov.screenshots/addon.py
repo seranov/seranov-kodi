@@ -1,38 +1,29 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
+import os
 import sys
+from urllib.parse import urlencode
+
 import xbmc
 import xbmcaddon
 import xbmcgui
-import xbmcplugin
 
+addon = xbmcaddon.Addon()
+addonname = addon.getAddonInfo('name')
 
-def main():
-    """Main addon entry point"""
-    addon = xbmcaddon.Addon()
-    addon_name = addon.getAddonInfo('name')
-    addon_version = addon.getAddonInfo('version')
-    
-    # Get addon handle if available
-    addon_handle = None
-    if len(sys.argv) > 1:
-        try:
-            addon_handle = int(sys.argv[1])
-        except (ValueError, IndexError):
-            pass
-    
-    # Show a simple dialog with addon information
-    xbmcgui.Dialog().ok(
-        addon_name,
-        addon.getLocalizedString(32010).format(addon_version) + '\n\n'
-        + addon.getLocalizedString(32011) + '\n\n'
-        + addon.getLocalizedString(32012)
-    )
-    
-    if addon_handle:
-        xbmcplugin.endOfDirectory(addon_handle)
+item_path = sys.listitem.getVideoInfoTag().getPath()
 
+shoots_dir_about = os.path.join(item_path, addon.getSetting('about'))
+xbmc.log("[%s] opening '%s'" % (addon.getAddonInfo('id'), shoots_dir_about), xbmc.LOGDEBUG)
 
-if __name__ == '__main__':
-    main()
+params = {
+    'path': shoots_dir_about,
+    'isroot': 'true',
+    'title': sys.listitem.getLabel(),
+    'fanart': sys.listitem.getProperty('fanart_image'),
+}
+plugin_url = "plugin://context.item.extras/?" + urlencode(params)
+
+# Set a string variable to use 
+line1 = "Hello World! We can write anything we want here Using Python"
+
+# Launch a dialog box in kodi showing the string variable 'line1' as the contents
+xbmcgui.Dialog().ok(addonname, shoots_dir_about)

@@ -1,65 +1,81 @@
 # Kodi Media Center language file
 # Addon Name: SeraNov Popup Screenshots
 # Addon id: context.seranov.screenshots
-# Addon Provider: seranov
-
 msgid ""
 msgstr ""
-"Project-Id-Version: context.seranov.screenshots 1.0.5\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 10:00+0000\n"
-"PO-Revision-Date: 2026-01-08 10:00+0000\n"
-"Last-Translator: seranov\n"
-"Language-Team: English\n"
-"Language: en_GB\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 
 msgctxt "#32000"
-msgid "Popup Screenshots"
+msgid "Local Info"
 msgstr ""
 
 msgctxt "#32001"
-msgid "Show screenshots"
+msgid "Description"
 msgstr ""
 
 msgctxt "#32002"
-msgid "Slideshow duration (seconds)"
+msgid "Screenshots slide show"
 msgstr ""
 
 msgctxt "#32003"
-msgid "Show file_id.diz content"
+msgid "Screenshots tile"
 msgstr ""
 
-msgctxt "#32004"
-msgid "Image extensions"
+msgctxt "#30101"
+msgid "General"
 msgstr ""
 
-msgctxt "#32005"
-msgid "Enable debug logging"
+msgctxt "#30104"
+msgid "seconds"
 msgstr ""
 
-msgctxt "#32010"
-msgid "Version: {0}"
+msgctxt "#30105"
+msgid "kB"
 msgstr ""
 
-msgctxt "#32011"
-msgid "This addon shows screenshots in a slideshow format."
+msgctxt "#30111"
+msgid "General"
 msgstr ""
 
-msgctxt "#32012"
-msgid "Use the context menu on video items to activate."
+msgctxt "#30121"
+msgid "Startup mode"
 msgstr ""
 
-msgctxt "#32013"
-msgid "Screenshots feature for: {0}"
+msgctxt "#30123"
+msgid "Image auto switch delay (seconds)"
 msgstr ""
 
-msgctxt "#32014"
-msgid "Error"
+msgctxt "#30112"
+msgid "Background"
 msgstr ""
 
-msgctxt "#32015"
-msgid "Failed to show screenshots"
+msgctxt "#30124"
+msgid "Use fanart as background if exists"
+msgstr ""
+
+msgctxt "#30125"
+msgid "Default background"
+msgstr ""
+
+msgctxt "#30126"
+msgid "Tint"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Screenshots"
+msgstr ""
+
+msgctxt "#30127"
+msgid "Include non JPEG images"
+msgstr ""
+
+msgctxt "#30128"
+msgid "Hide small JPEG files"
+msgstr ""
+
+msgctxt "#30129"
+msgid "Minimum JPEG file size, %"
+msgstr ""
+
+msgctxt "#30130"
+msgid "Hide artwork files"
 msgstr ""

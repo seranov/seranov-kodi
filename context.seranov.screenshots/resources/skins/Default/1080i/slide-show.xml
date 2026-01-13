@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window>
+    <!--<defaultcontrol always="true">5000</defaultcontrol>-->
+    <allowoverlay>no</allowoverlay>
+    <controls>
+        <control type="image" id="5100">
+            <left>0</left>
+            <top>0</top>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>common/black.png</texture>
+            <fadetime>500</fadetime>
+            <animation effect="fade" start="0" end="100" time="300" tween="sine">WindowOpen</animation>
+            <animation effect="fade" end="100" time="200" tween="sine">WindowClose</animation>
+        </control>
+
+        <control type="group" id="5101">
+            <control type="image">
+                <left>910</left>
+                <top>503</top>
+                <width>100</width>
+                <height>100</height>
+                <visible>Container(5102).IsVisible + !Container(5102).OnScrollPrevious + !Container(5102).OnScrollNext
+                </visible>
+                <animation effect="fade" time="320" delay="400">Visible</animation>
+                <animation effect="rotate" end="-360" center="auto" time="2000" loop="true" reversible="false"
+                           condition="true">Conditional
+                </animation>
+                <texture colordiffuse="FFFAFAFA">spinner.png</texture>
+                <animation effect="fade" start="70" time="1200" condition="true" pulse="true">Conditional</animation>
+            </control>
+            <control type="image">
+                <left>925</left>
+                <top>518</top>
+                <width>70</width>
+                <height>70</height>
+                <visible>Container(5102).IsVisible + !Container(5102).OnScrollPrevious + !Container(5102).OnScrollNext
+                </visible>
+                <animation effect="fade" time="320" delay="400">Visible</animation>
+                <animation effect="rotate" end="360" center="auto" time="2000" loop="true" reversible="false"
+                           condition="true">Conditional
+                </animation>
+                <texture flipx="true" colordiffuse="FFFAFAFA">spinner.png</texture>
+                <animation effect="fade" start="70" time="1200" condition="true" pulse="true">Conditional</animation>
+            </control>
+
+            <control type="list" id="5102">
+                <left>-90</left>
+                <top>0</top>
+                <width>2100</width>
+                <height>1080</height>
+                <onleft>5000</onleft>
+                <onright>5000</onright>
+                <!--    <ondown>9001</ondown>-->
+                <animation effect="fade" start="0" end="100" time="300" tween="sine">WindowOpen</animation>
+                <animation effect="fade" end="100" time="200" tween="sine">WindowClose</animation>
+                <scrolltime tween="sine">400</scrolltime>
+                <orientation>Horizontal</orientation>
+                <itemlayout height="1080" width="1920">
+                    <control type="image">
+                        <left>90</left>
+                        <top>0</top>
+                        <width>1920</width>
+                        <height>1080</height>
+                        <aspectratio>keep</aspectratio>
+                        <fadetime>200</fadetime>
+                        <texture>$INFO[ListItem.Art(img)]</texture>
+                    </control>
+                </itemlayout>
+                <focusedlayout height="1080" width="1920">
+                    <control type="image">
+                        <left>90</left>
+                        <top>0</top>
+                        <width>1920</width>
+                        <height>1080</height>
+                        <aspectratio>keep</aspectratio>
+                        <fadetime>200</fadetime>
+                        <texture>$INFO[ListItem.Art(img)]</texture>
+                    </control>
+                </focusedlayout>
+                <visible>True</visible>
+            </control>
+        </control>
+
+        <control type="group" id="5201">
+            <left>50</left>
+            <top>5</top>
+            <width>1855</width>
+            <height>1070</height>
+
+            <control type="image" id="5103">
+                <left>0</left>
+                <top>0</top>
+                <width>1865</width>
+                <height>1070</height>
+                <texture>common/dialog-bg-nobo.png</texture>
+            </control>
+
+            <control type="textbox" id="5202">
+                <left>5</left>
+                <top>5</top>
+                <width>1860</width>
+                <height>1065</height>
+            </control>
+            <visible>True</visible>
+        </control>
+
+        <control type="group" id="5301">
+            <left>50</left>
+            <top>5</top>
+            <width>1865</width>
+            <height>1070</height>
+        </control>
+
+        <control type="group" id="5501">
+            <visible>True</visible>
+            <control type="button" id="5502">
+                <label>$NUMBER[1]</label>
+                <left>5</left>
+                <top>5</top>
+                <width>40</width>
+                <height>200</height>
+                <font>font13</font>
+                <textcolor>ffe1e1e1</textcolor>
+                <focusedcolor>white</focusedcolor>
+                <selectedcolor>ffe1e1e1</selectedcolor>
+                <shadowcolor>66000000</shadowcolor>
+                <textoffsetx>5</textoffsetx>
+                <aligny>center</aligny>
+                <align>center</align>
+                <texturefocus border="10" colordiffuse="ff1f0000">buttons/shadow_smallbutton.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="ff1f0f0f">buttons/shadow_smallbutton.png</texturenofocus>
+                <pulseonselect>no</pulseonselect>
+                <!--<animation effect="slide" time="0" end="17,0" condition="true">Conditional</animation>-->
+            </control>
+
+            <control type="button" id="5503">
+                <label>$NUMBER[2]</label>
+                <left>5</left>
+                <top>210</top>
+                <width>40</width>
+                <height>200</height>
+                <font>font13</font>
+                <textcolor>ffe1e1e1</textcolor>
+                <focusedcolor>white</focusedcolor>
+                <selectedcolor>ffe1e1e1</selectedcolor>
+                <shadowcolor>66000000</shadowcolor>
+                <textoffsetx>5</textoffsetx>
+                <aligny>center</aligny>
+                <align>center</align>
+                <texturefocus border="10" colordiffuse="ff001f00">buttons/shadow_smallbutton.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="ff0f1f0f">buttons/shadow_smallbutton.png</texturenofocus>
+                <pulseonselect>no</pulseonselect>
+                <!--<animation effect="slide" time="0" end="17,0" condition="true">Conditional</animation>-->
+            </control>
+
+            <control type="button" id="5504">
+                <label>$NUMBER[3]</label>
+                <left>5</left>
+                <top>415</top>
+                <width>40</width>
+                <height>200</height>
+                <font>font13</font>
+                <textcolor>ffe1e1e1</textcolor>
+                <focusedcolor>white</focusedcolor>
+                <selectedcolor>ffe1e1e1</selectedcolor>
+                <shadowcolor>66000000</shadowcolor>
+                <textoffsetx>5</textoffsetx>
+                <aligny>center</aligny>
+                <align>center</align>
+                <texturefocus border="10" colordiffuse="ff1f1f00">buttons/shadow_smallbutton.png</texturefocus>
+                <texturenofocus border="10" colordiffuse="ff1f1f0f">buttons/shadow_smallbutton.png</texturenofocus>
+                <pulseonselect>no</pulseonselect>
+                <!--<animation effect="slide" time="0" end="17,0" condition="true">Conditional</animation>-->
+            </control>
+        </control>
+    </controls>
+</window>

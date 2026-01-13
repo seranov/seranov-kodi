@@ -48,4 +48,11 @@
     <string id="32110">Scanner Log</string>
     <string id="32111">Are you sure you want to clear the log?</string>
     <string id="32112">Log cleared successfully</string>
+    
+    <!-- Context Menu -->
+    <string id="32120">No folder selected</string>
+    <string id="32121">Scanning folder...</string>
+    <string id="32122">Scanned {0} items</string>
+    <string id="32123">No items needed updating</string>
+    <string id="32124">Update NFO Info</string>
 </strings>

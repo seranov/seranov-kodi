@@ -48,4 +48,11 @@
     <string id="32110">Журнал сканера</string>
     <string id="32111">Вы уверены, что хотите очистить журнал?</string>
     <string id="32112">Журнал успешно очищен</string>
+    
+    <!-- Context Menu -->
+    <string id="32120">Папка не выбрана</string>
+    <string id="32121">Сканирование папки...</string>
+    <string id="32122">Отсканировано {0} элементов</string>
+    <string id="32123">Обновление не требуется</string>
+    <string id="32124">Обновить NFO информацию</string>
 </strings>

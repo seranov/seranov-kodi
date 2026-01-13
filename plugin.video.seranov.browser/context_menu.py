@@ -12,13 +12,15 @@ if __name__ == '__main__':
     try:
         addon = xbmcaddon.Addon()
         
-        # Get the list item that was right-clicked
-        # noinspection PyUnresolvedReferences
-        list_item = sys.listitem
-        
-        if list_item:
-            path = list_item.getPath()
-            log(f'Context menu invoked for path: {path}')
+        # Get the list item that was right-clicked (optional)
+        try:
+            list_item = sys.listitem
+            if list_item:
+                path = list_item.getPath()
+                log(f'Context menu invoked for path: {path}')
+        except AttributeError:
+            # sys.listitem may not be available in all contexts
+            log('Context menu invoked without list item')
         
         # Open the plugin
         plugin_url = 'plugin://plugin.video.seranov.browser/'

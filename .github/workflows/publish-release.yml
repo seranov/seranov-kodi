@@ -1,10 +1,10 @@
 name: Publish Kodi Repository
 
 # Триггеры / Triggers
+# Запускается только при создании тега или вручную для избежания частых деплоев
+# Runs only on tag creation or manually to avoid frequent deployments
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*'
   workflow_dispatch:
@@ -230,12 +230,32 @@ jobs:
           touch docs/.nojekyll
           echo "✓ .nojekyll file created!"
 
-      # Шаг 8: Конвертация документации из MD в HTML / Step 8: Convert documentation from MD to HTML
-      - name: Convert documentation to HTML
+      # Шаг 8: Конвертация основной документации / Step 8: Convert main documentation
+      # Конвертируем только основные файлы для уменьшения размера артефакта
+      # Convert only main files to reduce artifact size
+      - name: Convert main documentation to HTML
         run: |
-          echo "Converting documentation from Markdown to HTML..."
-          python3 scripts/convert_md_to_html.py doc docs/doc
-          echo "✓ Documentation converted to HTML!"
+          echo "Converting main documentation from Markdown to HTML..."
+          mkdir -p docs/doc
+          
+          # Конвертируем только основные файлы / Convert only main files
+          for doc_file in doc/README.md doc/QUICKSTART.md doc/INSTALLATION.md; do
+            if [ -f "$doc_file" ]; then
+              filename=$(basename "$doc_file" .md)
+              python3 -c "
+          import sys
+          with open('$doc_file', 'r', encoding='utf-8') as f:
+              content = f.read()
+          with open('docs/doc/${filename}.html', 'w', encoding='utf-8') as f:
+              f.write('<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><title>${filename}</title></head><body><pre>')
+              f.write(content.replace('<', '&lt;').replace('>', '&gt;'))
+              f.write('</pre></body></html>')
+          "
+              echo "✓ Converted: $doc_file"
+            fi
+          done
+          
+          echo "✓ Main documentation converted!"
 
       # Шаг 9: Генерация readme.html / Step 9: Generate readme.html
       - name: Generate readme.html
@@ -436,6 +456,14 @@ jobs:
           echo ""
           echo "=== File sizes ==="
           du -h docs/* | sort -h
+          echo ""
+          echo "=== Total artifact size ==="
+          du -sh docs/
+          echo ""
+          echo "⚠️  Artifact size affects deployment speed:"
+          echo "   < 5 MB: Fast (1-2 min)"
+          echo "   5-15 MB: Medium (3-5 min)"
+          echo "   > 15 MB: Slow (5-10+ min)"
 
       # Шаг 13: Загрузка артефакта для Pages / Step 13: Upload Pages artifact
       - name: Upload Pages artifact
@@ -447,6 +475,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        timeout-minutes: 5
+        continue-on-error: false
 
       # Шаг 15: Вывод информации об успешном деплое / Step 15: Output deployment info
       - name: Deployment complete

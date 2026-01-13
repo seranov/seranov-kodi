@@ -30,8 +30,10 @@
 
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
-        <summary lang="en">Popup Screenshots</summary>
-        <description lang="en">Show slideshow of local images and optionally file_id.diz file text content</description>
+        <summary lang="en_GB">Popup Screenshots</summary>
+        <summary lang="ru_RU">Всплывающие скриншоты</summary>
+        <description lang="en_GB">Show slideshow of local images and optionally file_id.diz file text content</description>
+        <description lang="ru_RU">Показывает слайдшоу локальных изображений и опционально содержимое текстового файла file_id.diz</description>
         <license>GNU General Public License, v2</license>
         <language></language>
         <forum></forum>

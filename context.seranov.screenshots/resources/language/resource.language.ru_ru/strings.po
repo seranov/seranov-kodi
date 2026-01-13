@@ -1,0 +1,103 @@
+# Kodi Media Center language file
+# Addon Name: SeraNov Popup Screenshots
+# Addon id: context.seranov.screenshots
+msgid ""
+msgstr ""
+"Project-Id-Version: context.seranov.screenshots 1.1.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-13 18:00+0000\n"
+"PO-Revision-Date: 2026-01-13 18:00+0000\n"
+"Last-Translator: seranov\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgctxt "#32000"
+msgid "Local Info"
+msgstr "Локальная информация"
+
+msgctxt "#32001"
+msgid "Description"
+msgstr "Описание"
+
+msgctxt "#32002"
+msgid "Screenshots slide show"
+msgstr "Слайдшоу скриншотов"
+
+msgctxt "#32003"
+msgid "Screenshots tile"
+msgstr "Плитка скриншотов"
+
+msgctxt "#30101"
+msgid "General"
+msgstr "Общие"
+
+msgctxt "#30104"
+msgid "seconds"
+msgstr "секунд"
+
+msgctxt "#30105"
+msgid "kB"
+msgstr "кБ"
+
+msgctxt "#30111"
+msgid "General"
+msgstr "Общие"
+
+msgctxt "#30121"
+msgid "Startup mode"
+msgstr "Режим запуска"
+
+msgctxt "#30123"
+msgid "Image auto switch delay (seconds)"
+msgstr "Задержка автопереключения изображений (секунды)"
+
+msgctxt "#30112"
+msgid "Background"
+msgstr "Фон"
+
+msgctxt "#30124"
+msgid "Use fanart as background if exists"
+msgstr "Использовать fanart в качестве фона, если доступен"
+
+msgctxt "#30125"
+msgid "Default background"
+msgstr "Фон по умолчанию"
+
+msgctxt "#30126"
+msgid "Tint"
+msgstr "Оттенок"
+
+msgctxt "#30113"
+msgid "Screenshots"
+msgstr "Скриншоты"
+
+msgctxt "#30127"
+msgid "Include non JPEG images"
+msgstr "Включить изображения не в формате JPEG"
+
+msgctxt "#30128"
+msgid "Hide small JPEG files"
+msgstr "Скрыть малые файлы JPEG"
+
+msgctxt "#30129"
+msgid "Minimum JPEG file size, %"
+msgstr "Минимальный размер файла JPEG, %"
+
+msgctxt "#30130"
+msgid "Hide artwork files"
+msgstr "Скрыть файлы обложек"
+
+msgctxt "#30200"
+msgid "Context Menu"
+msgstr "Контекстное меню"
+
+msgctxt "#30201"
+msgid "Show in root menu"
+msgstr "Показывать в корне меню"
+
+msgctxt "#30202"
+msgid "Show in SeraNov folder"
+msgstr "Показывать в папке SeraNov"

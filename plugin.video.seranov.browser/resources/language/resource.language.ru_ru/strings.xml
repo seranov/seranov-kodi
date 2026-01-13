@@ -44,4 +44,12 @@
     <string id="32402">Ошибка загрузки данных</string>
     <string id="32403">Фильтры сброшены</string>
     <string id="32404">Ошибка: {0}</string>
+    
+    <!-- Context Menu -->
+    <string id="32500">Открыть Unified Browser</string>
+    
+    <!-- Context Menu Settings -->
+    <string id="32600">Контекстное меню</string>
+    <string id="32601">Показывать в корне меню</string>
+    <string id="32602">Показывать в папке SeraNov</string>
 </strings>

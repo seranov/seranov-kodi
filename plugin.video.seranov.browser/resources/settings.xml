@@ -8,4 +8,8 @@
     <category label="32002">
         <setting id="debug_logging" type="bool" label="32030" default="false"/>
     </category>
+    <category label="32600">
+        <setting id="context_menu_root" type="bool" label="32601" default="true"/>
+        <setting id="context_menu_seranov" type="bool" label="32602" default="false"/>
+    </category>
 </settings>

@@ -96,5 +96,20 @@
                 </setting>
             </group>
         </category>
+        <category id="context_menu" label="30200" help="">
+            <group id="4" label="30200">
+                <setting id="context_menu_root" type="boolean" label="30201">
+                    <level>0</level>
+                    <default>true</default>
+                    <control type="toggle"/>
+                </setting>
+                
+                <setting id="context_menu_seranov" type="boolean" label="30202">
+                    <level>0</level>
+                    <default>false</default>
+                    <control type="toggle"/>
+                </setting>
+            </group>
+        </category>
     </section>
 </settings>

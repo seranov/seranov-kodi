@@ -42,12 +42,7 @@ The task required:
 #### 2. Updated `addon.xml`
 - Added `<extension point="kodi.context.item">` section
 - Configured to appear in the main Kodi context menu (`kodi.core.main`)
-- Set visibility condition to show on appropriate content types:
-  - Movies containers
-  - TV shows containers
-  - Seasons containers
-  - Episodes containers
-  - Any folder paths
+- Set visibility condition to show only on folders using `ListItem.IsFolder`
 - Uses localized string for menu label (string ID: 32124)
 - Updated version from 1.1.0 to 1.1.1
 
@@ -94,7 +89,7 @@ def scan_folder_manually():
     <menu id="kodi.core.main">
         <item library="context_menu.py">
             <label>$ADDON[service.seranov.nfoscanner 32124]</label>
-            <visible>Container.Content(movies) | Container.Content(tvshows) | ...</visible>
+            <visible>ListItem.IsFolder</visible>
         </item>
     </menu>
 </extension>

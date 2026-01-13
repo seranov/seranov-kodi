@@ -17,7 +17,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 ```
 ├── plugin.video.random.recursive/  # Random Recursive Video Player plugin
 ├── plugin.video.unified.browser/   # Unified Video Browser plugin
-├── context.screenshots/            # Popup Screenshots context menu addon
+├── context.seranov.screenshots/    # Popup Screenshots context menu addon
 ├── service.seranov.nfoscanner/     # NFO Scanner Service
 ├── repository.seranov/             # Repository addon
 ├── repo/                           # Generated repository files (addons.xml, zips)
@@ -163,7 +163,7 @@ For quick deployment to your local Kodi installation (Windows):
 .\scripts\deploy-local.ps1
 
 # Deploy specific addon
-.\scripts\deploy-local.ps1 -AddonsToDeploy @('plugin.video.random.recursive')
+.\scripts\deploy-local.ps1 -AddonsToDeploy @('plugin.video.seranov.recursive')
 ```
 
 ### Adding New Add-ons

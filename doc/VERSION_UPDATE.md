@@ -456,10 +456,10 @@ After update, verify version:
 **addons.xml:**
 ```xml
 <addons>
-    <addon id="plugin.video.random.recursive" version="1.0.1" ...>
+    <addon id="plugin.video.seranov.recursive" version="1.0.1" ...>
         ...
     </addon>
-    <addon id="context.screenshots" version="1.0.5" ...>
+    <addon id="context.seranov.screenshots" version="1.0.5" ...>
         ...
     </addon>
     ...
@@ -655,17 +655,17 @@ version="1.1.0"
 
 2. Update second plugin:
 ```bash
-# Change context.screenshots/addon.xml
+# Change context.seranov.screenshots/addon.xml
 version="1.0.6"
 ```
 
 3. Commit and push:
 ```bash
-git add plugin.video.random.recursive/ context.screenshots/
+git add plugin.video.seranov.recursive/ context.seranov.screenshots/
 git commit -m "Release multiple addons
 
-- plugin.video.random.recursive: v1.1.0 - Add subtitle support
-- context.screenshots: v1.0.6 - Fix image loading issue"
+- plugin.video.seranov.recursive: v1.1.0 - Add subtitle support
+- context.seranov.screenshots: v1.0.6 - Fix image loading issue"
 git push origin main
 ```
 
@@ -688,8 +688,8 @@ git pull origin main
 git tag -a v1.1.0 -m "Release v1.1.0
 
 Major changes:
-- plugin.video.random.recursive v1.1.0: Subtitle support
-- context.screenshots v1.0.6: Image loading fix
+- plugin.video.seranov.recursive v1.1.0: Subtitle support
+- context.seranov.screenshots v1.0.6: Image loading fix
 - Updated documentation"
 ```
 

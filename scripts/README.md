@@ -107,7 +107,7 @@ PowerShell-скрипт для сборки релиза и подготовки
 1. **Обновите версию в addon.xml**
    ```xml
    <!-- Обновите атрибут version -->
-   <addon id="plugin.video.random.recursive" version="1.0.1" name="Random Recursive Player" provider-name="seranov">
+   <addon id="plugin.video.seranov.recursive" version="1.0.1" name="SeraNov Random Recursive Player" provider-name="seranov">
    ```
 
 2. **Соберите репозиторий**

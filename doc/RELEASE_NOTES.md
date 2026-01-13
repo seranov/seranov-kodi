@@ -128,8 +128,8 @@ For issues, questions, or contributions, please visit:
 
 - `repository.seranov-1.0.0.zip` - Repository add-on (install this first)
 - `plugin.video.random.recursive-1.0.0.zip` - Random Recursive Video Player
-- `plugin.video.unified.browser-1.0.0.zip` - Unified Video Browser
-- `context.screenshots-1.0.5.zip` - Popup Screenshots
+- `plugin.video.seranov.browser-1.0.0.zip` - Unified Video Browser
+- `context.seranov.screenshots-1.0.5.zip` - Popup Screenshots
 - `service.seranov.nfoscanner-1.0.0.zip` - NFO Scanner Service
 - `addons.xml` - Repository metadata file
 - `addons.xml.md5` - Repository checksum file

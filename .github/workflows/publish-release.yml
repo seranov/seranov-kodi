@@ -46,9 +46,9 @@ jobs:
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
-            "context.screenshots"
-            "plugin.video.random.recursive"
-            "plugin.video.unified.browser"
+            "context.seranov.screenshots"
+            "plugin.video.seranov.recursive"
+            "plugin.video.seranov.browser"
             "service.seranov.nfoscanner"
             "repository.seranov"
           )
@@ -148,9 +148,9 @@ jobs:
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
-            "context.screenshots"
-            "plugin.video.random.recursive"
-            "plugin.video.unified.browser"
+            "context.seranov.screenshots"
+            "plugin.video.seranov.recursive"
+            "plugin.video.seranov.browser"
             "service.seranov.nfoscanner"
             "repository.seranov"
           )
@@ -446,9 +446,9 @@ jobs:
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
-            "context.screenshots"
-            "plugin.video.random.recursive"
-            "plugin.video.unified.browser"
+            "context.seranov.screenshots"
+            "plugin.video.seranov.recursive"
+            "plugin.video.seranov.browser"
             "service.seranov.nfoscanner"
             "repository.seranov"
           )

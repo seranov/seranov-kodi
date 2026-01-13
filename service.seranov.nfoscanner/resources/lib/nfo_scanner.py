@@ -554,7 +554,6 @@ class NFOScanner:
                 label = source['label']
                 
                 source_start_time = time.time()
-                self.log(f'', xbmc.LOGINFO)
                 self.log(f'>>> Starting scan of source {idx}/{len(sources)}: {label}', xbmc.LOGINFO)
                 self.log(f'>>> Path: {path}', xbmc.LOGINFO)
                 

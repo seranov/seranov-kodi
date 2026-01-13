@@ -43,7 +43,6 @@ jobs:
         run: |
           echo "Creating output directory structure..."
           mkdir -p docs/doc
-          mkdir -p repo
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
@@ -58,12 +57,6 @@ jobs:
           for addon in "${ADDONS[@]}"; do
             mkdir -p "docs/$addon"
             echo "Created directory: docs/$addon"
-          done
-          
-          # Создание поддиректорий для каждого аддона в repo / Create subdirectories for each addon in repo
-          for addon in "${ADDONS[@]}"; do
-            mkdir -p "repo/$addon"
-            echo "Created directory: repo/$addon"
           done
 
       # Шаг 4: Создание ZIP-архивов / Step 4: Create ZIP archives
@@ -89,9 +82,9 @@ jobs:
             
             echo "Processing $addon_id version $version..."
             
-            # Создание ZIP архива в корне docs / Create ZIP archive in docs root
+            # Создание ZIP архива в подпапке аддона / Create ZIP archive in addon subfolder
             local zip_name="${addon_id}-${version}.zip"
-            local zip_path="docs/${zip_name}"
+            local zip_path="docs/$addon_id/${zip_name}"
             
             # Удаление старого архива если есть / Remove old archive if exists
             rm -f "$zip_path"
@@ -116,10 +109,6 @@ jobs:
             
             echo "Created: $zip_path"
             
-            # Копирование ZIP архива в подпапку аддона / Copy ZIP archive to addon subfolder
-            cp "$zip_path" "docs/$addon_id/"
-            echo "Copied $zip_name to docs/$addon_id/"
-            
             # Копирование icon.png если есть / Copy icon.png if exists
             if [ -f "$addon_dir/icon.png" ]; then
               cp "$addon_dir/icon.png" "docs/$addon_id/"
@@ -142,149 +131,17 @@ jobs:
           
           echo "All ZIP archives created successfully!"
           
-          # Создание копии repository.seranov.zip без версии / Create copy of repository.seranov.zip without version
-          echo "Creating versionless copy of repository.seranov..."
-          REPO_ZIP=$(find docs/ -maxdepth 1 -name "repository.seranov-*.zip" | head -n 1)
+          # Создание копии repository.seranov.zip без версии в корне / Create versionless copy of repository.seranov.zip in root
+          echo "Creating versionless copy of repository.seranov in root..."
+          REPO_ZIP=$(find docs/repository.seranov/ -name "repository.seranov-*.zip" -type f | head -n 1)
           if [ -n "$REPO_ZIP" ]; then
             cp "$REPO_ZIP" "docs/repository.seranov.zip"
-            echo "Created: docs/repository.seranov.zip"
+            echo "Created: docs/repository.seranov.zip (copied from $(basename "$REPO_ZIP"))"
           else
-            echo "Warning: repository.seranov ZIP not found"
+            echo "Warning: repository.seranov ZIP not found in docs/repository.seranov/"
           fi
 
-      # Шаг 5: Обновление временной папки repo / Step 5: Update temporary repo folder
-      - name: Update temporary repo folder
-        run: |
-          echo "Updating temporary repo folder with new archives..."
-          
-          # Список аддонов для обработки / List of addons to process
-          ADDONS=(
-            "context.seranov.screenshots"
-            "plugin.video.seranov.recursive"
-            "plugin.video.seranov.browser"
-            "service.seranov.nfoscanner"
-            "repository.seranov"
-          )
-          
-          # Обновление архивов для каждого аддона / Update archives for each addon
-          for addon_id in "${ADDONS[@]}"; do
-            if [ -d "repo/$addon_id" ]; then
-              echo "Processing $addon_id in repo folder..."
-              
-              # Удаление старых ZIP архивов / Remove old ZIP archives
-              rm -f repo/$addon_id/*.zip
-              echo "  Removed old ZIP archives for $addon_id"
-              
-              # Копирование новых ZIP архивов из docs / Copy new ZIP archives from docs
-              for zipfile in docs/${addon_id}-*.zip; do
-                if [ -f "$zipfile" ]; then
-                  cp "$zipfile" "repo/$addon_id/"
-                  echo "  Copied $(basename "$zipfile") to repo/$addon_id/"
-                fi
-              done
-              
-              # Копирование icon.png если есть и его нет в repo / Copy icon.png if exists and not in repo
-              if [ -f "$addon_id/icon.png" ] && [ ! -f "repo/$addon_id/icon.png" ]; then
-                cp "$addon_id/icon.png" "repo/$addon_id/"
-                echo "  Copied icon.png to repo/$addon_id/"
-              fi
-              
-              # Копирование fanart.jpg если есть и его нет в repo / Copy fanart.jpg if exists and not in repo
-              if [ -f "$addon_id/fanart.jpg" ] && [ ! -f "repo/$addon_id/fanart.jpg" ]; then
-                cp "$addon_id/fanart.jpg" "repo/$addon_id/"
-                echo "  Copied fanart.jpg to repo/$addon_id/"
-              fi
-            else
-              echo "Warning: repo/$addon_id directory does not exist, skipping..."
-            fi
-          done
-          
-          echo "✓ Temporary repo folder updated with new archives!"
-
-      # Шаг 6: Обновление repo/addons.xml / Step 6: Update repo/addons.xml
-      - name: Update repo/addons.xml
-        run: |
-          echo "Updating repo/addons.xml..."
-          
-          python3 << 'PYTHON_SCRIPT'
-          import xml.etree.ElementTree as ET
-          from pathlib import Path
-          import sys
-          
-          def indent_xml(elem, level=0):
-              """Add pretty-printing indentation to XML"""
-              indent = "\n" + "    " * level
-              if len(elem):
-                  if not elem.text or not elem.text.strip():
-                      elem.text = indent + "    "
-                  if not elem.tail or not elem.tail.strip():
-                      elem.tail = indent
-                  for child in elem:
-                      indent_xml(child, level + 1)
-                  if len(elem) > 0:
-                      last_child = elem[-1]
-                      if not last_child.tail or not last_child.tail.strip():
-                          last_child.tail = indent
-              else:
-                  if level and (not elem.tail or not elem.tail.strip()):
-                      elem.tail = indent
-          
-          # Создание корневого элемента / Create root element
-          root = ET.Element('addons')
-          
-          # Список аддонов / List of addons
-          addon_dirs = []
-          base_path = Path('.')
-          
-          for item in base_path.iterdir():
-              if item.is_dir() and (
-                  item.name.startswith('plugin.') or 
-                  item.name.startswith('service.') or 
-                  item.name.startswith('context.') or 
-                  item.name.startswith('repository.')
-              ):
-                  addon_xml = item / 'addon.xml'
-                  if addon_xml.exists():
-                      addon_dirs.append(item)
-          
-          print(f"Found {len(addon_dirs)} addons")
-          
-          # Добавление каждого аддона в addons.xml / Add each addon to addons.xml
-          for addon_dir in sorted(addon_dirs):
-              try:
-                  tree = ET.parse(addon_dir / 'addon.xml')
-                  addon_element = tree.getroot()
-                  root.append(addon_element)
-                  print(f"Added {addon_element.get('id')} version {addon_element.get('version')}")
-              except Exception as e:
-                  print(f"Error processing {addon_dir}: {e}", file=sys.stderr)
-                  sys.exit(1)
-          
-          # Форматирование и сохранение / Format and save
-          indent_xml(root)
-          tree = ET.ElementTree(root)
-          
-          output_path = Path('repo/addons.xml')
-          tree.write(output_path, encoding='utf-8', xml_declaration=True)
-          
-          print(f"Updated: {output_path}")
-          PYTHON_SCRIPT
-          
-          echo "✓ repo/addons.xml updated successfully!"
-
-      # Шаг 7: Обновление repo/addons.xml.md5 / Step 7: Update repo/addons.xml.md5
-      - name: Update repo/addons.xml.md5
-        run: |
-          echo "Updating repo/addons.xml.md5..."
-          
-          cd repo
-          md5sum addons.xml | awk '{print $1}' > addons.xml.md5
-          
-          echo "MD5 checksum: $(cat addons.xml.md5)"
-          echo "✓ repo/addons.xml.md5 updated successfully!"
-          cd ..
-
-      # Шаг 8: Генерация addons.xml для docs / Step 8: Generate addons.xml for docs
+      # Шаг 5: Генерация addons.xml для docs / Step 5: Generate addons.xml for docs
       - name: Generate addons.xml for docs
         run: |
           echo "Generating addons.xml for docs..."
@@ -353,9 +210,9 @@ jobs:
           print(f"Generated: {output_path}")
           PYTHON_SCRIPT
           
-          echo "✓ addons.xml for docs generated successfully!"
+          echo "✓ addons.xml generated successfully!"
 
-      # Шаг 9: Генерация addons.xml.md5 для docs / Step 9: Generate addons.xml.md5 for docs
+      # Шаг 6: Генерация addons.xml.md5 / Step 6: Generate addons.xml.md5
       - name: Generate addons.xml.md5
         run: |
           echo "Generating addons.xml.md5..."
@@ -366,28 +223,28 @@ jobs:
           echo "MD5 checksum: $(cat addons.xml.md5)"
           echo "addons.xml.md5 generated successfully!"
 
-      # Шаг 10: Создание .nojekyll файла / Step 10: Create .nojekyll file
+      # Шаг 7: Создание .nojekyll файла / Step 7: Create .nojekyll file
       - name: Create .nojekyll file
         run: |
           echo "Creating .nojekyll file to disable Jekyll..."
           touch docs/.nojekyll
           echo "✓ .nojekyll file created!"
 
-      # Шаг 11: Конвертация документации из MD в HTML / Step 11: Convert documentation from MD to HTML
+      # Шаг 8: Конвертация документации из MD в HTML / Step 8: Convert documentation from MD to HTML
       - name: Convert documentation to HTML
         run: |
           echo "Converting documentation from Markdown to HTML..."
           python3 scripts/convert_md_to_html.py doc docs/doc
           echo "✓ Documentation converted to HTML!"
 
-      # Шаг 12: Генерация readme.html / Step 12: Generate readme.html
+      # Шаг 9: Генерация readme.html / Step 9: Generate readme.html
       - name: Generate readme.html
         run: |
           echo "Generating readme.html with plugin links..."
           python3 scripts/generate_readme.py docs
           echo "✓ readme.html generated!"
 
-      # Шаг 13: Генерация корневого index.html / Step 13: Generate root index.html
+      # Шаг 10: Генерация корневого index.html / Step 10: Generate root index.html
       - name: Generate root index.html
         run: |
           echo "Generating root index.html with plugin archive links..."
@@ -398,12 +255,25 @@ jobs:
           <html>
           <head>
               <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>Seranov Kodi Repository</title>
+              <style>
+                  body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; max-width: 1200px; }
+                  h1 { color: #333; border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
+                  h2 { color: #555; margin-top: 30px; }
+                  a { color: #0066cc; text-decoration: none; }
+                  a:hover { text-decoration: underline; }
+                  ul { list-style-type: none; padding-left: 0; }
+                  li { padding: 5px 0; }
+                  .description { color: #666; margin-bottom: 30px; }
+              </style>
           </head>
           <body>
               <h1>Seranov Kodi Repository</h1>
+              <p class="description">Collection of custom Kodi addons for video playback and browsing.</p>
               
               <h2>Repository Installation:</h2>
+              <p>To install this repository in Kodi, download the following file and install it as a ZIP package:</p>
               <ul>
           EOF
           
@@ -413,40 +283,11 @@ jobs:
             echo "Added link: repository.seranov.zip (first)"
           fi
           
-          # Добавление ссылки на repository.seranov-X.X.X.zip второй / Add repository.seranov-X.X.X.zip link second
-          REPO_VERSIONED_ZIP=$(find docs/ -maxdepth 1 -name "repository.seranov-*.zip" -type f | head -n 1)
-          if [ -n "$REPO_VERSIONED_ZIP" ]; then
-            REPO_VERSIONED_NAME=$(basename "$REPO_VERSIONED_ZIP")
-            echo "        <li><a href=\"$REPO_VERSIONED_NAME\">$REPO_VERSIONED_NAME</a></li>" >> docs/index.html
-            echo "Added link: $REPO_VERSIONED_NAME (second)"
-          fi
-          
-          cat >> docs/index.html << 'EOF'
-              </ul>
-              
-              <h2>Addon Archives:</h2>
-              <ul>
-          EOF
-          
-          # Добавление ссылок на остальные архивы / Add links to other archives
-          for zipfile in docs/*.zip; do
-            if [ -f "$zipfile" ]; then
-              zipname=$(basename "$zipfile")
-              
-              # Пропуск уже добавленных repository.seranov файлов / Skip already added repository.seranov files
-              if [ "$zipname" = "repository.seranov.zip" ] || [[ "$zipname" == repository.seranov-*.zip ]]; then
-                continue
-              fi
-              
-              echo "        <li><a href=\"$zipname\">$zipname</a></li>" >> docs/index.html
-              echo "Added link: $zipname"
-            fi
-          done
-          
           cat >> docs/index.html << 'EOF'
               </ul>
               
               <h2>Addon Directories:</h2>
+              <p>Browse individual addon directories to view and download specific versions:</p>
               <ul>
           EOF
           
@@ -473,7 +314,7 @@ jobs:
           
           echo "✓ Root index.html generated!"
 
-      # Шаг 14: Генерация index.html для аддонов / Step 14: Generate index.html for addons
+      # Шаг 11: Генерация index.html для аддонов / Step 11: Generate index.html for addons
       - name: Generate addon index pages
         run: |
           echo "Generating index.html pages for addon directories..."
@@ -489,80 +330,111 @@ jobs:
           
           for addon_id in "${ADDONS[@]}"; do
             if [ -d "docs/$addon_id" ]; then
+              echo "Generating index.html for $addon_id..."
+              
+              # Создание начала HTML файла / Create HTML file header
               cat > "docs/$addon_id/index.html" << EOF
           <!DOCTYPE html>
           <html>
           <head>
               <meta charset="UTF-8">
-              <title>$addon_id</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>$addon_id - Seranov Kodi Repository</title>
+              <style>
+                  body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+                  h1 { color: #333; }
+                  h2 { color: #555; margin-top: 20px; }
+                  a { color: #0066cc; text-decoration: none; }
+                  a:hover { text-decoration: underline; }
+                  ul { list-style-type: none; padding-left: 0; }
+                  li { padding: 5px 0; }
+                  .back-link { margin-bottom: 20px; }
+              </style>
           </head>
           <body>
               <h1>$addon_id</h1>
-              <p><a href="../">← Back to repository</a></p>
-              
-              <h2>Addon Archives:</h2>
-              <ul>
+              <p class="back-link"><a href="../">← Back to repository</a></p>
           EOF
               
-              # Добавление ссылок на ZIP файлы / Add links to ZIP files
-              for file in docs/$addon_id/*.zip; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
-                fi
-              done
+              # Подсчёт файлов по типам / Count files by type
+              zip_count=$(ls docs/$addon_id/*.zip 2>/dev/null | wc -l)
+              media_count=$(ls docs/$addon_id/*.{png,jpg,jpeg,gif} 2>/dev/null | wc -l)
               
-              cat >> "docs/$addon_id/index.html" << EOF
-              </ul>
+              # Добавление секции с ZIP файлами если они есть / Add ZIP files section if any
+              if [ "$zip_count" -gt 0 ]; then
+                cat >> "docs/$addon_id/index.html" << EOF
+              
+              <h2>Installation Files:</h2>
+              <ul>
+          EOF
+                for file in docs/$addon_id/*.zip; do
+                  if [ -f "$file" ]; then
+                    filename=$(basename "$file")
+                    filesize=$(du -h "$file" | cut -f1)
+                    echo "        <li><a href=\"$filename\">$filename</a> ($filesize)</li>" >> "docs/$addon_id/index.html"
+                  fi
+                done
+                echo "              </ul>" >> "docs/$addon_id/index.html"
+              fi
+              
+              # Добавление секции с медиа файлами если они есть / Add media files section if any
+              if [ "$media_count" -gt 0 ]; then
+                cat >> "docs/$addon_id/index.html" << EOF
               
               <h2>Media Files:</h2>
               <ul>
           EOF
+                for file in docs/$addon_id/*.{png,jpg,jpeg,gif}; do
+                  if [ -f "$file" ]; then
+                    filename=$(basename "$file")
+                    echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                  fi
+                done
+                echo "              </ul>" >> "docs/$addon_id/index.html"
+              fi
               
-              # Добавление ссылок на медиа файлы / Add links to media files
-              for file in docs/$addon_id/*.{png,jpg,jpeg,gif}; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
-                fi
-              done
-              
-              cat >> "docs/$addon_id/index.html" << EOF
-              </ul>
-              
-              <h2>Other Files:</h2>
-              <ul>
-          EOF
-              
-              # Добавление ссылок на остальные файлы / Add links to other files
+              # Проверка наличия других файлов / Check for other files
+              other_files=()
               for file in docs/$addon_id/*; do
                 if [ -f "$file" ]; then
                   filename=$(basename "$file")
-                  # Пропуск уже добавленных файлов / Skip already added files
                   if [ "$filename" != "index.html" ] && \
                      [[ "$filename" != *.zip ]] && \
                      [[ "$filename" != *.png ]] && \
                      [[ "$filename" != *.jpg ]] && \
                      [[ "$filename" != *.jpeg ]] && \
                      [[ "$filename" != *.gif ]]; then
-                    echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                    other_files+=("$filename")
                   fi
                 fi
               done
               
+              # Добавление секции с другими файлами если они есть / Add other files section if any
+              if [ ${#other_files[@]} -gt 0 ]; then
+                cat >> "docs/$addon_id/index.html" << EOF
+              
+              <h2>Other Files:</h2>
+              <ul>
+          EOF
+                for filename in "${other_files[@]}"; do
+                  echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                done
+                echo "              </ul>" >> "docs/$addon_id/index.html"
+              fi
+              
+              # Закрытие HTML файла / Close HTML file
               cat >> "docs/$addon_id/index.html" << EOF
-              </ul>
           </body>
           </html>
           EOF
               
-              echo "Created index.html for $addon_id"
+              echo "✓ Created index.html for $addon_id"
             fi
           done
           
           echo "All index pages created successfully!"
 
-      # Шаг 15: Вывод структуры директории / Step 15: Display directory structure
+      # Шаг 12: Вывод структуры директории / Step 12: Display directory structure
       - name: Display output structure
         run: |
           echo "=== Output Directory Structure ==="
@@ -571,7 +443,7 @@ jobs:
           echo "=== File sizes ==="
           du -h docs/* | sort -h
 
-      # Шаг 16: Настройка GitHub Pages / Step 16: Configure GitHub Pages
+      # Шаг 13: Настройка GitHub Pages / Step 13: Configure GitHub Pages
       - name: Configure GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -585,7 +457,7 @@ jobs:
             -d '{"source":{"branch":"gh-pages","path":"/"}}' \
             || echo "Pages might already be configured or error occurred"
 
-      # Шаг 17: Deploy на GitHub Pages / Step 17: Deploy to GitHub Pages
+      # Шаг 14: Deploy на GitHub Pages / Step 14: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -596,7 +468,7 @@ jobs:
           enable_jekyll: false
           commit_message: "Deploy Kodi repository ${{ github.sha }}"
 
-      # Шаг 18: Вывод информации об успешном деплое / Step 18: Output deployment info
+      # Шаг 15: Вывод информации об успешном деплое / Step 15: Output deployment info
       - name: Deployment complete
         run: |
           echo "✅ Deployment successful!"

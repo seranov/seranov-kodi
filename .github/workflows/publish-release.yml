@@ -141,10 +141,160 @@ jobs:
             echo "Warning: repository.seranov ZIP not found"
           fi
 
-      # Шаг 5: Генерация addons.xml / Step 5: Generate addons.xml
-      - name: Generate addons.xml
+      # Шаг 5: Обновление папки repo / Step 5: Update repo folder
+      - name: Update repo folder
         run: |
-          echo "Generating addons.xml..."
+          echo "Updating repo folder with new archives..."
+          
+          # Список аддонов для обработки / List of addons to process
+          ADDONS=(
+            "context.screenshots"
+            "plugin.video.random.recursive"
+            "plugin.video.unified.browser"
+            "service.seranov.nfoscanner"
+            "repository.seranov"
+          )
+          
+          # Обновление архивов для каждого аддона / Update archives for each addon
+          for addon_id in "${ADDONS[@]}"; do
+            if [ -d "repo/$addon_id" ]; then
+              echo "Processing $addon_id in repo folder..."
+              
+              # Удаление старых ZIP архивов / Remove old ZIP archives
+              rm -f repo/$addon_id/*.zip
+              echo "  Removed old ZIP archives for $addon_id"
+              
+              # Копирование новых ZIP архивов из docs / Copy new ZIP archives from docs
+              for zipfile in docs/${addon_id}-*.zip; do
+                if [ -f "$zipfile" ]; then
+                  cp "$zipfile" "repo/$addon_id/"
+                  echo "  Copied $(basename "$zipfile") to repo/$addon_id/"
+                fi
+              done
+              
+              # Копирование icon.png если есть и его нет в repo / Copy icon.png if exists and not in repo
+              if [ -f "$addon_id/icon.png" ] && [ ! -f "repo/$addon_id/icon.png" ]; then
+                cp "$addon_id/icon.png" "repo/$addon_id/"
+                echo "  Copied icon.png to repo/$addon_id/"
+              fi
+              
+              # Копирование fanart.jpg если есть и его нет в repo / Copy fanart.jpg if exists and not in repo
+              if [ -f "$addon_id/fanart.jpg" ] && [ ! -f "repo/$addon_id/fanart.jpg" ]; then
+                cp "$addon_id/fanart.jpg" "repo/$addon_id/"
+                echo "  Copied fanart.jpg to repo/$addon_id/"
+              fi
+            else
+              echo "Warning: repo/$addon_id directory does not exist, skipping..."
+            fi
+          done
+          
+          echo "✓ Repo folder updated with new archives!"
+
+      # Шаг 6: Обновление repo/addons.xml / Step 6: Update repo/addons.xml
+      - name: Update repo/addons.xml
+        run: |
+          echo "Updating repo/addons.xml..."
+          
+          python3 << 'PYTHON_SCRIPT'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          import sys
+          
+          def indent_xml(elem, level=0):
+              """Add pretty-printing indentation to XML"""
+              indent = "\n" + "    " * level
+              if len(elem):
+                  if not elem.text or not elem.text.strip():
+                      elem.text = indent + "    "
+                  if not elem.tail or not elem.tail.strip():
+                      elem.tail = indent
+                  for child in elem:
+                      indent_xml(child, level + 1)
+                  if len(elem) > 0:
+                      last_child = elem[-1]
+                      if not last_child.tail or not last_child.tail.strip():
+                          last_child.tail = indent
+              else:
+                  if level and (not elem.tail or not elem.tail.strip()):
+                      elem.tail = indent
+          
+          # Создание корневого элемента / Create root element
+          root = ET.Element('addons')
+          
+          # Список аддонов / List of addons
+          addon_dirs = []
+          base_path = Path('.')
+          
+          for item in base_path.iterdir():
+              if item.is_dir() and (
+                  item.name.startswith('plugin.') or 
+                  item.name.startswith('service.') or 
+                  item.name.startswith('context.') or 
+                  item.name.startswith('repository.')
+              ):
+                  addon_xml = item / 'addon.xml'
+                  if addon_xml.exists():
+                      addon_dirs.append(item)
+          
+          print(f"Found {len(addon_dirs)} addons")
+          
+          # Добавление каждого аддона в addons.xml / Add each addon to addons.xml
+          for addon_dir in sorted(addon_dirs):
+              try:
+                  tree = ET.parse(addon_dir / 'addon.xml')
+                  addon_element = tree.getroot()
+                  root.append(addon_element)
+                  print(f"Added {addon_element.get('id')} version {addon_element.get('version')}")
+              except Exception as e:
+                  print(f"Error processing {addon_dir}: {e}", file=sys.stderr)
+                  sys.exit(1)
+          
+          # Форматирование и сохранение / Format and save
+          indent_xml(root)
+          tree = ET.ElementTree(root)
+          
+          output_path = Path('repo/addons.xml')
+          tree.write(output_path, encoding='utf-8', xml_declaration=True)
+          
+          print(f"Updated: {output_path}")
+          PYTHON_SCRIPT
+          
+          echo "✓ repo/addons.xml updated successfully!"
+
+      # Шаг 7: Обновление repo/addons.xml.md5 / Step 7: Update repo/addons.xml.md5
+      - name: Update repo/addons.xml.md5
+        run: |
+          echo "Updating repo/addons.xml.md5..."
+          
+          cd repo
+          md5sum addons.xml | awk '{print $1}' > addons.xml.md5
+          
+          echo "MD5 checksum: $(cat addons.xml.md5)"
+          echo "✓ repo/addons.xml.md5 updated successfully!"
+          cd ..
+
+      # Шаг 8: Коммит изменений в repo / Step 8: Commit changes to repo
+      - name: Commit repo changes
+        run: |
+          echo "Committing changes to repo folder..."
+          
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          git add repo/
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit in repo folder"
+          else
+            git commit -m "chore: update repo with new addon versions [skip ci]"
+            git push
+            echo "✓ Changes committed and pushed!"
+          fi
+
+      # Шаг 9: Генерация addons.xml для docs / Step 9: Generate addons.xml for docs
+      - name: Generate addons.xml for docs
+        run: |
+          echo "Generating addons.xml for docs..."
           
           python3 << 'PYTHON_SCRIPT'
           import xml.etree.ElementTree as ET
@@ -210,9 +360,9 @@ jobs:
           print(f"Generated: {output_path}")
           PYTHON_SCRIPT
           
-          echo "addons.xml generated successfully!"
+          echo "✓ addons.xml for docs generated successfully!"
 
-      # Шаг 6: Генерация addons.xml.md5 / Step 6: Generate addons.xml.md5
+      # Шаг 10: Генерация addons.xml.md5 для docs / Step 10: Generate addons.xml.md5 for docs
       - name: Generate addons.xml.md5
         run: |
           echo "Generating addons.xml.md5..."
@@ -223,28 +373,28 @@ jobs:
           echo "MD5 checksum: $(cat addons.xml.md5)"
           echo "addons.xml.md5 generated successfully!"
 
-      # Шаг 7: Создание .nojekyll файла / Step 7: Create .nojekyll file
+      # Шаг 11: Создание .nojekyll файла / Step 11: Create .nojekyll file
       - name: Create .nojekyll file
         run: |
           echo "Creating .nojekyll file to disable Jekyll..."
           touch docs/.nojekyll
           echo "✓ .nojekyll file created!"
 
-      # Шаг 8: Конвертация документации из MD в HTML / Step 8: Convert documentation from MD to HTML
+      # Шаг 12: Конвертация документации из MD в HTML / Step 12: Convert documentation from MD to HTML
       - name: Convert documentation to HTML
         run: |
           echo "Converting documentation from Markdown to HTML..."
           python3 scripts/convert_md_to_html.py doc docs/doc
           echo "✓ Documentation converted to HTML!"
 
-      # Шаг 9: Генерация readme.html / Step 9: Generate readme.html
+      # Шаг 13: Генерация readme.html / Step 13: Generate readme.html
       - name: Generate readme.html
         run: |
           echo "Generating readme.html with plugin links..."
           python3 scripts/generate_readme.py docs
           echo "✓ readme.html generated!"
 
-      # Шаг 10: Генерация корневого index.html / Step 10: Generate root index.html
+      # Шаг 14: Генерация корневого index.html / Step 14: Generate root index.html
       - name: Generate root index.html
         run: |
           echo "Generating root index.html with plugin archive links..."
@@ -289,7 +439,7 @@ jobs:
           
           echo "✓ Root index.html generated!"
 
-      # Шаг 11: Генерация index.html для аддонов / Step 11: Generate index.html for addons
+      # Шаг 15: Генерация index.html для аддонов / Step 15: Generate index.html for addons
       - name: Generate addon index pages
         run: |
           echo "Generating index.html pages for addon directories..."
@@ -341,7 +491,7 @@ jobs:
           
           echo "All index pages created successfully!"
 
-      # Шаг 12: Вывод структуры директории / Step 12: Display directory structure
+      # Шаг 16: Вывод структуры директории / Step 16: Display directory structure
       - name: Display output structure
         run: |
           echo "=== Output Directory Structure ==="
@@ -350,7 +500,7 @@ jobs:
           echo "=== File sizes ==="
           du -h docs/* | sort -h
 
-      # Шаг 13: Настройка GitHub Pages / Step 13: Configure GitHub Pages
+      # Шаг 17: Настройка GitHub Pages / Step 17: Configure GitHub Pages
       - name: Configure GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -364,7 +514,7 @@ jobs:
             -d '{"source":{"branch":"gh-pages","path":"/"}}' \
             || echo "Pages might already be configured or error occurred"
 
-      # Шаг 14: Deploy на GitHub Pages / Step 14: Deploy to GitHub Pages
+      # Шаг 18: Deploy на GitHub Pages / Step 18: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -375,7 +525,7 @@ jobs:
           enable_jekyll: false
           commit_message: "Deploy Kodi repository ${{ github.sha }}"
 
-      # Шаг 15: Вывод информации об успешном деплое / Step 15: Output deployment info
+      # Шаг 19: Вывод информации об успешном деплое / Step 19: Output deployment info
       - name: Deployment complete
         run: |
           echo "✅ Deployment successful!"

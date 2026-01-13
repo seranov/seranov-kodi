@@ -2,9 +2,9 @@
 setlocal
 
 :: Define variables
-set ZIP_OUTPUT="C:\VideoArchive\ShootingSheetToKodi\plugin.video.random.recursive-master.zip"
-set CONTENT_ROOT="c:\Users\Bidon\AppData\Roaming\Kodi\addons\plugin.video.random.recursive\"
-set TEMP_DIR="%TEMP%\plugin.video.random.recursive-master"
+set ZIP_OUTPUT="C:\VideoArchive\ShootingSheetToKodi\plugin.video.seranov.recursive-master.zip"
+set CONTENT_ROOT="%APPDATA%\Kodi\addons\plugin.video.seranov.recursive\"
+set TEMP_DIR="%TEMP%\plugin.video.seranov.recursive-master"
 set EXCLUDE_LIST="*.tmp *.log *.bak release.bat"
 set SEVEN_ZIP_PATH="C:\Program Files\7-Zip\7z.exe"
 

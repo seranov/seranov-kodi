@@ -1,11 +1,11 @@
 # Kodi Media Center language file
-# Addon Name: Bidon Popup Screenshots
-# Addon id: context.screenshots
+# Addon Name: SeraNov Popup Screenshots
+# Addon id: context.seranov.screenshots
 # Addon Provider: seranov
 
 msgid ""
 msgstr ""
-"Project-Id-Version: context.screenshots 1.0.5\n"
+"Project-Id-Version: context.seranov.screenshots 1.0.5\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-08 10:00+0000\n"
 "PO-Revision-Date: 2026-01-08 10:00+0000\n"

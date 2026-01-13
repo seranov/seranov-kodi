@@ -98,7 +98,7 @@ plugin.video.random.recursive/
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.random.recursive" 
-       name="Bidon Random Recursive Player" 
+       name="SeraNov Random Recursive Player" 
        version="1.0.0" 
        provider-name="seranov">
     <requires>
@@ -115,7 +115,7 @@ plugin.video.random.recursive/
 **Было:**
 ```xml
 <addon id="plugin.video.random.recursive" 
-       name="Bidon Random Recursive Player" 
+       name="SeraNov Random Recursive Player" 
        version="1.0.0" 
        provider-name="seranov">
 ```
@@ -123,7 +123,7 @@ plugin.video.random.recursive/
 **Стало:**
 ```xml
 <addon id="plugin.video.random.recursive" 
-       name="Bidon Random Recursive Player" 
+       name="SeraNov Random Recursive Player" 
        version="1.0.1" 
        provider-name="seranov">
 ```

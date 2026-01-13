@@ -2,7 +2,7 @@ import xbmc
 
 
 class PluginLog:
-    PREFIX = "plugin.video.random.recursive: "
+    PREFIX = "plugin.video.seranov.recursive: "
 
     @staticmethod
     def log(message, level=xbmc.LOGINFO):

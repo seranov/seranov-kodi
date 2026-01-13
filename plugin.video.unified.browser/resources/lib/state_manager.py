@@ -9,7 +9,7 @@ import xbmcvfs
 class StateManager:
     """Manage plugin state persistence"""
     
-    def __init__(self, state_file: str = 'special://profile/addon_data/plugin.video.unified.browser/state.json'):
+    def __init__(self, state_file: str = 'special://profile/addon_data/plugin.video.seranov.browser/state.json'):
         self.state_file = xbmcvfs.translatePath(state_file)
         self._ensure_state_dir()
     

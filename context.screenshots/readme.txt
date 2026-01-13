@@ -1,4 +1,4 @@
-Bidon Popup Screenshots - Kodi Add-on
+SeraNov Popup Screenshots - Kodi Add-on
 ======================================
 
 Version: 1.0.5

@@ -31,7 +31,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
 - **Purpose**: Install this to get automatic updates for all add-ons in this repository
 
 ### Random Recursive Video Player
-- **ID**: `plugin.video.random.recursive`
+- **ID**: `plugin.video.seranov.recursive`
 - **Purpose**: Play videos recursively in random order from a directory
 - **Features**:
   - Scans directories recursively for video files
@@ -40,7 +40,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
   - Automatic playlist management
 
 ### Popup Screenshots
-- **ID**: `context.screenshots`
+- **ID**: `context.seranov.screenshots`
 - **Purpose**: Display local screenshots and images in a slideshow
 - **Features**:
   - Context menu integration for media items
@@ -49,7 +49,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
   - Lightweight and easy to use
 
 ### Unified Video Browser
-- **ID**: `plugin.video.unified.browser`
+- **ID**: `plugin.video.seranov.browser`
 - **Purpose**: Browse all video content in a unified list without separation by content type
 - **Features**:
   - Shows videos, movies and series in a single interface

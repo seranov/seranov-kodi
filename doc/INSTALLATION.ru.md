@@ -179,7 +179,7 @@ https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0
 - Интеграция с контекстным меню
 
 **Установка:**
-- Репозиторий → Видео дополнения → Bidon Random Recursive Player
+- Репозиторий → Видео дополнения → SeraNov Random Recursive Player
 
 ### 📷 Context.screenshots
 **Всплывающие скриншоты**
@@ -188,7 +188,7 @@ https://seranov.github.io/seranov-kodi/repository.seranov/repository.seranov-1.0
 - Интеграция с контекстным меню
 
 **Установка:**
-- Репозиторий → Контекстные элементы → Bidon Popup Screenshots
+- Репозиторий → Контекстные элементы → SeraNov Popup Screenshots
 
 ### ⚙️ NFO Scanner Service
 **Служба автоматического сканирования метаданных**

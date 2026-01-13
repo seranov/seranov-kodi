@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.random.recursive" name="Bidon Random Recursive Player" version="1.0.1" provider-name="seranov">
+<addon id="plugin.video.seranov.recursive" name="SeraNov Random Recursive Player" version="1.0.1" provider-name="seranov">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
     </requires>
@@ -15,7 +15,7 @@
     <extension point="kodi.context.item">
         <menu id="kodi.core.main">
             <item library="main.py" args="play-random-recursive">
-                <label>$ADDON[plugin.video.random.recursive 32000]</label>
+                <label>$ADDON[plugin.video.seranov.recursive 32000]</label>
                 <visible>true</visible>
             </item>
         </menu>

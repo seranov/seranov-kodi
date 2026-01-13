@@ -60,6 +60,9 @@ def scan_folder_manually():
             # Create scanner instance
             scanner = NFOScanner(addon, monitor)
             
+            # Set scanner to running state for manual scan
+            scanner.running = True
+            
             # Scan the folder
             scanned_count = scanner.scan_folder(folder_path)
             

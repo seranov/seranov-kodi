@@ -8,7 +8,7 @@
         <menu id="kodi.core.main">
             <item library="context_menu.py">
                 <label>$ADDON[service.seranov.nfoscanner 32124]</label>
-                <visible>Container.Content(movies) | Container.Content(tvshows) | Container.Content(seasons) | Container.Content(episodes) | String.Contains(ListItem.FolderPath,/)</visible>
+                <visible>ListItem.IsFolder</visible>
             </item>
         </menu>
     </extension>

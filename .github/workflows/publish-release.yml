@@ -252,62 +252,59 @@ jobs:
           # Создание заголовка файла / Create file header
           cat > docs/index.html << 'EOF'
           <!DOCTYPE html>
-          <html>
+          <html lang="en">
           <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Seranov Kodi Repository</title>
-              <style>
-                  body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; max-width: 1200px; }
-                  h1 { color: #333; border-bottom: 2px solid #0066cc; padding-bottom: 10px; }
-                  h2 { color: #555; margin-top: 30px; }
-                  a { color: #0066cc; text-decoration: none; }
-                  a:hover { text-decoration: underline; }
-                  ul { list-style-type: none; padding-left: 0; }
-                  li { padding: 5px 0; }
-                  .description { color: #666; margin-bottom: 30px; }
-              </style>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>Seranov Kodi Repository</title>
+          <style>
+          body{font-family:Arial,sans-serif;margin:15px;line-height:1.5;max-width:1200px}
+          h1{color:#333;border-bottom:2px solid #06c;padding-bottom:8px;margin-bottom:10px}
+          h2{color:#555;margin:20px 0 8px;font-size:1.2em}
+          a{color:#06c;text-decoration:none}
+          a:hover{text-decoration:underline}
+          ul{list-style:none;padding:0;margin:5px 0}
+          li{padding:3px 0}
+          p{margin:8px 0;color:#666}
+          </style>
           </head>
           <body>
-              <h1>Seranov Kodi Repository</h1>
-              <p class="description">Collection of custom Kodi addons for video playback and browsing.</p>
-              
-              <h2>Repository Installation:</h2>
-              <p>To install this repository in Kodi, download the following file and install it as a ZIP package:</p>
-              <ul>
+          <h1>Seranov Kodi Repository</h1>
+          <p>Custom Kodi addons for video playback and browsing</p>
+          <h2>Repository Installation</h2>
+          <p>Download and install as ZIP package in Kodi:</p>
+          <ul>
           EOF
           
           # Добавление ссылки на repository.seranov.zip первой / Add repository.seranov.zip link first
           if [ -f "docs/repository.seranov.zip" ]; then
-            echo "        <li><a href=\"repository.seranov.zip\">repository.seranov.zip</a> (latest)</li>" >> docs/index.html
+            echo "<li><a href=\"repository.seranov.zip\">repository.seranov.zip</a> (latest)</li>" >> docs/index.html
             echo "Added link: repository.seranov.zip (first)"
           fi
           
           cat >> docs/index.html << 'EOF'
-              </ul>
-              
-              <h2>Addon Directories:</h2>
-              <p>Browse individual addon directories to view and download specific versions:</p>
-              <ul>
+          </ul>
+          <h2>Addon Directories</h2>
+          <p>Browse directories to view and download specific versions:</p>
+          <ul>
           EOF
           
           # Добавление ссылок на директории аддонов / Add links to addon directories
           for addon_dir in docs/*/; do
             if [ -d "$addon_dir" ]; then
               addon_name=$(basename "$addon_dir")
-              echo "        <li><a href=\"$addon_name/\">$addon_name/</a></li>" >> docs/index.html
+              echo "<li><a href=\"$addon_name/\">$addon_name/</a></li>" >> docs/index.html
               echo "Added directory link: $addon_name/"
             fi
           done
           
           cat >> docs/index.html << 'EOF'
-              </ul>
-              
-              <h2>Repository Files:</h2>
-              <ul>
-                  <li><a href="addons.xml">addons.xml</a> - Addon metadata</li>
-                  <li><a href="readme.html">readme.html</a> - Repository documentation</li>
-              </ul>
+          </ul>
+          <h2>Repository Files</h2>
+          <ul>
+          <li><a href="addons.xml">addons.xml</a> - Addon metadata</li>
+          <li><a href="readme.html">readme.html</a> - Documentation</li>
+          </ul>
           </body>
           </html>
           EOF
@@ -335,25 +332,25 @@ jobs:
               # Создание начала HTML файла / Create HTML file header
               cat > "docs/$addon_id/index.html" << EOF
           <!DOCTYPE html>
-          <html>
+          <html lang="en">
           <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>$addon_id - Seranov Kodi Repository</title>
-              <style>
-                  body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-                  h1 { color: #333; }
-                  h2 { color: #555; margin-top: 20px; }
-                  a { color: #0066cc; text-decoration: none; }
-                  a:hover { text-decoration: underline; }
-                  ul { list-style-type: none; padding-left: 0; }
-                  li { padding: 5px 0; }
-                  .back-link { margin-bottom: 20px; }
-              </style>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width,initial-scale=1">
+          <title>$addon_id - Seranov Kodi Repository</title>
+          <style>
+          body{font-family:Arial,sans-serif;margin:15px;line-height:1.5}
+          h1{color:#333;font-size:1.4em;margin-bottom:8px}
+          h2{color:#555;margin:15px 0 5px;font-size:1.1em}
+          a{color:#06c;text-decoration:none}
+          a:hover{text-decoration:underline}
+          ul{list-style:none;padding:0;margin:5px 0}
+          li{padding:2px 0}
+          .back{margin-bottom:15px;font-size:0.9em}
+          </style>
           </head>
           <body>
-              <h1>$addon_id</h1>
-              <p class="back-link"><a href="../">← Back to repository</a></p>
+          <h1>$addon_id</h1>
+          <p class="back"><a href="../">← Back to repository</a></p>
           EOF
               
               # Подсчёт файлов по типам / Count files by type
@@ -363,34 +360,32 @@ jobs:
               # Добавление секции с ZIP файлами если они есть / Add ZIP files section if any
               if [ "$zip_count" -gt 0 ]; then
                 cat >> "docs/$addon_id/index.html" << EOF
-              
-              <h2>Installation Files:</h2>
-              <ul>
+          <h2>Installation Files</h2>
+          <ul>
           EOF
                 for file in docs/$addon_id/*.zip; do
                   if [ -f "$file" ]; then
                     filename=$(basename "$file")
                     filesize=$(du -h "$file" | cut -f1)
-                    echo "        <li><a href=\"$filename\">$filename</a> ($filesize)</li>" >> "docs/$addon_id/index.html"
+                    echo "<li><a href=\"$filename\">$filename</a> ($filesize)</li>" >> "docs/$addon_id/index.html"
                   fi
                 done
-                echo "              </ul>" >> "docs/$addon_id/index.html"
+                echo "</ul>" >> "docs/$addon_id/index.html"
               fi
               
               # Добавление секции с медиа файлами если они есть / Add media files section if any
               if [ "$media_count" -gt 0 ]; then
                 cat >> "docs/$addon_id/index.html" << EOF
-              
-              <h2>Media Files:</h2>
-              <ul>
+          <h2>Media Files</h2>
+          <ul>
           EOF
                 for file in docs/$addon_id/*.{png,jpg,jpeg,gif}; do
                   if [ -f "$file" ]; then
                     filename=$(basename "$file")
-                    echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                    echo "<li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
                   fi
                 done
-                echo "              </ul>" >> "docs/$addon_id/index.html"
+                echo "</ul>" >> "docs/$addon_id/index.html"
               fi
               
               # Проверка наличия других файлов / Check for other files
@@ -412,14 +407,13 @@ jobs:
               # Добавление секции с другими файлами если они есть / Add other files section if any
               if [ ${#other_files[@]} -gt 0 ]; then
                 cat >> "docs/$addon_id/index.html" << EOF
-              
-              <h2>Other Files:</h2>
-              <ul>
+          <h2>Other Files</h2>
+          <ul>
           EOF
                 for filename in "${other_files[@]}"; do
-                  echo "        <li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
+                  echo "<li><a href=\"$filename\">$filename</a></li>" >> "docs/$addon_id/index.html"
                 done
-                echo "              </ul>" >> "docs/$addon_id/index.html"
+                echo "</ul>" >> "docs/$addon_id/index.html"
               fi
               
               # Закрытие HTML файла / Close HTML file

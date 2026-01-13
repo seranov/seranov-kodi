@@ -73,6 +73,7 @@ This repository contains multiple Kodi add-ons and serves as a Kodi repository f
   - Configurable scan intervals and thread count
   - Manual scan controls
   - Priority scanning based on user folder navigation
+  - Context menu for manual folder scanning
   - Supports both local and network sources
 
 ## Installation

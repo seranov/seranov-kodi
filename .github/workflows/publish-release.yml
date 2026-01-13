@@ -130,6 +130,16 @@ jobs:
           done
           
           echo "All ZIP archives created successfully!"
+          
+          # Создание копии repository.seranov.zip без версии / Create copy of repository.seranov.zip without version
+          echo "Creating versionless copy of repository.seranov..."
+          REPO_ZIP=$(find docs/repository.seranov/ -name "repository.seranov-*.zip" | head -n 1)
+          if [ -n "$REPO_ZIP" ]; then
+            cp "$REPO_ZIP" "docs/repository.seranov/repository.seranov.zip"
+            echo "Created: docs/repository.seranov/repository.seranov.zip"
+          else
+            echo "Warning: repository.seranov ZIP not found"
+          fi
 
       # Шаг 5: Генерация addons.xml / Step 5: Generate addons.xml
       - name: Generate addons.xml
@@ -234,7 +244,58 @@ jobs:
           python3 scripts/generate_readme.py docs
           echo "✓ readme.html generated!"
 
-      # Шаг 10: Генерация index.html для аддонов / Step 10: Generate index.html for addons
+      # Шаг 10: Генерация корневого index.html / Step 10: Generate root index.html
+      - name: Generate root index.html
+        run: |
+          echo "Generating root index.html with plugin archive links..."
+          
+          # Создание заголовка файла / Create file header
+          cat > docs/index.html << 'EOF'
+          <!DOCTYPE html>
+          EOF
+          
+          # Добавление ссылки на repository.seranov.zip первой / Add repository.seranov.zip link first
+          if [ -f "docs/repository.seranov/repository.seranov.zip" ]; then
+            echo "<a href=\"repository.seranov/repository.seranov.zip\">repository.seranov.zip</a>" >> docs/index.html
+            echo "Added link: repository.seranov/repository.seranov.zip (first)"
+          fi
+          
+          # Добавление ссылки на repository.seranov-X.X.X.zip второй / Add repository.seranov-X.X.X.zip link second
+          REPO_VERSIONED_ZIP=$(find docs/repository.seranov/ -name "repository.seranov-*.zip" -type f | head -n 1)
+          if [ -n "$REPO_VERSIONED_ZIP" ]; then
+            REPO_VERSIONED_NAME=$(basename "$REPO_VERSIONED_ZIP")
+            echo "<a href=\"repository.seranov/$REPO_VERSIONED_NAME\">$REPO_VERSIONED_NAME</a>" >> docs/index.html
+            echo "Added link: repository.seranov/$REPO_VERSIONED_NAME (second)"
+          fi
+          
+          # Добавление ссылок на остальные архивы / Add links to other archives
+          for addon_dir in docs/*/; do
+            addon_id=$(basename "$addon_dir")
+            
+            # Пропуск директории doc и repository.seranov (уже обработан) / Skip doc directory and repository.seranov (already processed)
+            if [ "$addon_id" = "doc" ] || [ "$addon_id" = "repository.seranov" ]; then
+              continue
+            fi
+            
+            # Поиск ZIP файлов в директории аддона / Find ZIP files in addon directory
+            for zipfile in "$addon_dir"*.zip; do
+              if [ -f "$zipfile" ]; then
+                zipname=$(basename "$zipfile")
+                
+                # Формат: addon_id/zipname
+                echo "<a href=\"$addon_id/$zipname\">$zipname</a>" >> docs/index.html
+                echo "Added link: $addon_id/$zipname"
+              fi
+            done
+          done
+          
+          # Добавление ссылки на readme.html / Add link to readme.html
+          echo "<a href=\"https://seranov.github.io/seranov-kodi/readme.html\">readme.html</a>" >> docs/index.html
+          echo "Added link to readme.html"
+          
+          echo "✓ Root index.html generated!"
+
+      # Шаг 11: Генерация index.html для аддонов / Step 11: Generate index.html for addons
       - name: Generate addon index pages
         run: |
           echo "Generating index.html pages for addon directories..."
@@ -286,7 +347,7 @@ jobs:
           
           echo "All index pages created successfully!"
 
-      # Шаг 11: Вывод структуры директории / Step 11: Display directory structure
+      # Шаг 12: Вывод структуры директории / Step 12: Display directory structure
       - name: Display output structure
         run: |
           echo "=== Output Directory Structure ==="
@@ -295,7 +356,7 @@ jobs:
           echo "=== File sizes ==="
           du -h docs/* | sort -h
 
-      # Шаг 12: Настройка GitHub Pages / Step 12: Configure GitHub Pages
+      # Шаг 13: Настройка GitHub Pages / Step 13: Configure GitHub Pages
       - name: Configure GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -309,7 +370,7 @@ jobs:
             -d '{"source":{"branch":"gh-pages","path":"/"}}' \
             || echo "Pages might already be configured or error occurred"
 
-      # Шаг 13: Deploy на GitHub Pages / Step 13: Deploy to GitHub Pages
+      # Шаг 14: Deploy на GitHub Pages / Step 14: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -320,7 +381,7 @@ jobs:
           enable_jekyll: false
           commit_message: "Deploy Kodi repository ${{ github.sha }}"
 
-      # Шаг 14: Вывод информации об успешном деплое / Step 14: Output deployment info
+      # Шаг 15: Вывод информации об успешном деплое / Step 15: Output deployment info
       - name: Deployment complete
         run: |
           echo "✅ Deployment successful!"
@@ -333,6 +394,7 @@ jobs:
           echo "3. Select the downloaded repository.seranov-*.zip file"
           echo ""
           echo "Files deployed:"
+          echo "  - index.html (with links to all addon archives)"
           echo "  - addons.xml"
           echo "  - addons.xml.md5"
           echo "  - ZIP archives for all addons"

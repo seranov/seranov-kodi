@@ -43,6 +43,7 @@ jobs:
         run: |
           echo "Creating output directory structure..."
           mkdir -p docs/doc
+          mkdir -p repo
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
@@ -53,10 +54,16 @@ jobs:
             "repository.seranov"
           )
           
-          # Создание поддиректорий для каждого аддона / Create subdirectories for each addon
+          # Создание поддиректорий для каждого аддона в docs / Create subdirectories for each addon in docs
           for addon in "${ADDONS[@]}"; do
             mkdir -p "docs/$addon"
             echo "Created directory: docs/$addon"
+          done
+          
+          # Создание поддиректорий для каждого аддона в repo / Create subdirectories for each addon in repo
+          for addon in "${ADDONS[@]}"; do
+            mkdir -p "repo/$addon"
+            echo "Created directory: repo/$addon"
           done
 
       # Шаг 4: Создание ZIP-архивов / Step 4: Create ZIP archives
@@ -141,10 +148,10 @@ jobs:
             echo "Warning: repository.seranov ZIP not found"
           fi
 
-      # Шаг 5: Обновление папки repo / Step 5: Update repo folder
-      - name: Update repo folder
+      # Шаг 5: Обновление временной папки repo / Step 5: Update temporary repo folder
+      - name: Update temporary repo folder
         run: |
-          echo "Updating repo folder with new archives..."
+          echo "Updating temporary repo folder with new archives..."
           
           # Список аддонов для обработки / List of addons to process
           ADDONS=(
@@ -188,7 +195,7 @@ jobs:
             fi
           done
           
-          echo "✓ Repo folder updated with new archives!"
+          echo "✓ Temporary repo folder updated with new archives!"
 
       # Шаг 6: Обновление repo/addons.xml / Step 6: Update repo/addons.xml
       - name: Update repo/addons.xml
@@ -273,25 +280,7 @@ jobs:
           echo "✓ repo/addons.xml.md5 updated successfully!"
           cd ..
 
-      # Шаг 8: Коммит изменений в repo / Step 8: Commit changes to repo
-      - name: Commit repo changes
-        run: |
-          echo "Committing changes to repo folder..."
-          
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          
-          git add repo/
-          
-          if git diff --staged --quiet; then
-            echo "No changes to commit in repo folder"
-          else
-            git commit -m "chore: update repo with new addon versions [skip ci]"
-            git push
-            echo "✓ Changes committed and pushed!"
-          fi
-
-      # Шаг 9: Генерация addons.xml для docs / Step 9: Generate addons.xml for docs
+      # Шаг 8: Генерация addons.xml для docs / Step 8: Generate addons.xml for docs
       - name: Generate addons.xml for docs
         run: |
           echo "Generating addons.xml for docs..."
@@ -362,7 +351,7 @@ jobs:
           
           echo "✓ addons.xml for docs generated successfully!"
 
-      # Шаг 10: Генерация addons.xml.md5 для docs / Step 10: Generate addons.xml.md5 for docs
+      # Шаг 9: Генерация addons.xml.md5 для docs / Step 9: Generate addons.xml.md5 for docs
       - name: Generate addons.xml.md5
         run: |
           echo "Generating addons.xml.md5..."
@@ -373,28 +362,28 @@ jobs:
           echo "MD5 checksum: $(cat addons.xml.md5)"
           echo "addons.xml.md5 generated successfully!"
 
-      # Шаг 11: Создание .nojekyll файла / Step 11: Create .nojekyll file
+      # Шаг 10: Создание .nojekyll файла / Step 10: Create .nojekyll file
       - name: Create .nojekyll file
         run: |
           echo "Creating .nojekyll file to disable Jekyll..."
           touch docs/.nojekyll
           echo "✓ .nojekyll file created!"
 
-      # Шаг 12: Конвертация документации из MD в HTML / Step 12: Convert documentation from MD to HTML
+      # Шаг 11: Конвертация документации из MD в HTML / Step 11: Convert documentation from MD to HTML
       - name: Convert documentation to HTML
         run: |
           echo "Converting documentation from Markdown to HTML..."
           python3 scripts/convert_md_to_html.py doc docs/doc
           echo "✓ Documentation converted to HTML!"
 
-      # Шаг 13: Генерация readme.html / Step 13: Generate readme.html
+      # Шаг 12: Генерация readme.html / Step 12: Generate readme.html
       - name: Generate readme.html
         run: |
           echo "Generating readme.html with plugin links..."
           python3 scripts/generate_readme.py docs
           echo "✓ readme.html generated!"
 
-      # Шаг 14: Генерация корневого index.html / Step 14: Generate root index.html
+      # Шаг 13: Генерация корневого index.html / Step 13: Generate root index.html
       - name: Generate root index.html
         run: |
           echo "Generating root index.html with plugin archive links..."
@@ -439,7 +428,7 @@ jobs:
           
           echo "✓ Root index.html generated!"
 
-      # Шаг 15: Генерация index.html для аддонов / Step 15: Generate index.html for addons
+      # Шаг 14: Генерация index.html для аддонов / Step 14: Generate index.html for addons
       - name: Generate addon index pages
         run: |
           echo "Generating index.html pages for addon directories..."
@@ -491,7 +480,7 @@ jobs:
           
           echo "All index pages created successfully!"
 
-      # Шаг 16: Вывод структуры директории / Step 16: Display directory structure
+      # Шаг 15: Вывод структуры директории / Step 15: Display directory structure
       - name: Display output structure
         run: |
           echo "=== Output Directory Structure ==="
@@ -500,7 +489,7 @@ jobs:
           echo "=== File sizes ==="
           du -h docs/* | sort -h
 
-      # Шаг 17: Настройка GitHub Pages / Step 17: Configure GitHub Pages
+      # Шаг 16: Настройка GitHub Pages / Step 16: Configure GitHub Pages
       - name: Configure GitHub Pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -514,7 +503,7 @@ jobs:
             -d '{"source":{"branch":"gh-pages","path":"/"}}' \
             || echo "Pages might already be configured or error occurred"
 
-      # Шаг 18: Deploy на GitHub Pages / Step 18: Deploy to GitHub Pages
+      # Шаг 17: Deploy на GitHub Pages / Step 17: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -525,7 +514,7 @@ jobs:
           enable_jekyll: false
           commit_message: "Deploy Kodi repository ${{ github.sha }}"
 
-      # Шаг 19: Вывод информации об успешном деплое / Step 19: Output deployment info
+      # Шаг 18: Вывод информации об успешном деплое / Step 18: Output deployment info
       - name: Deployment complete
         run: |
           echo "✅ Deployment successful!"

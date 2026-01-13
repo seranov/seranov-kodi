@@ -75,6 +75,9 @@ docs/_build/
 # GitHub Pages generated files
 /docs/
 
+# Build output directory (local and CI/CD)
+/repo/
+
 # Test output directories
 test_output/
 /test_output/

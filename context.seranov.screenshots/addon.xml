@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="context.seranov.screenshots" name="SeraNov Popup Screenshots" version="1.1.1" provider-name="seranov">
+<addon id="context.seranov.screenshots" name="SeraNov Popup Screenshots" version="1.2.8" provider-name="seranov">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.kodi-six" version="0.1.3.1"/>
@@ -9,18 +9,23 @@
     <extension point="kodi.context.item">
         <menu id="kodi.core.main">
             <item library="contextitem_images.py">
-                <label>$ADDON[context.seranov.screenshots 32000]</label>
-                <visible>String.IsEqual(System.AddonSettings(context.seranov.screenshots,context_menu_root),true)</visible>
+                <label>SeraNov: Local Info</label>
+                <visible>ListItem.IsFolder + String.IsEqual(System.AddonSetting(context.seranov.screenshots,context_menu_root),true)</visible>
             </item>
-        </menu>
-    </extension>
-
-    <extension point="kodi.context.item">
-        <menu id="seranov">
-            <item library="contextitem_images.py">
-                <label>$ADDON[context.seranov.screenshots 32000]</label>
-                <visible>String.IsEqual(System.AddonSettings(context.seranov.screenshots,context_menu_seranov),true)</visible>
-            </item>
+            <menu>
+                <label>SeraNov &gt;</label>
+                <item library="contextitem_images.py">
+                    <label>Local Info</label>
+                    <visible>ListItem.IsFolder + String.IsEqual(System.AddonSetting(context.seranov.screenshots,context_menu_seranov),true)</visible>
+                </item>
+                <menu>
+                    <label>Popup Screenshots &gt;</label>
+                    <item library="contextitem_images.py">
+                        <label>Local Info</label>
+                        <visible>ListItem.IsFolder</visible>
+                    </item>
+                </menu>
+            </menu>
         </menu>
     </extension>
 
@@ -32,8 +37,11 @@
         <platform>all</platform>
         <summary lang="en_GB">Popup Screenshots</summary>
         <summary lang="ru_RU">Всплывающие скриншоты</summary>
-        <description lang="en_GB">Show slideshow of local images and optionally file_id.diz file text content</description>
-        <description lang="ru_RU">Показывает слайдшоу локальных изображений и опционально содержимое текстового файла file_id.diz</description>
+        <description lang="en_GB">Show slideshow of local images and optionally file_id.diz file text content
+        </description>
+        <description
+                lang="ru_RU">Показывает слайдшоу локальных изображений и опционально содержимое текстового файла file_id.diz
+        </description>
         <license>GNU General Public License, v2</license>
         <language></language>
         <forum></forum>

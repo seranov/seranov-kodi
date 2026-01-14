@@ -39,14 +39,39 @@ def start_playback(list_item: ListItem = None):
 
 
 if __name__ == '__main__':
+    PluginLog.info('=' * 60)
+    PluginLog.info('MAIN.PY STARTED')
+
+    # Log addon info
+    PluginLog.info(f'Addon version: {addon.getAddonInfo("version")}')
+
+    # Log settings
+    try:
+        context_menu_root = addon.getSetting('context_menu_root')
+        context_menu_seranov = addon.getSetting('context_menu_seranov')
+        PluginLog.info(f'Settings: root={context_menu_root}, seranov={context_menu_seranov}')
+    except Exception as e:
+        PluginLog.info(f'Error reading settings: {e}')
+
     args = sys.argv[1:]
     params = parse_qs(args[1]) if len(args) > 1 else {}
+
+    PluginLog.info(f'sys.argv: {sys.argv}')
+    PluginLog.info(f'args: {args}')
+    PluginLog.info(f'params: {params}')
+
     # noinspection PyUnresolvedReferences
-    PluginLog.info(f"args={args}; sys.listitem={sys.listitem}")
+    PluginLog.info(f'hasattr(sys, "listitem"): {hasattr(sys, "listitem")}')
+    if hasattr(sys, 'listitem'):
+        # noinspection PyUnresolvedReferences
+        PluginLog.info(f'sys.listitem: {sys.listitem}')
 
     # Check for context menu action
     if "play-random-recursive" in args:
+        PluginLog.info('Context menu action detected: play-random-recursive')
         # noinspection PyUnresolvedReferences
         start_playback(sys.listitem)
     else:
         PluginLog.info("no valid context menu action")
+
+    PluginLog.info('=' * 60)

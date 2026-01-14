@@ -79,4 +79,16 @@
             </setting>
         </group>
     </category>
+    <category id="context_menu" label="32030">
+        <group id="5" label="32031">
+            <setting id="context_menu_root" type="boolean" label="32032" default="true" help="32033">
+                <level>0</level>
+                <default>true</default>
+            </setting>
+            <setting id="context_menu_seranov" type="boolean" label="32034" default="true" help="32035">
+                <level>0</level>
+                <default>true</default>
+            </setting>
+        </group>
+    </category>
 </settings>

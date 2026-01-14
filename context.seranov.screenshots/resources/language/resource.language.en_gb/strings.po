@@ -91,3 +91,8 @@ msgstr "Show in root menu"
 msgctxt "#30202"
 msgid "Show in SeraNov folder"
 msgstr "Show in SeraNov folder"
+
+msgctxt "#32900"
+msgid "DEBUG: Screenshots"
+msgstr "DEBUG: Screenshots"
+

@@ -52,4 +52,7 @@
     <string id="32600">Контекстное меню</string>
     <string id="32601">Показывать в корне меню</string>
     <string id="32602">Показывать в папке SeraNov</string>
+
+    <!-- Debug -->
+    <string id="32900">ОТЛАДКА: Браузер</string>
 </strings>

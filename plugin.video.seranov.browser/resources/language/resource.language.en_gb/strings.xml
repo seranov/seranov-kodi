@@ -52,4 +52,7 @@
     <string id="32600">Context Menu</string>
     <string id="32601">Show in root menu</string>
     <string id="32602">Show in SeraNov folder</string>
+
+    <!-- Debug -->
+    <string id="32900">DEBUG: Browser</string>
 </strings>

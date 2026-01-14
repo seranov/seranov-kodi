@@ -101,3 +101,8 @@ msgstr "Показывать в корне меню"
 msgctxt "#30202"
 msgid "Show in SeraNov folder"
 msgstr "Показывать в папке SeraNov"
+
+msgctxt "#32900"
+msgid "DEBUG: Screenshots"
+msgstr "ОТЛАДКА: Скриншоты"
+

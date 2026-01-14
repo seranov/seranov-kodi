@@ -55,4 +55,12 @@
     <string id="32122">Scanned {0} items</string>
     <string id="32123">No items needed updating</string>
     <string id="32124">Update NFO Info</string>
+
+    <!-- Context Menu Settings -->
+    <string id="32030">Context Menu</string>
+    <string id="32031">Context Menu Settings</string>
+    <string id="32032">Show in root menu</string>
+    <string id="32033">Show context menu item in the root menu</string>
+    <string id="32034">Show in SeraNov folder</string>
+    <string id="32035">Show context menu item in the SeraNov submenu</string>
 </strings>

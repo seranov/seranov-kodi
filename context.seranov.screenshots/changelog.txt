@@ -1,3 +1,18 @@
+1.2.5 Set visible=true for all menu items (System.AddonSetting does not work)
+1.2.4 Restore context_menu_root default value to true
+1.2.3 Submenu items always visible, root menu respects settings
+1.2.2 Add all plugins to kodi.core.manage submenu
+1.2.1 Remove debug menu items
+1.2.0 Use built-in kodi.core.manage submenu instead of custom seranov submenu
+1.1.9 Combine multiple menu items into single extension point
+1.1.8 Enable SeraNov submenu by default
+1.1.7 Use direct text labels instead of localization references in context menu
+1.1.6 Add label attribute to SeraNov submenu
+1.1.5 Add Russian localization for debug menu item
+1.1.4 Simplified visibility conditions to 'true' for testing
+1.1.3 Add debug context menu item and detailed logging
+1.1.2 Fix context menu visibility conditions (AddonSettings -> AddonSetting)
+1.1.1 Add context menu settings for root and seranov folder
 1.0.2 Update Dialog method to work with latest Kodi versions
 1.0.1 Move icon and fanart to root for backwards compatibility
 1.0.0 Initial Release

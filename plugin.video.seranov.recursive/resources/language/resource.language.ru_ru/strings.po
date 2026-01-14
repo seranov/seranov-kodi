@@ -30,3 +30,8 @@ msgstr "Показывать в корне меню"
 msgctxt "#32102"
 msgid "Show in SeraNov folder"
 msgstr "Показывать в папке SeraNov"
+
+msgctxt "#32900"
+msgid "DEBUG: Recursive Player"
+msgstr "ОТЛАДКА: Рекурсивный плеер"
+

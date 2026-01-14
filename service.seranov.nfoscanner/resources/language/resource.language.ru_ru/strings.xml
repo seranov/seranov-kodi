@@ -55,4 +55,12 @@
     <string id="32122">Отсканировано {0} элементов</string>
     <string id="32123">Обновление не требуется</string>
     <string id="32124">Обновить NFO информацию</string>
+
+    <!-- Context Menu Settings -->
+    <string id="32030">Контекстное меню</string>
+    <string id="32031">Настройки контекстного меню</string>
+    <string id="32032">Показывать в корневом меню</string>
+    <string id="32033">Показывать пункт контекстного меню в корневом меню</string>
+    <string id="32034">Показывать в папке SeraNov</string>
+    <string id="32035">Показывать пункт контекстного меню в подменю SeraNov</string>
 </strings>

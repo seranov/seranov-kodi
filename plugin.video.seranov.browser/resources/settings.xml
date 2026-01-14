@@ -10,6 +10,6 @@
     </category>
     <category label="32600">
         <setting id="context_menu_root" type="bool" label="32601" default="true"/>
-        <setting id="context_menu_seranov" type="bool" label="32602" default="false"/>
+        <setting id="context_menu_seranov" type="bool" label="32602" default="true"/>
     </category>
 </settings>

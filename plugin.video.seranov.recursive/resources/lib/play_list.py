@@ -26,7 +26,9 @@ class PlayListExtended:
         if os.path.exists(folder_art_path):
             item.setArt({'icon': folder_art_path, 'poster': folder_art_path, 'thumb': folder_art_path})
 
-        item.setInfo('video', {'title': title})
+        # Use InfoTagVideo (Kodi 20+ compatible)
+        info_tag = item.getVideoInfoTag()
+        info_tag.setTitle(title)
         item.setProperty('IsPlayable', 'true')
         item.setIsFolder(False)
 

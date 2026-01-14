@@ -156,15 +156,16 @@ class UnifiedBrowserPlugin:
         for idx, movie in enumerate(self.filtered_movies):
             list_item = xbmcgui.ListItem(label=movie.get_display_title())
             
-            # Set info
-            info = {
-                'title': movie.get_display_title(),
-                'plot': movie.plot,
-                'year': movie.year,
-                'duration': movie.runtime * 60 if movie.runtime else 0
-            }
-            list_item.setInfo('video', info)
-            
+            # Set info using InfoTagVideo (Kodi 20+ compatible)
+            info_tag = list_item.getVideoInfoTag()
+            info_tag.setTitle(movie.get_display_title())
+            if movie.plot:
+                info_tag.setPlot(movie.plot)
+            if movie.year:
+                info_tag.setYear(movie.year)
+            if movie.runtime:
+                info_tag.setDuration(movie.runtime * 60)  # Convert minutes to seconds
+
             # Set artwork
             if movie.folder_jpg:
                 # Create composite image if we have overlay

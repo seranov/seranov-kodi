@@ -113,7 +113,7 @@ class ImageProcessor:
             
             # Read file using xbmcvfs
             file_obj = xbmcvfs.File(base_image_path, 'rb')
-            image_data = file_obj.read()
+            image_data = file_obj.readBytes()
             file_obj.close()
             
             # Load with PIL

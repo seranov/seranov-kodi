@@ -6,88 +6,88 @@ msgstr ""
 
 msgctxt "#32000"
 msgid "Local Info"
-msgstr ""
+msgstr "Local Info"
 
 msgctxt "#32001"
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 msgctxt "#32002"
 msgid "Screenshots slide show"
-msgstr ""
+msgstr "Screenshots slide show"
 
 msgctxt "#32003"
 msgid "Screenshots tile"
-msgstr ""
+msgstr "Screenshots tile"
 
 msgctxt "#30101"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgctxt "#30104"
 msgid "seconds"
-msgstr ""
+msgstr "seconds"
 
 msgctxt "#30105"
 msgid "kB"
-msgstr ""
+msgstr "kB"
 
 msgctxt "#30111"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgctxt "#30121"
 msgid "Startup mode"
-msgstr ""
+msgstr "Startup mode"
 
 msgctxt "#30123"
 msgid "Image auto switch delay (seconds)"
-msgstr ""
+msgstr "Image auto switch delay (seconds)"
 
 msgctxt "#30112"
 msgid "Background"
-msgstr ""
+msgstr "Background"
 
 msgctxt "#30124"
 msgid "Use fanart as background if exists"
-msgstr ""
+msgstr "Use fanart as background if exists"
 
 msgctxt "#30125"
 msgid "Default background"
-msgstr ""
+msgstr "Default background"
 
 msgctxt "#30126"
 msgid "Tint"
-msgstr ""
+msgstr "Tint"
 
 msgctxt "#30113"
 msgid "Screenshots"
-msgstr ""
+msgstr "Screenshots"
 
 msgctxt "#30127"
 msgid "Include non JPEG images"
-msgstr ""
+msgstr "Include non JPEG images"
 
 msgctxt "#30128"
 msgid "Hide small JPEG files"
-msgstr ""
+msgstr "Hide small JPEG files"
 
 msgctxt "#30129"
 msgid "Minimum JPEG file size, %"
-msgstr ""
+msgstr "Minimum JPEG file size, %"
 
 msgctxt "#30130"
 msgid "Hide artwork files"
-msgstr ""
+msgstr "Hide artwork files"
 
 msgctxt "#30200"
 msgid "Context Menu"
-msgstr ""
+msgstr "Context Menu"
 
 msgctxt "#30201"
 msgid "Show in root menu"
-msgstr ""
+msgstr "Show in root menu"
 
 msgctxt "#30202"
 msgid "Show in SeraNov folder"
-msgstr ""
+msgstr "Show in SeraNov folder"

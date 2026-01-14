@@ -17,16 +17,16 @@ msgstr ""
 
 msgctxt "#32000"
 msgid "Play random recursive"
-msgstr ""
+msgstr "Play random recursive"
 
 msgctxt "#32100"
 msgid "Context Menu"
-msgstr ""
+msgstr "Context Menu"
 
 msgctxt "#32101"
 msgid "Show in root menu"
-msgstr ""
+msgstr "Show in root menu"
 
 msgctxt "#32102"
 msgid "Show in SeraNov folder"
-msgstr ""
+msgstr "Show in SeraNov folder"

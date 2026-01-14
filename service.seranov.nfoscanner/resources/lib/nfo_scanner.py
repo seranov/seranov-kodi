@@ -79,8 +79,13 @@ class NFOScanner:
     def load_settings(self):
         """Load settings from addon configuration"""
         try:
-            self.scan_interval = int(self.addon.getSetting('scan_interval'))
-            self.thread_count = int(self.addon.getSetting('thread_count'))
+            # Load settings with default values if empty
+            scan_interval_str = self.addon.getSetting('scan_interval')
+            self.scan_interval = int(scan_interval_str) if scan_interval_str else 60
+
+            thread_count_str = self.addon.getSetting('thread_count')
+            self.thread_count = int(thread_count_str) if thread_count_str else 1
+
             self.pause_on_playback = self.addon.getSetting('pause_on_playback') == 'true'
             self.debug_logging = self.addon.getSetting('debug_logging') == 'true'
             self.scan_network_sources = self.addon.getSetting('scan_network_sources') == 'true'
